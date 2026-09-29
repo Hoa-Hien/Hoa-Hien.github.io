@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vincent Hòa | Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --bg-card: #ffffff;
+      --text: #0f172a;
+      --text-secondary: #64748b;
+      --primary: #3b82f6;
+      --primary-dark: #2563eb;
+      --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%);
+      --gradient-soft: linear-gradient(135deg, #eff6ff 0%, #f5f3ff 50%, #fdf2f8 100%);
+      --shadow: 0 10px 25px -5px rgb(0 0 0 / 0.08), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+      --shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.08);
+      --radius: 16px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg: #0f172a;
+      --bg-card: #1e293b;
+      --text: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --gradient-soft: linear-gradient(135deg, #1e3a5f 0%, #2e1a47 50%, #4a1942 100%);
+      --shadow: 0 10px 25px -5px rgb(0 0 0 / 0.3);
+      --shadow-hover: 0 20px 25px -5px rgb(0 0 0 / 0.4);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: var(--transition);
+    }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+      transition: var(--transition);
+    }
+    [data-theme="dark"] nav {
+      background: rgba(15, 23, 42, 0.85);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-container {
+      max-width: 1100px; margin: 0 auto; padding: 0.9rem 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .logo {
+      font-weight: 700; font-size: 1.25rem;
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .nav-links { display: flex; gap: 1.8rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text-secondary);
+      font-weight: 500; font-size: 0.95rem; transition: var(--transition);
+    }
+    .nav-links a:hover { color: var(--primary); }
+    .theme-toggle {
+      background: none; border: none; cursor: pointer; font-size: 1.3rem;
+      padding: 0.4rem; border-radius: 50%; transition: var(--transition);
+    }
+    .theme-toggle:hover { background: rgba(59, 130, 246, 0.1); }
+    .menu-btn {
+      display: none; background: none; border: none; font-size: 1.5rem;
+      cursor: pointer; color: var(--text);
+    }
+
+    .hero {
+      min-height: 100vh; display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 6rem 1.5rem 4rem;
+      background: var(--gradient-soft); position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, transparent 70%);
+      top: -200px; right: -200px; border-radius: 50%;
+    }
+    .hero-content {
+      max-width: 700px; position: relative; z-index: 1;
+      animation: fadeUp 0.8s ease-out;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.5rem); font-weight: 700;
+      margin-bottom: 1rem; line-height: 1.2;
+    }
+    .hero h1 span {
+      background: var(--gradient);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .hero p {
+      font-size: 1.15rem; color: var(--text-secondary); margin-bottom: 2rem;
+      max-width: 540px; margin-left: auto; margin-right: auto;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 1.8rem; border-radius: 9999px; font-weight: 600;
+      text-decoration: none; transition: var(--transition); border: none;
+      cursor: pointer; font-size: 1rem;
+    }
+    .btn-primary {
+      background: var(--gradient); color: white;
+      box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(59, 130, 246, 0.5);
+    }
+    .btn-outline {
+      background: transparent; color: var(--primary);
+      border: 2px solid var(--primary); margin-left: 0.8rem;
+    }
+    .btn-outline:hover { background: var(--primary); color: white; }
+
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-title {
+      font-size: 1.9rem; font-weight: 700; margin-bottom: 0.5rem; text-align: center;
+    }
+    .section-subtitle {
+      text-align: center; color: var(--text-secondary);
+      margin-bottom: 3rem; font-size: 1.05rem;
+    }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: center;
+    }
+    .about-card {
+      background: var(--bg-card); border-radius: var(--radius);
+      padding: 2rem; box-shadow: var(--shadow);
+    }
+    .about-card h3 { margin-bottom: 1rem; font-size: 1.3rem; }
+    .about-card p { color: var(--text-secondary); margin-bottom: 1rem; }
+
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 1.2rem;
+    }
+    .skill-item {
+      background: var(--bg-card); border-radius: var(--radius);
+      padding: 1.5rem 1rem; text-align: center; box-shadow: var(--shadow);
+      transition: var(--transition); border: 1px solid transparent;
+    }
+    .skill-item:hover {
+      transform: translateY(-5px); box-shadow: var(--shadow-hover);
+      border-color: rgba(59, 130, 246, 0.2);
+    }
+    .skill-icon { font-size: 2rem; margin-bottom: 0.6rem; }
+    .skill-item span { font-weight: 500; font-size: 0.95rem; }
+
+    .project-category { margin-bottom: 3.5rem; }
+    .category-header {
+      display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1.5rem;
+    }
+    .category-header h3 { font-size: 1.4rem; font-weight: 600; }
+    .category-badge {
+      background: var(--gradient); color: white; font-size: 0.75rem;
+      padding: 0.25rem 0.7rem; border-radius: 9999px; font-weight: 500;
+    }
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg-card); border-radius: var(--radius); overflow: hidden;
+      box-shadow: var(--shadow); transition: var(--transition); border: 1px solid transparent;
+    }
+    .project-card:hover {
+      transform: translateY(-6px); box-shadow: var(--shadow-hover);
+      border-color: rgba(59, 130, 246, 0.15);
+    }
+    .project-img {
+      height: 160px; background: var(--gradient); display: flex;
+      align-items: center; justify-content: center; color: white;
+      font-size: 2.5rem; font-weight: 600;
+    }
+    .project-body { padding: 1.4rem; }
+    .project-body h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .project-body p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+    .tag {
+      background: rgba(59, 130, 246, 0.1); color: var(--primary);
+      font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 6px; font-weight: 500;
+    }
+    .project-link {
+      color: var(--primary); text-decoration: none; font-weight: 500;
+      font-size: 0.9rem; display: inline-flex; align-items: center; gap: 0.3rem;
+    }
+    .project-link:hover { text-decoration: underline; }
+
+    .sub-section {
+      margin-top: 1.5rem; padding-left: 1rem; border-left: 3px solid #8b5cf6;
+    }
+    .sub-section h4 { font-size: 1.1rem; margin-bottom: 1rem; color: var(--text); }
+
+    .contact { background: var(--gradient-soft); text-align: center; }
+    .contact-links {
+      display: flex; justify-content: center; gap: 1.5rem;
+      flex-wrap: wrap; margin-top: 2rem;
+    }
+    .contact-item {
+      background: var(--bg-card); padding: 1.2rem 1.8rem; border-radius: var(--radius);
+      box-shadow: var(--shadow); text-decoration: none; color: var(--text);
+      font-weight: 500; transition: var(--transition);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .contact-item:hover {
+      transform: translateY(-3px); box-shadow: var(--shadow-hover); color: var(--primary);
+    }
+
+    footer {
+      text-align: center; padding: 2rem; color: var(--text-secondary);
+      font-size: 0.9rem; border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    [data-theme="dark"] footer { border-top: 1px solid rgba(255,255,255,0.08); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-in {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none; position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--bg-card); flex-direction: column; padding: 1.5rem;
+        gap: 1rem; box-shadow: var(--shadow);
+      }
+      .nav-links.active { display: flex; }
+      .menu-btn { display: block; }
+      .about-grid { grid-template-columns: 1fr; }
+      .btn-outline { margin-left: 0; margin-top: 0.8rem; }
+      .hero .btn { display: block; width: fit-content; margin: 0.5rem auto; }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="nav-container">
+      <div class="logo">Vincent Hòa</div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">Giới thiệu</a></li>
+        <li><a href="#skills">Kỹ năng</a></li>
+        <li><a href="#projects">Dự án</a></li>
+        <li><a href="#contact">Liên hệ</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:0.8rem;">
+        <button class="theme-toggle" id="themeToggle" title="Đổi giao diện">🌙</button>
+        <button class="menu-btn" id="menuBtn">☰</button>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Xin chào, mình là <span>Vincent Hòa</span></h1>
+      <p>Sinh viên PTIT • Đam mê AI, Data Analyst và Công nghệ thông tin. Chào mừng bạn đến với trang dự án của mình!</p>
+      <div>
+        <a href="#projects" class="btn btn-primary">Xem dự án →</a>
+        <a href="#contact" class="btn btn-outline">Liên hệ</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container">
+      <h2 class="section-title fade-in">Giới thiệu</h2>
+      <p class="section-subtitle fade-in">Một chút về mình</p>
+      <div class="about-grid fade-in">
+        <div class="about-card">
+          <h3>👋 Về mình</h3>
+          <p>Mình là Vincent Hòa, hiện đang theo học tại Học viện Công nghệ Bưu chính Viễn thông (PTIT). Mình yêu thích khám phá công nghệ, đặc biệt là trí tuệ nhân tạo và phân tích dữ liệu.</p>
+          <p>Trang này là nơi mình lưu trữ các bài tập, đồ án và dự án cá nhân trong quá trình học tập.</p>
+        </div>
+        <div 
