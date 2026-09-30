@@ -1,1807 +1,1836 @@
+```html
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vincent Hòa | Portfolio, PTIT Hub, AI Radar & Data Analyst</title>
 
-  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <title>Vincent Hòa — IT · Data · AI</title>
+  <meta name="description" content="Vincent Hòa — IT, Data Analyst, AI, PTIT và các dự án công nghệ cá nhân.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Font Awesome 6.5 Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
-          animation: {
-            'spin-slow': 'spin 8s linear infinite',
-            'float-slow': 'floatAmbient 10s ease-in-out infinite alternate',
-            'pulse-glow': 'pulseGlow 2.5s infinite',
-            'border-sheen': 'borderSheen 4s linear infinite',
-          }
-        }
-      }
-    }
-  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* Glassmorphism Styles */
-    .glass-nav {
-      background: rgba(255, 255, 255, 0.88);
+    :root {
+      --bg: #f7f9fc;
+      --surface: #ffffff;
+      --surface-2: #f1f5f9;
+      --text: #0f172a;
+      --muted: #64748b;
+      --border: #e2e8f0;
+      --primary: #2563eb;
+      --primary-dark: #1d4ed8;
+      --purple: #7c3aed;
+      --green: #16a34a;
+      --shadow: 0 20px 60px rgba(15, 23, 42, 0.08);
+      --radius: 22px;
+      --max: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 40px, var(--max));
+      margin: auto;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(247, 249, 252, 0.82);
       backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border-bottom: 1px solid rgba(226, 232, 240, 0.85);
-    }
-    
-    .glass-card {
-      background: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(226, 232, 240, 0.9);
-      box-shadow: 0 10px 30px -10px rgba(15, 23, 42, 0.05);
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    
-    .glass-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 20px 35px -10px rgba(99, 102, 241, 0.12);
-      border-color: rgba(99, 102, 241, 0.35);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.7);
     }
 
-    /* Gradients */
-    .text-gradient {
-      background: linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #06b6d4 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .nav-inner {
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
     }
 
-    .text-gradient-emerald {
-      background: linear-gradient(135deg, #059669 0%, #0d9488 50%, #2563eb 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .logo {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
     }
 
-    /* AI Futuristic Logo Box */
-    .logo-ai-box {
-      position: relative;
-      background: linear-gradient(135deg, #0ea5e9, #6366f1, #a855f7);
-      border-radius: 14px;
-      padding: 2px;
-      box-shadow: 0 0 16px rgba(99, 102, 241, 0.35);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    .logo span {
+      color: var(--primary);
     }
 
-    .logo-ai-box:hover {
-      box-shadow: 0 0 24px rgba(99, 102, 241, 0.6);
-      transform: scale(1.05);
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      align-items: center;
     }
 
-    .logo-ai-inner {
-      background: #090e1a;
+    .nav-links a {
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 500;
+      transition: 0.25s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .nav-button {
+      padding: 10px 17px;
       border-radius: 12px;
+      background: var(--text);
+      color: white !important;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      padding: 150px 0 90px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 550px;
+      height: 550px;
+      background: rgba(37, 99, 235, 0.10);
+      filter: blur(100px);
+      border-radius: 50%;
+      top: 50px;
+      right: -150px;
+      z-index: -1;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.25fr 0.75fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: white;
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(34, 197, 94, 0.12);
+    }
+
+    .hero h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(48px, 7vw, 82px);
+      line-height: 0.98;
+      letter-spacing: -4px;
+      margin-bottom: 25px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(90deg, #2563eb, #7c3aed);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-description {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 650px;
+      margin-bottom: 32px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 19px;
+      border-radius: 13px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: 0.25s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary {
+      background: var(--text);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.18);
+    }
+
+    .btn-secondary {
+      background: white;
+      border: 1px solid var(--border);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* Hero visual */
+
+    .hero-card {
+      position: relative;
+      padding: 26px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(15px);
+    }
+
+    .terminal {
+      background: #0f172a;
+      color: #e2e8f0;
+      border-radius: 18px;
+      padding: 22px;
+      font-family: monospace;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    .terminal-top {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+
+    .terminal-top span {
+      width: 9px;
+      height: 9px;
+      background: #64748b;
+      border-radius: 50%;
+    }
+
+    .code-blue {
+      color: #60a5fa;
+    }
+
+    .code-green {
+      color: #4ade80;
+    }
+
+    .code-purple {
+      color: #c084fc;
+    }
+
+    .code-gray {
+      color: #94a3b8;
+    }
+
+    /* =========================
+       SECTION
+    ========================= */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-header {
+      margin-bottom: 42px;
+      max-width: 700px;
+    }
+
+    .section-label {
+      color: var(--primary);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(32px, 5vw, 48px);
+      line-height: 1.05;
+      letter-spacing: -1.5px;
+      margin-bottom: 13px;
+    }
+
+    .section-description {
+      color: var(--muted);
+    }
+
+    /* =========================
+       NOW
+    ========================= */
+
+    .now-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .now-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 26px;
+      transition: 0.3s;
+    }
+
+    .now-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow);
+    }
+
+    .now-icon {
+      font-size: 25px;
+      margin-bottom: 16px;
+    }
+
+    .now-card h3 {
+      font-size: 17px;
+      margin-bottom: 12px;
+    }
+
+    .now-card ul {
+      list-style: none;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .now-card li {
+      margin: 7px 0;
+    }
+
+    .now-card li::before {
+      content: "→";
+      color: var(--primary);
+      margin-right: 8px;
+    }
+
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    .projects {
+      background: #ffffff;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: white;
+      transition: 0.3s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow);
+    }
+
+    .project-top {
+      height: 170px;
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 100%;
-      height: 100%;
+      font-size: 52px;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(37,99,235,.18), transparent 40%),
+        linear-gradient(135deg, #eef4ff, #f8fafc);
     }
 
-    /* Panel Drawer Slide & Stagger Animations */
-    .panel-drawer {
-      transition: max-height 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
-                  opacity 0.45s ease, 
-                  transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
-                  margin 0.45s ease;
-      transform-origin: top center;
+    .project-content {
+      padding: 23px;
     }
 
-    .panel-drawer.panel-open {
-      max-height: 2800px !important;
-      opacity: 1 !important;
-      transform: translateY(0) scale(1) !important;
-      pointer-events: auto !important;
-      margin-top: 1.5rem !important;
-      margin-bottom: 2.5rem !important;
-    }
-
-    .panel-drawer.panel-closed {
-      max-height: 0 !important;
-      opacity: 0 !important;
-      transform: translateY(-16px) scale(0.98) !important;
-      pointer-events: none !important;
-      margin-top: 0 !important;
-      margin-bottom: 0 !important;
-    }
-
-    /* Staggered card entrance */
-    .stagger-in {
-      animation: staggerIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
-    }
-
-    @keyframes staggerIn {
-      0% { opacity: 0; transform: translateY(18px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    /* Step Timeline Node Glow */
-    .timeline-node-active {
-      background: linear-gradient(135deg, #059669, #0284c7);
-      color: #fff;
-      box-shadow: 0 0 16px rgba(16, 185, 129, 0.45);
-      border-color: #34d399;
-    }
-
-    .timeline-node-inactive {
-      background: #f1f5f9;
-      color: #64748b;
-      border-color: #cbd5e1;
-    }
-
-    /* Ambient Blobs & Cursor */
-    @keyframes floatAmbient {
-      0% { transform: translate(0px, 0px) scale(1); }
-      50% { transform: translate(25px, -30px) scale(1.08); }
-      100% { transform: translate(-20px, 20px) scale(0.95); }
-    }
-
-    @keyframes pulseGlow {
-      0%, 100% { opacity: 0.9; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.15); }
-    }
-
-    .cursor-blink {
+    .project-tag {
       display: inline-block;
-      width: 3px;
-      height: 1.15em;
-      background-color: #2563eb;
-      margin-left: 3px;
-      vertical-align: -0.15em;
-      animation: cursorBlink 0.9s infinite;
+      padding: 5px 9px;
+      background: #eff6ff;
+      color: var(--primary);
+      border-radius: 7px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 12px;
     }
 
-    @keyframes cursorBlink {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0; }
+    .project-content h3 {
+      font-size: 19px;
+      margin-bottom: 8px;
     }
 
-    ::-webkit-scrollbar { width: 7px; height: 7px; }
-    ::-webkit-scrollbar-track { background: #f8fafc; }
-    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 9999px; }
-    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    .project-content p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .project-link {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    /* =========================
+       DATA LAB
+    ========================= */
+
+    .data-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      align-items: stretch;
+    }
+
+    .data-panel {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 30px;
+    }
+
+    .skill {
+      margin-bottom: 20px;
+    }
+
+    .skill-head {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+
+    .skill-head span:last-child {
+      color: var(--muted);
+    }
+
+    .bar {
+      height: 8px;
+      background: var(--surface-2);
+      border-radius: 99px;
+      overflow: hidden;
+    }
+
+    .bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--purple));
+      border-radius: 99px;
+    }
+
+    .data-project {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-project:last-child {
+      border-bottom: 0;
+    }
+
+    .data-project h3 {
+      font-size: 16px;
+      margin-bottom: 5px;
+    }
+
+    .data-project p {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       AI LAB
+    ========================= */
+
+    .ai-section {
+      background: #0f172a;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ai-section::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: rgba(124,58,237,.20);
+      filter: blur(100px);
+      border-radius: 50%;
+      right: -150px;
+      top: -100px;
+    }
+
+    .ai-section .section-description {
+      color: #94a3b8;
+    }
+
+    .ai-grid {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 22px;
+      position: relative;
+    }
+
+    .ai-main,
+    .ai-small {
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+      backdrop-filter: blur(15px);
+      border-radius: var(--radius);
+    }
+
+    .ai-main {
+      padding: 30px;
+    }
+
+    .ai-main h3 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .ai-main p {
+      color: #94a3b8;
+      margin-bottom: 25px;
+    }
+
+    .ai-news {
+      padding: 17px 0;
+      border-top: 1px solid rgba(255,255,255,.1);
+    }
+
+    .ai-news span {
+      font-size: 11px;
+      color: #60a5fa;
+      font-weight: 700;
+    }
+
+    .ai-news h4 {
+      margin-top: 4px;
+    }
+
+    .ai-small {
+      padding: 25px;
+    }
+
+    .ai-small h3 {
+      margin-bottom: 12px;
+    }
+
+    .ai-small p {
+      color: #94a3b8;
+      font-size: 14px;
+    }
+
+    /* =========================
+       PTIT
+    ========================= */
+
+    .ptit-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .ptit-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 27px;
+      transition: 0.3s;
+    }
+
+    .ptit-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .ptit-icon {
+      font-size: 32px;
+      margin-bottom: 14px;
+    }
+
+    .ptit-card h3 {
+      margin-bottom: 7px;
+    }
+
+    .ptit-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+
+    .tech-list {
+      display: flex;
+      gap: 7px;
+      flex-wrap: wrap;
+    }
+
+    .tech {
+      font-size: 11px;
+      background: var(--surface-2);
+      padding: 5px 8px;
+      border-radius: 6px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       EDUCATION
+    ========================= */
+
+    .education {
+      background: #ffffff;
+    }
+
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .education-card {
+      padding: 32px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, #fff, #f8fafc);
+    }
+
+    .education-card .number {
+      font-size: 13px;
+      color: var(--primary);
+      font-weight: 700;
+    }
+
+    .education-card h3 {
+      font-size: 26px;
+      margin: 8px 0;
+    }
+
+    .education-card p {
+      color: var(--muted);
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background:
+        linear-gradient(135deg, #dbeafe, #ede9fe);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: "Space Grotesk";
+      font-size: 60px;
+      font-weight: 700;
+      color: var(--primary);
+      margin: auto;
+    }
+
+    .about-text h2 {
+      font-family: "Space Grotesk";
+      font-size: 42px;
+      letter-spacing: -1.5px;
+      margin-bottom: 15px;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .socials {
+      display: flex;
+      gap: 10px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .social {
+      padding: 10px 15px;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 10px;
+      font-size: 13px;
+      font-weight: 600;
+      transition: .2s;
+    }
+
+    .social:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      background: #0f172a;
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+      padding-bottom: 40px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+    }
+
+    .footer-brand h2 {
+      font-family: "Space Grotesk";
+      margin-bottom: 8px;
+    }
+
+    .footer-brand p {
+      color: #94a3b8;
+      max-width: 400px;
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links a {
+      color: #94a3b8;
+      font-size: 13px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .copyright {
+      color: #64748b;
+      font-size: 12px;
+      padding-top: 25px;
+    }
+
+    /* =========================
+       ANIMATION
+    ========================= */
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(25px);
+      animation: fadeUp .8s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 900px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid,
+      .data-layout,
+      .ai-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .now-grid,
+      .project-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero {
+        padding-top: 120px;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      .hero-card {
+        max-width: 600px;
+      }
+
+      .about-grid {
+        text-align: center;
+      }
+
+      .socials {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        width: min(100% - 28px, var(--max));
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 120px 0 70px;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .hero-description {
+        font-size: 16px;
+      }
+
+      .now-grid,
+      .project-grid,
+      .ptit-grid,
+      .education-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-top {
+        flex-direction: column;
+      }
+
+      .about-text h2 {
+        font-size: 34px;
+      }
+    }
   </style>
 </head>
-<body class="bg-[#F8FAFC] text-slate-800 font-sans antialiased overflow-x-hidden relative selection:bg-blue-100 selection:text-blue-700">
 
-  <!-- Particle Canvas Animation -->
-  <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-0 opacity-60"></canvas>
+<body>
 
-  <!-- Ambient Light Color Glows -->
-  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div class="absolute -top-24 -left-20 w-96 h-96 bg-blue-300/25 rounded-full filter blur-[90px] animate-float-slow"></div>
-    <div class="absolute top-1/3 -right-24 w-[32rem] h-[32rem] bg-indigo-300/20 rounded-full filter blur-[100px] animate-float-slow" style="animation-delay: -3s;"></div>
-    <div class="absolute bottom-10 left-1/4 w-88 h-88 bg-emerald-200/25 rounded-full filter blur-[90px] animate-float-slow" style="animation-delay: -6s;"></div>
-  </div>
+  <!-- =========================
+       NAVIGATION
+  ========================== -->
 
-  <!-- Toast Notification Box -->
-  <div id="toastNotification" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 pointer-events-none transition-all duration-300 flex items-center gap-3 px-4 py-3 rounded-2xl bg-slate-900/90 text-white text-xs font-semibold shadow-2xl backdrop-blur-md border border-slate-700">
-    <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-xs">
-      <i class="fa-solid fa-check"></i>
+  <nav>
+    <div class="container nav-inner">
+
+      <a href="#" class="logo">
+        hienhoa<span>.me</span>
+      </a>
+
+      <div class="nav-links">
+        <a href="#projects">Projects</a>
+        <a href="#data">Data</a>
+        <a href="#ai">AI Lab</a>
+        <a href="#ptit">PTIT</a>
+        <a href="#education">Education</a>
+        <a href="#about" class="nav-button">About Me</a>
+      </div>
+
     </div>
-    <span id="toastMessage">Thông báo</span>
-  </div>
+  </nav>
 
-  <!-- Header / Navigation Bar -->
-  <header class="fixed top-0 left-0 right-0 z-40 glass-nav transition-all duration-300">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-20">
-        
-        <!-- AI Futuristic Logo & Brand -->
-        <a href="#hero" class="flex items-center gap-3.5 group">
-          <div class="logo-ai-box w-12 h-12 flex-shrink-0">
-            <div class="logo-ai-inner relative overflow-hidden">
-              <!-- AI Neural Brain Circuit Icon -->
-              <svg class="w-7 h-7 text-cyan-400 group-hover:text-indigo-300 transition-colors" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2a4 4 0 0 0-4 4v1a4 4 0 0 0-3 3.86V12a4 4 0 0 0 1.5 3.14V17a3 3 0 0 0 3 3h5a3 3 0 0 0 3-3v-1.86A4 4 0 0 0 19 12v-1.14A4 4 0 0 0 16 7V6a4 4 0 0 0-4-4Z"/>
-                <circle cx="12" cy="11" r="1.5" fill="currentColor"/>
-                <path d="M9 11h-2"/>
-                <path d="M15 11h2"/>
-                <path d="M12 7V5"/>
-                <path d="M12 17v2"/>
-              </svg>
-              <!-- AI Ping Core Light -->
-              <span class="absolute top-1 right-1 w-2 h-2 rounded-full bg-cyan-400 shadow-sm shadow-cyan-300 animate-ping"></span>
-            </div>
-          </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="font-black text-lg sm:text-xl text-slate-900 tracking-tight flex items-center gap-1.5">
-                Vincent Hòa
-                <span class="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-blue-100 text-blue-700 border border-blue-200">AI &bull; LAB</span>
-              </span>
-            </div>
-            <div class="flex items-center gap-1.5 text-xs text-slate-500 font-medium">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
-              <span class="font-mono text-indigo-600 font-semibold">hienhoa.me</span>
-              <span>&bull; PTIT Engineer</span>
-            </div>
-          </div>
-        </a>
 
-        <!-- Desktop Navigation Items with Direct Drawer Triggers -->
-        <nav class="hidden md:flex items-center gap-1 font-semibold text-xs sm:text-sm text-slate-600">
-          <a href="#hero" class="px-3 py-2 rounded-xl hover:text-blue-600 hover:bg-slate-100 transition-all">Trang chủ</a>
-          
-          <!-- PTIT Menu Button -->
-          <a href="#ptit-section" class="px-3 py-2 rounded-xl text-blue-700 bg-blue-50/80 hover:bg-blue-100 border border-blue-200/70 transition-all flex items-center gap-1.5 font-bold">
-            <i class="fa-solid fa-graduation-cap text-blue-600"></i>
-            <span>PTIT Hub</span>
+  <!-- =========================
+       HERO
+  ========================== -->
+
+  <header class="hero">
+
+    <div class="container hero-grid">
+
+      <div class="fade-up">
+
+        <div class="eyebrow">
+          <span class="status-dot"></span>
+          Currently building my digital lab
+        </div>
+
+        <h1>
+          Vincent<br>
+          <span class="gradient-text">Hòa.</span>
+        </h1>
+
+        <p class="hero-description">
+          IT student exploring the intersection of
+          <strong>Data, AI & Software</strong>.
+          Đây là không gian mình ghi lại quá trình học tập,
+          xây dựng dự án và khám phá công nghệ.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">
+            🚀 Xem dự án
           </a>
 
-          <!-- AI Radar Button -->
-          <a href="#ai-news-section" class="px-3 py-2 rounded-xl text-purple-700 bg-purple-50/80 hover:bg-purple-100 border border-purple-200/70 transition-all flex items-center gap-1.5 font-bold">
-            <span class="w-2 h-2 rounded-full bg-purple-500 animate-pulse-glow"></span>
-            <span>Bản Tin AI</span>
-          </a>
-
-          <!-- Data Analyst Interactive Drawer Button -->
-          <button onclick="openPanel('data')" class="px-3 py-2 rounded-xl text-emerald-700 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200/80 transition-all flex items-center gap-1.5 font-bold">
-            <i class="fa-solid fa-chart-line text-emerald-600"></i>
-            <span>Data Analyst</span>
-          </button>
-          
-          <!-- Tab Lớp 4 & Lớp 5 -->
-          <button onclick="openPanel('lop4')" class="px-3 py-2 rounded-xl text-sky-700 bg-sky-50 hover:bg-sky-100 border border-sky-200 transition-all flex items-center gap-1.5 font-bold">
-            <i class="fa-solid fa-laptop-code"></i>
-            <span>Tin Học 4</span>
-          </button>
-
-          <button onclick="openPanel('lop5')" class="px-3 py-2 rounded-xl text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200 transition-all flex items-center gap-1.5 font-bold">
-            <i class="fa-solid fa-cubes"></i>
-            <span>Lớp 5</span>
-          </button>
-        </nav>
-
-        <!-- Social / Action Group -->
-        <div class="hidden sm:flex items-center gap-3">
-          <a href="https://github.com/Hoa-Hien" target="_blank" rel="noopener noreferrer" 
-             class="p-2.5 rounded-xl border border-slate-200 text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all" title="GitHub Profile">
-            <i class="fa-brands fa-github text-base"></i>
-          </a>
-          <a href="#projects" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 hover:from-blue-700 text-white font-bold text-xs shadow-md shadow-blue-500/20 transition-all">
-            <i class="fa-solid fa-layer-group"></i>
-            <span>Kho Dự Án</span>
+          <a href="#about" class="btn btn-secondary">
+            👋 Về tôi
           </a>
         </div>
 
-        <!-- Mobile Menu Toggle Button -->
-        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl text-slate-600 hover:bg-slate-100" aria-label="Toggle navigation">
-          <i class="fa-solid fa-bars text-xl"></i>
-        </button>
       </div>
 
-      <!-- Mobile Dropdown Navigation -->
-      <div id="mobileMenu" class="hidden md:hidden pb-5 pt-2 border-t border-slate-200 space-y-2 text-sm font-semibold">
-        <a href="#hero" class="block px-3 py-2 rounded-xl text-slate-700 hover:bg-slate-100">Trang chủ</a>
-        <a href="#ptit-section" class="block px-3 py-2 rounded-xl text-blue-700 bg-blue-50 font-bold">🏛️ PTIT (Đồ Án & Dự Án)</a>
-        <a href="#ai-news-section" class="block px-3 py-2 rounded-xl text-purple-700 bg-purple-50 font-bold">🧠 Bản Tin AI Tự Động</a>
-        <button onclick="openPanel('data'); toggleMobileMenu()" class="w-full text-left block px-3 py-2 rounded-xl text-emerald-700 bg-emerald-50 font-bold">📊 Lộ Trình Data Analyst</button>
-        <button onclick="openPanel('lop4'); toggleMobileMenu()" class="w-full text-left block px-3 py-2 rounded-xl text-sky-700 bg-sky-50 font-bold">💻 Bảng Tin Học Lớp 4</button>
-        <button onclick="openPanel('lop5'); toggleMobileMenu()" class="w-full text-left block px-3 py-2 rounded-xl text-indigo-700 bg-indigo-50 font-bold">🎓 Bảng Lớp 5 (Tin Học & Công Nghệ)</button>
+
+      <div class="hero-card fade-up">
+
+        <div class="terminal">
+
+          <div class="terminal-top">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+
+          <div>
+            <span class="code-purple">const</span>
+            <span class="code-blue">vincent</span> = {
+          </div>
+
+          <div>
+            &nbsp;&nbsp;role:
+            <span class="code-green">
+              "IT Student"
+            </span>,
+          </div>
+
+          <div>
+            &nbsp;&nbsp;focus: [
+          </div>
+
+          <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="code-green">"Data"</span>,
+          </div>
+
+          <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="code-green">"AI"</span>,
+          </div>
+
+          <div>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="code-green">"Software"</span>
+          </div>
+
+          <div>
+            &nbsp;&nbsp;],
+          </div>
+
+          <div>
+            &nbsp;&nbsp;university:
+            <span class="code-green">"PTIT"</span>
+          </div>
+
+          <div>};</div>
+
+          <br>
+
+          <div class="code-gray">
+            // Keep learning.
+          </div>
+
+          <div class="code-gray">
+            // Keep building.
+          </div>
+
+        </div>
+
       </div>
+
     </div>
+
   </header>
 
-  <main class="relative z-10 pt-28">
-    <section id="hero" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-        
-        <!-- Left Hero Content -->
-        <div class="lg:col-span-7 space-y-6 text-center sm:text-left">
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/80 shadow-xs text-xs font-bold text-slate-700">
-            <span class="w-2.5 h-2.5 rounded-full bg-cyan-500 animate-pulse"></span>
-            <span>Hệ Thống Công Nghệ Đa Nền Tảng</span>
-            <span class="text-slate-300">|</span>
-            <span class="text-indigo-600 font-mono">hienhoa.me</span>
-          </div>
 
-          <h1 class="text-4xl sm:text-6xl font-black tracking-tight text-slate-900 leading-[1.18]">
-            Xin chào, mình là <br>
-            <span class="text-gradient">Vincent Hòa</span>.
-            <div class="text-lg sm:text-2xl font-bold text-slate-700 mt-2 h-9 flex items-center justify-center sm:justify-start">
-              <span>Trọng tâm: </span>
-              <span id="typewriterText" class="text-blue-600 font-extrabold ml-1.5"></span>
-              <span class="cursor-blink"></span>
-            </div>
-          </h1>
+  <!-- =========================
+       NOW
+  ========================== -->
 
-          <p class="text-sm sm:text-base text-slate-600 max-w-2xl leading-relaxed">
-            Hệ sinh thái công nghệ cá nhân: Nơi quản lý các nghiên cứu chuyên sâu tại <strong class="text-slate-900 font-semibold">PTIT</strong> (Đồ Án & Dự Án mã nguồn), kênh tổng hợp <strong class="text-purple-600 font-semibold">Bản tin AI Tự Động</strong>, trung tâm lộ trình & dự án <strong class="text-emerald-600 font-semibold">Data Analyst</strong>, cùng các phân hệ giảng dạy <strong class="text-sky-600 font-semibold">Tin Học 4</strong> & <strong class="text-indigo-600 font-semibold">Lớp 5</strong>.
-          </p>
+  <section>
 
-          <!-- Quick Action Buttons -->
-          <div class="flex flex-wrap items-center gap-2.5 pt-2 justify-center sm:justify-start">
-            <a href="#ptit-section" class="px-5 py-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-blue-500/20 flex items-center justify-center gap-2 transition-transform hover:scale-102">
-              <i class="fa-solid fa-graduation-cap"></i>
-              <span>PTIT Hub</span>
-            </a>
-            
-            <button onclick="openPanel('data')" class="px-4 py-3 rounded-2xl bg-white hover:bg-emerald-50 text-emerald-700 border border-emerald-300 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-all hover:scale-102">
-              <i class="fa-solid fa-chart-pie text-emerald-600"></i>
-              <span>Lộ Trình Data Analyst &darr;</span>
-            </button>
+    <div class="container">
 
-            <a href="#ai-news-section" class="px-4 py-3 rounded-2xl bg-white hover:bg-purple-50 text-purple-700 border border-purple-200 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-all hover:scale-102">
-              <i class="fa-solid fa-brain text-purple-600"></i>
-              <span>Bản Tin AI</span>
-            </a>
+      <div class="section-header">
+        <div class="section-label">01 — Now</div>
 
-            <button onclick="openPanel('lop4')" class="px-4 py-3 rounded-2xl bg-white hover:bg-sky-50 text-sky-700 border border-sky-200 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-all hover:scale-102">
-              <i class="fa-solid fa-laptop-code text-sky-600"></i>
-              <span>Tin Học 4 &darr;</span>
-            </button>
+        <h2 class="section-title">
+          What I'm working on.
+        </h2>
 
-            <button onclick="openPanel('lop5')" class="px-4 py-3 rounded-2xl bg-white hover:bg-indigo-50 text-indigo-700 border border-indigo-200 font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-xs transition-all hover:scale-102">
-              <i class="fa-solid fa-cubes text-indigo-600"></i>
-              <span>Lớp 5 &darr;</span>
-            </button>
-          </div>
+        <p class="section-description">
+          Những thứ mình đang học, xây dựng và khám phá trong thời gian hiện tại.
+        </p>
+      </div>
+
+
+      <div class="now-grid">
+
+        <div class="now-card">
+          <div class="now-icon">📚</div>
+
+          <h3>Learning</h3>
+
+          <ul>
+            <li>Python</li>
+            <li>SQL & Database</li>
+            <li>Power BI</li>
+            <li>Java OOP</li>
+          </ul>
         </div>
 
-        <!-- Right Hero Visual: AI Neural Badge Card with 3D Mouse Tilt -->
-        <div class="lg:col-span-5 flex justify-center">
-          <div class="w-full max-w-md glass-card rounded-3xl p-6 sm:p-7 border-2 border-indigo-100 shadow-xl space-y-5" id="heroTiltCard">
-            <div class="flex items-center gap-4">
-              <div class="logo-ai-box w-16 h-16 flex-shrink-0">
-                <div class="logo-ai-inner">
-                  <svg class="w-9 h-9 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M12 2a4 4 0 0 0-4 4v1a4 4 0 0 0-3 3.86V12a4 4 0 0 0 1.5 3.14V17a3 3 0 0 0 3 3h5a3 3 0 0 0 3-3v-1.86A4 4 0 0 0 19 12v-1.14A4 4 0 0 0 16 7V6a4 4 0 0 0-4-4Z"/>
-                    <circle cx="12" cy="11" r="1.5" fill="currentColor"/>
-                    <path d="M9 11h-2M15 11h2M12 7V5M12 17v2"/>
-                  </svg>
-                </div>
-              </div>
-              <div>
-                <h3 class="font-extrabold text-slate-900 text-lg">Vincent Hòa (Hoa-Hien)</h3>
-                <p class="text-xs text-slate-500 font-mono">Domain: <span class="text-blue-600 font-bold">hienhoa.me</span></p>
-                <div class="flex items-center gap-1.5 mt-1">
-                  <span class="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
-                  <span class="text-xs text-emerald-600 font-bold">AI Core & GitHub Pages Active</span>
-                </div>
-              </div>
-            </div>
 
-            <!-- Quick Stats -->
-            <div class="grid grid-cols-2 gap-3 text-left">
-              <div class="p-3.5 rounded-2xl bg-blue-50/80 border border-blue-100">
-                <div class="text-[10px] font-bold text-blue-700 uppercase">Hệ Thống PTIT</div>
-                <div class="text-sm font-bold text-slate-800 mt-1">Đồ Án & Dự Án</div>
-                <div class="text-[11px] text-slate-500">Mã nguồn C++/Java</div>
-              </div>
-              <div class="p-3.5 rounded-2xl bg-emerald-50/80 border border-emerald-100">
-                <div class="text-[10px] font-bold text-emerald-700 uppercase">Data Hub</div>
-                <div class="text-sm font-bold text-slate-800 mt-1">5 Giai Đoạn DA</div>
-                <div class="text-[11px] text-emerald-600 font-semibold">Roadmap & CheatSheet ⚡</div>
-              </div>
-            </div>
+        <div class="now-card">
+          <div class="now-icon">🔨</div>
 
-            <!-- Terminal Snippet -->
-            <div class="p-3 rounded-xl bg-slate-900 text-slate-200 text-xs font-mono flex items-center justify-between shadow-inner">
-              <div class="flex items-center gap-2">
-                <span class="w-2.5 h-2.5 rounded-full bg-red-400"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-amber-400"></span>
-                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-                <span class="text-cyan-400">data-analyst --sync=live</span>
-              </div>
-              <span class="text-emerald-400 text-[10px] font-bold">READY 100%</span>
-            </div>
-          </div>
+          <h3>Building</h3>
+
+          <ul>
+            <li>Data Analyst Portfolio</li>
+            <li>AI Radar</li>
+            <li>Personal Tools</li>
+            <li>PTIT Projects</li>
+          </ul>
+        </div>
+
+
+        <div class="now-card">
+          <div class="now-icon">🧠</div>
+
+          <h3>Exploring</h3>
+
+          <ul>
+            <li>Artificial Intelligence</li>
+            <li>Data Analytics</li>
+            <li>Automation</li>
+            <li>AI Agents</li>
+          </ul>
         </div>
 
       </div>
-    </section>
 
-    <!-- ==================== BẢNG TƯƠNG TÁC: DATA ANALYST ROADMAP & PROJECTS ==================== -->
-    <section id="panel-data" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden panel-drawer panel-closed">
-      <div class="rounded-3xl bg-white/95 border-2 border-emerald-300 shadow-2xl p-6 sm:p-9 relative overflow-hidden backdrop-blur-xl">
-        <!-- Close Button -->
-        <button onclick="closePanel('data')" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-transform hover:rotate-90" title="Đóng bảng">
-          <i class="fa-solid fa-xmark text-sm"></i>
-        </button>
+    </div>
 
-        <!-- Header Panel Data Analyst -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-emerald-100">
-          <div class="flex items-center gap-3.5">
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-emerald-600 to-teal-500 text-white flex items-center justify-center text-2xl shadow-lg shadow-emerald-500/25">
-              <i class="fa-solid fa-chart-pie"></i>
-            </div>
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-2.5 py-0.5 rounded-md">Chuyên Mục Phân Tích Dữ Liệu</span>
-                <span class="text-xs text-slate-400">&bull; Lộ trình & Dự án Thực chiến</span>
-              </div>
-              <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1">Data Analyst Mastery Hub</h2>
-            </div>
-          </div>
-          <p class="text-xs sm:text-sm text-slate-500 max-w-md sm:text-right">
-            Lộ trình học 5 giai đoạn, các dự án End-to-End phân tích doanh số và kho tài liệu Cheat Sheet tra cứu nhanh.
-          </p>
+  </section>
+
+
+  <!-- =========================
+       FEATURED PROJECTS
+  ========================== -->
+
+  <section class="projects" id="projects">
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-label">
+          02 — Projects
         </div>
 
-        <!-- KHU VỰC A: LỘ TRÌNH 5 GIAI ĐOẠN TƯƠNG TÁC (ROADMAP) -->
-        <div class="mt-8 space-y-4">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-            <h3 class="text-lg font-black text-slate-900 flex items-center gap-2">
-              <i class="fa-solid fa-route text-emerald-600"></i>
-              <span>Khu Vực A: Lộ Trình 5 Giai Đoạn Chuẩn Thực Chiến</span>
-            </h3>
-            <span class="text-xs font-semibold text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-              Nhấp vào từng giai đoạn để xem chi tiết
+        <h2 class="section-title">
+          Things I've built.
+        </h2>
+
+        <p class="section-description">
+          Một số dự án và sản phẩm mình đang phát triển trong quá trình học IT.
+        </p>
+
+      </div>
+
+
+      <div class="project-grid">
+
+
+        <article class="project-card">
+
+          <div class="project-top">
+            📊
+          </div>
+
+          <div class="project-content">
+
+            <span class="project-tag">
+              DATA ANALYST
             </span>
+
+            <h3>
+              Data Analytics Portfolio
+            </h3>
+
+            <p>
+              Các project phân tích dữ liệu từ Data Cleaning,
+              SQL đến Dashboard và Business Insights.
+            </p>
+
+            <a href="#data" class="project-link">
+              Explore →
+            </a>
+
           </div>
 
-          <!-- Step Indicator Bar -->
-          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 pt-2" id="roadmapStepsContainer">
-            <!-- Rendered by JS -->
+        </article>
+
+
+        <article class="project-card">
+
+          <div class="project-top">
+            🤖
           </div>
 
-          <!-- Phase Detailed Expandable Box -->
-          <div id="roadmapDetailBox" class="p-6 bg-gradient-to-br from-slate-50 to-emerald-50/40 rounded-2xl border border-emerald-200/80 transition-all duration-300">
-            <!-- Dynamic Content filled via JS -->
+          <div class="project-content">
+
+            <span class="project-tag">
+              AI
+            </span>
+
+            <h3>
+              AI Radar
+            </h3>
+
+            <p>
+              Hệ thống tổng hợp và phân loại thông tin
+              AI từ nhiều nguồn công nghệ.
+            </p>
+
+            <a href="#ai" class="project-link">
+              Explore →
+            </a>
+
           </div>
+
+        </article>
+
+
+        <article class="project-card">
+
+          <div class="project-top">
+            💻
+          </div>
+
+          <div class="project-content">
+
+            <span class="project-tag">
+              SOFTWARE
+            </span>
+
+            <h3>
+              PTIT Projects
+            </h3>
+
+            <p>
+              Các bài tập, đồ án và project Java, C++,
+              Python và các môn học tại PTIT.
+            </p>
+
+            <a href="#ptit" class="project-link">
+              Explore →
+            </a>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       DATA LAB
+  ========================== -->
+
+  <section id="data">
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-label">
+          03 — Data Lab
         </div>
 
-        <!-- KHU VỰC B: SHOWCASE DỰ ÁN THỰC CHIẾN (END-TO-END PROJECTS) -->
-        <div class="mt-10 pt-8 border-t border-slate-200">
-          <div class="flex items-center justify-between mb-5">
-            <div>
-              <h3 class="text-lg font-black text-slate-900 flex items-center gap-2">
-                <i class="fa-solid fa-laptop-file text-teal-600"></i>
-                <span>Khu Vực B: Dự Án Phân Tích Thực Chiến (Showcase)</span>
-              </h3>
-              <p class="text-xs text-slate-500 mt-0.5">Dự án hoàn chỉnh từ làm sạch dữ liệu (Data Cleaning) tới báo cáo quản trị BI</p>
-            </div>
-          </div>
+        <h2 class="section-title">
+          Data → Insight.
+        </h2>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-5" id="daProjectsContainer">
-            <!-- Rendered by JS -->
-          </div>
-        </div>
+        <p class="section-description">
+          Hành trình phát triển kỹ năng Data Analyst,
+          từ dữ liệu thô đến insight và dashboard.
+        </p>
 
-        <!-- KHU VỰC C: KHO CHEAT SHEET & TÀI NGUYÊN (RESOURCES VAULT) -->
-        <div class="mt-10 pt-8 border-t border-slate-200">
-          <h3 class="text-lg font-black text-slate-900 flex items-center gap-2 mb-4">
-            <i class="fa-solid fa-file-code text-blue-600"></i>
-            <span>Khu Vực C: Kho Cheat Sheet & Tài Liệu Tải Nhanh</span>
+      </div>
+
+
+      <div class="data-layout">
+
+
+        <div class="data-panel">
+
+          <h3 style="margin-bottom:25px;">
+            Current Skills
           </h3>
 
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4" id="daResourcesContainer">
-            <!-- Rendered by JS -->
-          </div>
-        </div>
 
-        <!-- Panel Footer -->
-        <div class="mt-8 pt-4 border-t border-emerald-100 flex items-center justify-between text-xs text-slate-500">
-          <span>* Lộ trình cập nhật liên tục các bài toán kinh doanh thực tế.</span>
-          <button onclick="closePanel('data')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition">
-            Thu gọn bảng &uarr;
-          </button>
-        </div>
-      </div>
-    </section>
+          <div class="skill">
 
-    <!-- ==================== MỤC PTIT: ĐỒ ÁN & DỰ ÁN ==================== -->
-    <section id="ptit-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 scroll-mt-24">
-      <div class="glass-card rounded-3xl p-6 sm:p-9 border-2 border-blue-200/90 relative overflow-hidden bg-white/95">
-        
-        <!-- Header PTIT -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200">
-          <div>
-            <div class="flex items-center gap-2.5">
-              <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-xl shadow-md shadow-blue-500/20">
-                <i class="fa-solid fa-graduation-cap"></i>
-              </div>
-              <div>
-                <span class="text-xs font-bold uppercase tracking-wider text-blue-600">Kho Học Thuật Học Viện</span>
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">PTIT: Đồ Án & Dự Án Chuyên Ngành</h2>
-              </div>
+            <div class="skill-head">
+              <span>Python</span>
+              <span>90%</span>
             </div>
-            <p class="text-xs sm:text-sm text-slate-500 mt-2 max-w-2xl">
-              Nơi lưu trữ các đề tài tốt nghiệp, tiểu luận đồ án môn học và các dự án mã nguồn C++, Java, An toàn mạng tại PTIT. Bạn có thể mở liên kết hoặc bổ sung đường link / tải file bất cứ lúc nào.
+
+            <div class="bar">
+              <span style="width:90%"></span>
+            </div>
+
+          </div>
+
+
+          <div class="skill">
+
+            <div class="skill-head">
+              <span>SQL</span>
+              <span>70%</span>
+            </div>
+
+            <div class="bar">
+              <span style="width:70%"></span>
+            </div>
+
+          </div>
+
+
+          <div class="skill">
+
+            <div class="skill-head">
+              <span>Excel</span>
+              <span>80%</span>
+            </div>
+
+            <div class="bar">
+              <span style="width:80%"></span>
+            </div>
+
+          </div>
+
+
+          <div class="skill">
+
+            <div class="skill-head">
+              <span>Power BI</span>
+              <span>60%</span>
+            </div>
+
+            <div class="bar">
+              <span style="width:60%"></span>
+            </div>
+
+          </div>
+
+
+          <div class="skill">
+
+            <div class="skill-head">
+              <span>Statistics</span>
+              <span>50%</span>
+            </div>
+
+            <div class="bar">
+              <span style="width:50%"></span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="data-panel">
+
+          <h3 style="margin-bottom:10px;">
+            Featured Analysis
+          </h3>
+
+
+          <div class="data-project">
+
+            <h3>
+              🛒 E-commerce Sales Analysis
+            </h3>
+
+            <p>
+              Python · Pandas · Visualization
             </p>
+
           </div>
 
-          <!-- Nút Tải lên / Gán liên kết mới -->
-          <div class="flex items-center gap-2">
-            <button onclick="openPtitUploadModal()" class="px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-blue-500/20 flex items-center gap-2 transition-all hover:scale-102">
-              <i class="fa-solid fa-cloud-arrow-up"></i>
-              <span>+ Thêm Liên Kết / File</span>
-            </button>
-          </div>
-        </div>
 
-        <!-- 2 Chuyên mục: 1. Đồ Án PTIT & 2. Dự Án PTIT -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-8">
-          
-          <!-- CỘT 1: ĐỒ ÁN PTIT -->
-          <div class="space-y-4">
-            <div class="flex items-center justify-between pb-2 border-b border-blue-100">
-              <div class="flex items-center gap-2">
-                <span class="w-8 h-8 rounded-lg bg-blue-100 text-blue-700 flex items-center justify-center font-bold text-xs">
-                  <i class="fa-solid fa-book-bookmark"></i>
-                </span>
-                <h3 class="font-extrabold text-slate-900 text-lg">1. Đồ Án PTIT</h3>
-              </div>
-              <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200" id="doan-count">
-                2 Đồ Án
-              </span>
-            </div>
-            <div id="ptit-doan-container" class="space-y-3.5">
-              <!-- Rendered via JavaScript -->
-            </div>
-          </div>
+          <div class="data-project">
 
-          <!-- CỘT 2: DỰ ÁN PTIT -->
-          <div class="space-y-4">
-            <div class="flex items-center justify-between pb-2 border-b border-indigo-100">
-              <div class="flex items-center gap-2">
-                <span class="w-8 h-8 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs">
-                  <i class="fa-solid fa-code-branch"></i>
-                </span>
-                <h3 class="font-extrabold text-slate-900 text-lg">2. Dự Án PTIT</h3>
-              </div>
-              <span class="text-[11px] font-bold px-2.5 py-0.5 rounded-full bg-indigo-50 text-indigo-700 border border-indigo-200" id="duan-count">
-                2 Dự Án
-              </span>
-            </div>
-            <div id="ptit-duan-container" class="space-y-3.5">
-              <!-- Rendered via JavaScript -->
-            </div>
-          </div>
+            <h3>
+              👥 Customer Churn Analysis
+            </h3>
 
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== MỤC AI: BẢN TIN AI TỰ ĐỘNG (LIVE RADAR) ==================== -->
-    <section id="ai-news-section" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 scroll-mt-24">
-      <div class="glass-card rounded-3xl p-6 sm:p-9 border-2 border-purple-200/90 bg-white/95 relative overflow-hidden">
-        
-        <!-- Header Bản tin AI -->
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200">
-          <div>
-            <div class="flex items-center gap-2.5">
-              <div class="w-12 h-12 rounded-2xl bg-purple-600 text-white flex items-center justify-center text-xl shadow-md shadow-purple-500/20">
-                <i class="fa-solid fa-brain"></i>
-              </div>
-              <div>
-                <div class="flex items-center gap-2">
-                  <span class="text-xs font-bold uppercase tracking-wider text-purple-600">Trí Tuệ Nhân Tạo &bull; Live Intelligence</span>
-                  <span class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-700">
-                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span> Live RSS
-                  </span>
-                </div>
-                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">Bản Tin & Xu Hướng AI Tự Động</h2>
-              </div>
-            </div>
-            <p class="text-xs sm:text-sm text-slate-500 mt-2 max-w-2xl">
-              Tự động cập nhật 4 bài báo công nghệ AI chọn lọc từ các nguồn uy tín hàng đầu trong và ngoài nước (<strong class="text-slate-800">VnExpress Số Hóa/AI, MIT Technology Review, TechCrunch AI, OpenAI</strong>).
+            <p>
+              SQL · Statistics · Business Insight
             </p>
+
           </div>
 
-          <!-- Nút Làm Mới Tin Tức -->
-          <div class="flex items-center gap-3">
-            <span id="aiNewsLastUpdated" class="text-xs text-slate-400 font-mono hidden sm:inline-block">Vừa cập nhật</span>
-            <button onclick="fetchLatestAiNews(true)" id="refreshAiBtn" class="px-4 py-2.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white font-bold text-xs sm:text-sm shadow-md shadow-purple-500/20 flex items-center gap-2 transition-all hover:scale-102">
-              <i class="fa-solid fa-arrows-rotate" id="refreshAiIcon"></i>
-              <span>Làm Mới Tin Tức</span>
-            </button>
-          </div>
-        </div>
 
-        <!-- Danh sách 4 bài báo AI -->
-        <div id="aiNewsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
-          <!-- Rendered via JavaScript -->
-        </div>
+          <div class="data-project">
 
-        <!-- Nguồn tin tức -->
-        <div class="mt-6 pt-4 border-t border-purple-100 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-2">
-          <div class="flex items-center gap-2 flex-wrap">
-            <span class="font-bold text-slate-700">Nguồn trích xuất:</span>
-            <span class="px-2 py-0.5 bg-slate-100 rounded text-slate-600">VnExpress AI</span>
-            <span class="px-2 py-0.5 bg-slate-100 rounded text-slate-600">MIT Tech Review</span>
-            <span class="px-2 py-0.5 bg-slate-100 rounded text-slate-600">TechCrunch</span>
-            <span class="px-2 py-0.5 bg-slate-100 rounded text-slate-600">OpenAI News</span>
-          </div>
-          <span class="text-[11px] text-slate-400 font-mono">* Tự động đồng bộ và lọc tin tức công nghệ</span>
-        </div>
+            <h3>
+              📈 Financial Dashboard
+            </h3>
 
-      </div>
-    </section>
-
-    <!-- ==================== BẢNG TƯƠNG TÁC: TIN HỌC LỚP 4 ==================== -->
-    <section id="panel-lop4" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden panel-drawer panel-closed">
-      <div class="rounded-3xl bg-white/95 border-2 border-sky-300 shadow-2xl p-6 sm:p-8 relative">
-        <button onclick="closePanel('lop4')" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-transform hover:rotate-90" title="Đóng bảng">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-sky-100">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-2xl bg-sky-500 text-white flex items-center justify-center text-xl shadow-md shadow-sky-500/20">
-              <i class="fa-solid fa-laptop-code"></i>
-            </div>
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-bold uppercase tracking-wider bg-sky-100 text-sky-800 px-2 py-0.5 rounded-md">Chuyên Mục Giảng Dạy</span>
-                <span class="text-xs text-slate-400">&bull; Lớp 4 Chuẩn GDPT</span>
-              </div>
-              <h3 class="text-2xl font-black text-slate-900 mt-0.5">Không Gian Tương Tác: Môn Tin Học Lớp 4</h3>
-            </div>
-          </div>
-          <p class="text-xs text-slate-500 max-w-sm sm:text-right">
-            Các liên kết thực hành lập trình Scratch, luyện gõ 10 ngón, tải phần mềm và thư mục bài tập Word/PowerPoint.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-          <div class="space-y-4">
-            <h4 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
-              <i class="fa-solid fa-keyboard text-sky-600"></i> 1. Thực Hành & Phần Mềm Trực Tuyến
-            </h4>
-            <div id="lop4-thuchanh-container" class="space-y-3"></div>
-          </div>
-
-          <div class="space-y-4">
-            <h4 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
-              <i class="fa-solid fa-folder-open text-indigo-600"></i> 2. Học Liệu & Bài Tập Thực Hành
-            </h4>
-            <div id="lop4-tailieu-container" class="space-y-3"></div>
-          </div>
-        </div>
-
-        <div class="mt-6 pt-4 border-t border-sky-100 flex items-center justify-between text-xs text-slate-500">
-          <span>* Dành riêng cho học sinh và bài giảng thực hành Tin học 4.</span>
-          <button onclick="closePanel('lop4')" class="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition">
-            Thu gọn bảng &uarr;
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== BẢNG TƯƠNG TÁC: LỚP 5 ==================== -->
-    <section id="panel-lop5" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden panel-drawer panel-closed">
-      <div class="rounded-3xl bg-white/95 border-2 border-indigo-300 shadow-2xl p-6 sm:p-8 relative">
-        <button onclick="closePanel('lop5')" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-transform hover:rotate-90" title="Đóng bảng">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-indigo-100">
-          <div class="flex items-center gap-3">
-            <div class="w-12 h-12 rounded-2xl bg-indigo-600 text-white flex items-center justify-center text-xl shadow-md shadow-indigo-500/20">
-              <i class="fa-solid fa-cubes"></i>
-            </div>
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="text-xs font-bold uppercase tracking-wider bg-indigo-100 text-indigo-800 px-2 py-0.5 rounded-md">2 Phân Môn Trọng Tâm</span>
-                <span class="text-xs text-slate-400">&bull; Lớp 5 Chuẩn GDPT</span>
-              </div>
-              <h3 class="text-2xl font-black text-slate-900 mt-0.5">Không Gian Tương Tác: Lớp 5</h3>
-            </div>
-          </div>
-          <p class="text-xs text-slate-500 max-w-sm sm:text-right">
-            Tổng hợp liên kết học tập môn Tin Học và môn Công Nghệ với các bài giảng STEM và bài tập trực tuyến.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-          <div class="space-y-4">
-            <h4 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
-              <i class="fa-solid fa-laptop-code text-blue-600"></i> 1. Môn Tin Học 5
-            </h4>
-            <div id="lop5-tinhoc-container" class="space-y-3"></div>
-          </div>
-
-          <div class="space-y-4">
-            <h4 class="font-extrabold text-slate-900 text-base flex items-center gap-2">
-              <i class="fa-solid fa-microchip text-purple-600"></i> 2. Môn Công Nghệ 5
-            </h4>
-            <div id="lop5-congnghe-container" class="space-y-3"></div>
-          </div>
-        </div>
-
-        <div class="mt-6 pt-4 border-t border-indigo-100 flex items-center justify-between text-xs text-slate-500">
-          <span>* Chuyên mục Tin học & Mô hình Công nghệ STEM lớp 5.</span>
-          <button onclick="closePanel('lop5')" class="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold transition">
-            Thu gọn bảng &uarr;
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- ==================== TỔNG HỢP DỰ ÁN & BỘ LỌC TÌM KIẾM ==================== -->
-    <section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
-        <div>
-          <span class="inline-block text-xs font-bold uppercase tracking-widest text-blue-600 mb-1">Kho Dữ Liệu Tổng Hợp</span>
-          <h2 class="text-3xl font-black text-slate-900 tracking-tight">Tất Cả Dự Án & Học Phần</h2>
-          <p class="text-slate-500 text-sm mt-1">Lọc nhanh theo chuyên mục hoặc tìm kiếm theo từ khóa</p>
-        </div>
-
-        <div class="relative w-full md:w-80">
-          <input type="text" id="searchInput" placeholder="Tìm kiếm PTIT, AI, Data..." 
-                 class="w-full pl-10 pr-4 py-2.5 rounded-2xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/40 focus:border-blue-500 text-sm transition-all shadow-xs">
-          <i class="fa-solid fa-magnifying-glass text-slate-400 absolute left-3.5 top-3.5 text-sm"></i>
-        </div>
-      </div>
-
-      <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-8 scrollbar-none" id="filterTabs">
-        <button onclick="setFilter('all')" class="filter-btn active-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all bg-blue-600 text-white shadow-md shadow-blue-500/25 whitespace-nowrap" data-filter="all">Tất cả</button>
-        <button onclick="setFilter('ptit')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 whitespace-nowrap" data-filter="ptit">🏛️ PTIT (Đồ Án & Dự Án)</button>
-        <button onclick="setFilter('ai')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 whitespace-nowrap" data-filter="ai">🧠 AI (Trí Tuệ Nhân Tạo)</button>
-        <button onclick="openPanel('data')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all bg-emerald-50 text-emerald-700 hover:bg-emerald-100 border border-emerald-300 whitespace-nowrap">📊 Data Analyst Hub</button>
-        <button onclick="openPanel('lop4')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all bg-sky-50 text-sky-700 hover:bg-sky-100 border border-sky-300 whitespace-nowrap">💻 Bảng Tin Học 4</button>
-        <button onclick="openPanel('lop5')" class="filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-300 whitespace-nowrap">🎓 Bảng Lớp 5</button>
-      </div>
-
-      <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-
-      <div id="emptyState" class="hidden text-center py-16 bg-white rounded-3xl border border-dashed border-slate-300">
-        <div class="text-4xl mb-2">🔍</div>
-        <h4 class="text-slate-700 font-bold text-base">Không tìm thấy kết quả</h4>
-        <p class="text-slate-400 text-sm mt-1">Hãy thử với từ khóa khác như "PTIT", "C++", "AI", "PowerBI", "SQL"...</p>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="border-t border-slate-200 bg-white/80 backdrop-blur-md pt-12 pb-8">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <div class="md:col-span-2 space-y-3">
-            <div class="flex items-center gap-2.5">
-              <div class="logo-ai-box w-8 h-8">
-                <div class="logo-ai-inner">
-                  <svg class="w-5 h-5 text-cyan-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
-                    <path d="M12 2a4 4 0 0 0-4 4v1a4 4 0 0 0-3 3.86V12a4 4 0 0 0 1.5 3.14V17a3 3 0 0 0 3 3h5a3 3 0 0 0 3-3v-1.86A4 4 0 0 0 19 12v-1.14A4 4 0 0 0 16 7V6a4 4 0 0 0-4-4Z"/>
-                  </svg>
-                </div>
-              </div>
-              <span class="font-extrabold text-xl text-slate-900">Vincent Hòa</span>
-              <span class="text-xs px-2 py-0.5 rounded-md bg-blue-100 text-blue-800 font-mono font-bold">hienhoa.me</span>
-            </div>
-            <p class="text-sm text-slate-500 max-w-sm">
-              Hệ sinh thái kỹ thuật số cá nhân: Đồ án PTIT, Bản tin AI Radar, Lộ trình Data Analyst và Học liệu Tin học Lớp 4 - 5.
+            <p>
+              Excel · Power BI · Data Visualization
             </p>
+
           </div>
 
-          <div>
-            <h4 class="font-bold text-sm text-slate-900 mb-3">Mục Lục</h4>
-            <ul class="space-y-2 text-xs font-semibold text-slate-600">
-              <li><a href="#ptit-section" class="hover:text-blue-600">🏛️ PTIT: Đồ Án & Dự Án</a></li>
-              <li><a href="#ai-news-section" class="hover:text-purple-600">🧠 Bản Tin AI Tự Động</a></li>
-              <li><button onclick="openPanel('data')" class="hover:text-emerald-600">📊 Lộ Trình Data Analyst</button></li>
-              <li><button onclick="openPanel('lop4')" class="hover:text-sky-600">💻 Tin Học Lớp 4</button></li>
-              <li><button onclick="openPanel('lop5')" class="hover:text-indigo-600">🎓 Lớp 5 (Tin Học & Công Nghệ)</button></li>
-            </ul>
+
+          <div class="data-project">
+
+            <h3>
+              📊 Sales Performance
+            </h3>
+
+            <p>
+              SQL · Power BI · KPI Analysis
+            </p>
+
           </div>
 
-          <div>
-            <h4 class="font-bold text-sm text-slate-900 mb-3">Liên Hệ & Lưu Trữ</h4>
-            <ul class="space-y-2 text-xs font-semibold text-slate-600">
-              <li class="flex items-center gap-2">
-                <i class="fa-brands fa-github text-slate-800"></i>
-                <a href="https://github.com/Hoa-Hien" target="_blank" class="text-blue-600 hover:underline">github.com/Hoa-Hien</a>
-              </li>
-              <li class="flex items-center gap-2">
-                <i class="fa-solid fa-globe text-cyan-600"></i>
-                <span>https://hienhoa.me</span>
-              </li>
-              <li class="flex items-center gap-2">
-                <i class="fa-solid fa-school text-rose-500"></i>
-                <span>Học viện Bưu chính Viễn thông</span>
-              </li>
-            </ul>
-          </div>
         </div>
 
-        <div class="pt-8 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
-          <p>&copy; 2026 Vincent Hòa. Bản quyền thuộc về tác giả tại hienhoa.me.</p>
-          <span>Clean Modern Aesthetic &bull; Neural Circuit AI Concept</span>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <!-- MODAL: THÊM LIÊN KẾT / TẢI LÊN PTIT -->
-  <div id="ptitUploadModal" class="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 hidden">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-7 shadow-2xl border border-slate-100 relative">
-      <button onclick="closePtitUploadModal()" class="absolute top-5 right-5 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition">
-        <i class="fa-solid fa-xmark"></i>
-      </button>
-
-      <div class="flex items-center gap-3 mb-5">
-        <div class="w-10 h-10 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-lg">
-          <i class="fa-solid fa-cloud-arrow-up"></i>
-        </div>
-        <div>
-          <h3 class="text-lg font-black text-slate-900">Thêm Mục PTIT Mới</h3>
-          <p class="text-xs text-slate-500">Gán liên kết Drive, GitHub repo hoặc tài liệu tải lên</p>
-        </div>
       </div>
 
-      <form id="ptitUploadForm" onsubmit="handlePtitSubmit(event)" class="space-y-4">
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Phân loại PTIT *</label>
-          <select id="modalPtitType" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
-            <option value="doan">1. Đồ Án PTIT</option>
-            <option value="duan">2. Dự Án PTIT</option>
-          </select>
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Tên Đề Tài / Dự Án *</label>
-          <input type="text" id="modalPtitTitle" required placeholder="VD: Hệ thống Giám sát Mạng SDN..." 
-                 class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Mô tả tóm tắt *</label>
-          <textarea id="modalPtitDesc" rows="2" required placeholder="Tóm tắt công nghệ sử dụng, giải thuật..." 
-                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none"></textarea>
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Đường liên kết (Link Drive / GitHub / Demo) *</label>
-          <input type="url" id="modalPtitUrl" required placeholder="https://drive.google.com/... hoặc https://github.com/..." 
-                 class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:ring-2 focus:ring-blue-500 focus:outline-none">
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Hoặc đính kèm file (mô phỏng tải lên)</label>
-          <div class="border-2 border-dashed border-slate-200 rounded-xl p-4 text-center hover:border-blue-400 transition cursor-pointer">
-            <i class="fa-solid fa-file-arrow-up text-blue-500 text-xl mb-1"></i>
-            <p class="text-xs text-slate-600 font-medium" id="fileNamePlaceholder">Chọn file PDF, DOCX, ZIP hoặc kéo thả vào đây</p>
-            <input type="file" id="modalPtitFile" onchange="handleFileSelect(this)" class="hidden">
-          </div>
-        </div>
-
-        <div class="flex items-center justify-end gap-2 pt-2">
-          <button type="button" onclick="closePtitUploadModal()" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100">
-            Hủy
-          </button>
-          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-bold bg-blue-600 hover:bg-blue-700 text-white shadow-md shadow-blue-500/20">
-            Lưu Liên Kết
-          </button>
-        </div>
-      </form>
     </div>
-  </div>
 
-  <script>
-    // =========================================================================
-    // 1. DỮ LIỆU DATA ANALYST: ROADMAP 5 GIAI ĐOẠN, DỰ ÁN & CHEAT SHEET
-    // =========================================================================
-    const daRoadmapPhases = [
-      {
-        step: 1,
-        title: "Phase 1: Excel & Thống Kê",
-        short: "Nền tảng & Thống kê",
-        icon: "fa-solid fa-table",
-        headline: "Giai đoạn 1: Nền Tảng Tư Duy Số Liệu & Excel Chuyên Sâu",
-        desc: "Làm chủ khả năng tổng hợp dữ liệu, thống kê mô tả và xử lý bảng tính phức tạp trước khi chuyển sang lập trình.",
-        skills: ["XLOOKUP / VLOOKUP", "Pivot Table & Slicers", "Power Query ETL", "Thống kê mô tả (Mean, Median, Standard Deviation)", "Phân phối xác suất"],
-        deliverable: "Báo cáo KPI doanh nghiệp tự động với Excel & Power Query",
-        timeEstimate: "3 - 4 Tuần"
-      },
-      {
-        step: 2,
-        title: "Phase 2: Cơ Sở Dữ Liệu SQL",
-        short: "Truy vấn & SQL",
-        icon: "fa-solid fa-database",
-        headline: "Giai đoạn 2: Truy Vấn & Trích Xuất Dữ Liệu Lớn (SQL Core)",
-        desc: "Kỹ năng sống còn của mọi Data Analyst: Viết câu lệnh truy vấn dữ liệu từ hàng triệu bản ghi trong hệ quản trị cơ sở dữ liệu.",
-        skills: ["SELECT, WHERE, GROUP BY, HAVING", "INNER / LEFT / FULL OUTER JOIN", "Window Functions (RANK, DENSE_RANK, LEAD, LAG)", "CTE & Subqueries", "Tối ưu hóa Index"],
-        deliverable: "Hệ thống truy vấn cơ sở dữ liệu E-commerce trên PostgreSQL",
-        timeEstimate: "4 - 5 Tuần"
-      },
-      {
-        step: 3,
-        title: "Phase 3: Python for DA",
-        short: "Python & EDA",
-        icon: "fa-brands fa-python",
-        headline: "Giai đoạn 3: Phân Tích Khám Phá & Tự Động Hóa Với Python",
-        desc: "Sử dụng Python để làm sạch dữ liệu nhiễu, phân tích tương quan và trực quan hóa các xu hướng phức tạp.",
-        skills: ["NumPy (Ma trận số học)", "Pandas (DataFrame, Data Cleaning, Merging)", "Matplotlib & Seaborn (Trực quan hóa)", "Xử lý Missing Data & Outliers", "Exploratory Data Analysis (EDA)"],
-        deliverable: "Jupyter Notebook phân tích hành vi khách hàng & RFM Scoring",
-        timeEstimate: "4 - 6 Tuần"
-      },
-      {
-        step: 4,
-        title: "Phase 4: Power BI / Tableau",
-        short: "BI & Dashboard",
-        icon: "fa-solid fa-chart-column",
-        headline: "Giai đoạn 4: Thiết Kế Báo Cáo Quản Trị & Trực Quan Hóa (BI)",
-        desc: "Biến các con số vô tri thành câu chuyện kinh doanh trực quan thông qua các Dashboard tương tác phục vụ ban giám đốc.",
-        skills: ["Data Modeling (Star Schema & Snowflake)", "Hàm tính toán DAX nâng cao (CALCULATE, FILTER, ALL)", "Thiết kế Dashboard UX/UI chuẩn Executive", "Row-Level Security (RLS)", "Cài đặt tự động Refresh dữ liệu"],
-        deliverable: "Executive Sales Performance Dashboard trên Power BI",
-        timeEstimate: "3 - 4 Tuần"
-      },
-      {
-        step: 5,
-        title: "Phase 5: Business Domain",
-        short: "Bài toán Kinh doanh",
-        icon: "fa-solid fa-briefcase",
-        headline: "Giai đoạn 5: Tư Duy Giải Quyết Vấn Đề Kinh Doanh (Business Acumen)",
-        desc: "Chuyển đổi dữ liệu và insight thành các đề xuất hành động mang lại lợi nhuận cho doanh nghiệp.",
-        skills: ["A/B Testing & Phân tích thực nghiệm", "Customer Churn Analysis (Phân tích rời bỏ)", "Sales Funnel Conversion (Tối ưu phễu)", "Phân tích tài chính & ROI", "Storytelling with Data"],
-        deliverable: "Bản đề xuất chiến lược tăng trưởng doanh thu dựa trên dữ liệu",
-        timeEstimate: "Liên tục trau dồi"
-      }
-    ];
+  </section>
 
-    let activeDaPhase = 1;
 
-    const daProjects = [
-      {
-        id: "dap1",
-        title: "Dashboard Doanh Số Bán Hàng E-Commerce",
-        tools: ["Power BI", "SQL", "DAX"],
-        desc: "Mô hình hóa dữ liệu 120,000+ đơn hàng, phân tích xu hướng tăng trưởng MoM/YoY và hiệu quả bán buôn.",
-        demoUrl: "https://github.com/Hoa-Hien",
-        codeUrl: "https://github.com/Hoa-Hien",
-        badge: "Dashboard Quản Trị"
-      },
-      {
-        id: "dap2",
-        title: "Phân Khúc Khách Hàng (RFM Model) Với Python",
-        tools: ["Python", "Pandas", "Seaborn"],
-        desc: "Phân cụm khách hàng theo độ mới (Recency), tần suất (Frequency) và giá trị tiền bạc (Monetary) để tối ưu chiến dịch Re-marketing.",
-        demoUrl: "https://github.com/Hoa-Hien",
-        codeUrl: "https://github.com/Hoa-Hien",
-        badge: "Customer Analytics"
-      },
-      {
-        id: "dap3",
-        title: "Dự Đoán & Phân Tích Rời Bỏ (Customer Churn)",
-        tools: ["PostgreSQL", "Python", "EDA"],
-        desc: "Trích xuất đặc trưng người dùng viễn thông, nhận diện các yếu tố dẫn đến huỷ dịch vụ và đề xuất chính sách giữ chân.",
-        demoUrl: "https://github.com/Hoa-Hien",
-        codeUrl: "https://github.com/Hoa-Hien",
-        badge: "Predictive Insight"
-      }
-    ];
+  <!-- =========================
+       AI LAB
+  ========================== -->
 
-    const daResources = [
-      {
-        title: "SQL Data Analyst Cheat Sheet",
-        desc: "Tổng hợp cú pháp SELECT, JOIN, Window Functions và CTE thông dụng nhất.",
-        icon: "fa-solid fa-file-pdf",
-        url: "https://github.com/Hoa-Hien",
-        badge: "PDF / Gist"
-      },
-      {
-        title: "Python Pandas Toolkit Cheat Sheet",
-        desc: "Bộ câu lệnh tra cứu nhanh: lọc, gom nhóm, xử lý ngày tháng và dữ liệu null.",
-        icon: "fa-solid fa-code",
-        url: "https://github.com/Hoa-Hien",
-        badge: "Jupyter / PDF"
-      },
-      {
-        title: "Mẫu Template Power BI Bán Hàng (.pbix)",
-        desc: "File mẫu Dashboard thiết kế Star Schema chuẩn và bảng màu hiện đại.",
-        icon: "fa-solid fa-chart-pie",
-        url: "https://drive.google.com",
-        badge: "Template Drive"
-      }
-    ];
+  <section class="ai-section" id="ai">
 
-    // =========================================================================
-    // 2. DỮ LIỆU PTIT: ĐỒ ÁN & DỰ ÁN
-    // =========================================================================
-    const ptitData = {
-      doan: [
-        {
-          id: 'da1',
-          title: "Đồ Án Tốt Nghiệp: Hệ Thống Phân Tích Lưu Lượng Mạng SDN",
-          desc: "Nghiên cứu cơ chế kiểm soát gói tin OpenFlow, tích hợp mô hình Machine Learning phát hiện tấn công DDoS trong mạng SDN.",
-          url: "https://github.com/Hoa-Hien",
-          tags: ["SDN", "Python", "Bảo Mật", "PTIT"],
-          date: "2026",
-          badge: "Đồ Án Tốt Nghiệp"
-        },
-        {
-          id: 'da2',
-          title: "Đồ Án Chuyên Ngành: Kiến Trúc Microservices Quản Lý Đào Tạo",
-          desc: "Thiết kế hệ thống phân tán chịu tải cao với Spring Boot, Docker, Kafka và cơ sở dữ liệu PostgreSQL chuẩn hóa.",
-          url: "https://drive.google.com",
-          tags: ["Spring Boot", "Microservices", "Docker"],
-          date: "2025",
-          badge: "Đồ Án Môn Học"
-        }
-      ],
-      duan: [
-        {
-          id: 'duan1',
-          title: "Dự Án PTIT: Kho Giải Thuật & Cấu Trúc Dữ Liệu Chuyên Sâu",
-          desc: "Kho lưu trữ hơn 200+ bài tập giải thuật C++ tối ưu về cây AVL, Red-Black, Đồ thị Tarjan, Max Flow và Quy hoạch động.",
-          url: "https://github.com/Hoa-Hien",
-          tags: ["C++", "DSA", "Algorithms"],
-          date: "2026",
-          badge: "Dự Án Mã Nguồn"
-        },
-        {
-          id: 'duan2',
-          title: "Dự Án Nghiên Cứu: Nền Tảng Thi Trắc Nghiệm Trực Tuyến PTIT",
-          desc: "Dự án phát triển web app hỗ trợ sinh viên tự luyện trắc nghiệm các môn Cơ sở ngành CNTT, chấm điểm theo thời gian thực.",
-          url: "https://github.com/Hoa-Hien",
-          tags: ["JavaScript", "Node.js", "MongoDB"],
-          date: "2025",
-          badge: "Dự Án Phần Mềm"
-        }
-      ]
-    };
+    <div class="container">
 
-    // =========================================================================
-    // 3. DỮ LIỆU BẢN TIN AI LIVE RADAR
-    // =========================================================================
-    let aiNewsItems = [
-      {
-        title: "Tác tử AI (AI Agents) tự động hóa quy trình phân tích dữ liệu doanh nghiệp",
-        source: "VnExpress Số Hóa",
-        sourceBadge: "Trong nước",
-        badgeColor: "bg-red-50 text-red-700 border-red-200",
-        date: "Hôm nay",
-        desc: "Sự bùng nổ của các Multi-Agent Systems cho phép các bot AI tự chia nhỏ nhiệm vụ, viết code và báo cáo mà không cần can thiệp liên tục.",
-        url: "https://vnexpress.net/so-hoa/cong-nghe/ai"
-      },
-      {
-        title: "MIT Tech Review: Bước ngoặt của mô hình suy luận logic Reasoning Models",
-        source: "MIT Technology Review",
-        sourceBadge: "Quốc tế",
-        badgeColor: "bg-blue-50 text-blue-700 border-blue-200",
-        date: "Vừa cập nhật",
-        desc: "Các kỹ thuật Test-Time Compute và chuỗi suy luận (Chain-of-Thought) nâng cao năng lực giải toán và code của AI lên chuẩn kỹ sư cao cấp.",
-        url: "https://www.technologyreview.com/topic/artificial-intelligence/"
-      },
-      {
-        title: "TechCrunch AI: Làn sóng tích hợp AI Agents vào các nền tảng Cloud",
-        source: "TechCrunch AI",
-        sourceBadge: "Quốc tế",
-        badgeColor: "bg-purple-50 text-purple-700 border-purple-200",
-        date: "Gần đây",
-        desc: "Các hãng công nghệ lớn đẩy mạnh cơ sở hạ tầng chip bán dẫn và trung tâm dữ liệu nhằm đáp ứng nhu cầu khổng lồ của các LLM thế hệ mới.",
-        url: "https://techcrunch.com/category/artificial-intelligence/"
-      },
-      {
-        title: "OpenAI công bố tiến trình an toàn và kiểm soát tác tử trí tuệ nhân tạo",
-        source: "OpenAI Research",
-        sourceBadge: "Nghiên cứu",
-        badgeColor: "bg-emerald-50 text-emerald-700 border-emerald-200",
-        date: "Mới nhất",
-        desc: "Các bộ tiêu chuẩn căn chỉnh hành vi (AI Alignment) giúp ngăn ngừa hiện tượng ảo giác và bảo vệ dữ liệu độc quyền cho người dùng toàn cầu.",
-        url: "https://openai.com/news/"
-      }
-    ];
+      <div class="section-header">
 
-    // =========================================================================
-    // 4. DỮ LIỆU LỚP 4 & LỚP 5
-    // =========================================================================
-    const lop4Links = {
-      thuchanh: [
-        {
-          title: "Lập trình trực quan Scratch 3.0 (MIT)",
-          desc: "Môi trường kéo thả khối lệnh làm quen với lập trình cho học sinh",
-          url: "https://scratch.mit.edu",
-          type: "Thực hành"
-        },
-        {
-          title: "Luyện gõ phím 10 ngón TypingClub",
-          desc: "Thực hành gõ hàng phím cơ sở và phím Shift đúng vị trí",
-          url: "https://www.typingclub.com",
-          type: "Trực tuyến"
-        },
-        {
-          title: "Bộ gõ tiếng Việt UniKey chính thức",
-          desc: "Phần mềm gõ dấu tiếng Việt kiểu Telex/Vni phục vụ soạn thảo",
-          url: "https://www.unikey.org",
-          type: "Phần mềm"
-        }
-      ],
-      tailieu: [
-        {
-          title: "Bài tập thực hành Word & PowerPoint",
-          desc: "Văn bản mẫu gõ thơ, chèn hình ảnh và bài tập trình chiếu",
-          url: "https://drive.google.com",
-          type: "Tài liệu"
-        },
-        {
-          title: "Đố vui trắc nghiệm An toàn mạng",
-          desc: "Bộ câu hỏi tương tác về văn hóa và an toàn trên không gian mạng",
-          url: "https://quizizz.com",
-          type: "Trắc nghiệm"
-        }
-      ]
-    };
-
-    const lop5Links = {
-      tinhoc: [
-        {
-          title: "Phần mềm Scratch 3.0 Game & Logic",
-          desc: "Thực hành thiết kế game đố vui, biến số và tọa độ nhân vật",
-          url: "https://scratch.mit.edu",
-          type: "Trực tuyến"
-        },
-        {
-          title: "Thực hành Bảng tính Excel / Google Sheets",
-          desc: "Mẫu bảng tính thống kê, định dạng dữ liệu và tính toán cơ bản",
-          url: "https://docs.google.com/spreadsheets",
-          type: "Tài liệu"
-        }
-      ],
-      congnghe: [
-        {
-          title: "Video hướng dẫn STEM: Lắp mô hình mạch điện",
-          desc: "Video hướng dẫn chế tạo xe chạy pin và quạt mini an toàn",
-          url: "https://www.youtube.com",
-          type: "Video STEM"
-        },
-        {
-          title: "Đề kiểm tra Tin học & Công nghệ 5",
-          desc: "Kho đề kiểm tra định kỳ lưu trữ trên Google Drive",
-          url: "https://drive.google.com",
-          type: "Kho đề"
-        }
-      ]
-    };
-
-    // =========================================================================
-    // 5. TỔNG HỢP DỰ ÁN CHO BỘ LỌC SEARCH
-    // =========================================================================
-    const generalProjects = [
-      {
-        id: 'p1',
-        title: "Đồ Án Tốt Nghiệp SDN & An Toàn Mạng PTIT",
-        category: "ptit",
-        subCategory: "Đồ Án PTIT",
-        desc: "Xây dựng hệ thống phát hiện xâm nhập và điều phối luồng mạng thông minh.",
-        tags: ["PTIT", "SDN", "Security"],
-        url: "https://github.com/Hoa-Hien"
-      },
-      {
-        id: 'p2',
-        title: "Dự Án Thuật Toán C++ & Cấu Trúc Dữ Liệu PTIT",
-        category: "ptit",
-        subCategory: "Dự Án PTIT",
-        desc: "200+ bài tập nâng cao cây nhị phân, quy hoạch động và đồ thị Tarjan.",
-        tags: ["PTIT", "C++", "DSA"],
-        url: "https://github.com/Hoa-Hien"
-      },
-      {
-        id: 'p3',
-        title: "Mô Hình Phân Loại Ảnh Y Tế Với ResNet & PyTorch",
-        category: "ai",
-        subCategory: "Deep Learning",
-        desc: "Computer Vision chẩn đoán tổn thương X-quang phổi độ chính xác cao.",
-        tags: ["PyTorch", "AI", "CNN"],
-        url: "https://github.com/Hoa-Hien"
-      },
-      {
-        id: 'p4',
-        title: "Dashboard Phân Tích Doanh Thu E-Commerce PowerBI",
-        category: "data",
-        subCategory: "Data Analyst",
-        desc: "Mô hình hóa dữ liệu bán hàng, phân tích RFM và tối ưu dòng tiền kinh doanh.",
-        tags: ["PowerBI", "SQL", "Data Analyst"],
-        url: "https://github.com/Hoa-Hien"
-      },
-      {
-        id: 'p5',
-        title: "Customer Churn Prediction Model With Python",
-        category: "data",
-        subCategory: "Data Analyst",
-        desc: "Phân tích nguy cơ rời bỏ của khách hàng bằng mô hình thống kê và học máy.",
-        tags: ["Python", "EDA", "Business"],
-        url: "https://github.com/Hoa-Hien"
-      }
-    ];
-
-    let currentFilter = 'all';
-
-    // =========================================================================
-    // 6. RENDER DATA ANALYST HUB (ROADMAP, PROJECTS, CHEAT SHEETS)
-    // =========================================================================
-    function renderDaHub() {
-      // 1. Render Step Buttons
-      const stepsContainer = document.getElementById('roadmapStepsContainer');
-      if (stepsContainer) {
-        stepsContainer.innerHTML = daRoadmapPhases.map(p => {
-          const isActive = p.step === activeDaPhase;
-          const activeClass = isActive 
-            ? 'timeline-node-active border-2 scale-102 font-bold shadow-md' 
-            : 'timeline-node-inactive bg-white hover:bg-slate-100 border border-slate-200';
-          return `
-            <button onclick="selectDaPhase(${p.step})" class="p-3 rounded-2xl text-left transition-all duration-300 flex items-center gap-2.5 ${activeClass}">
-              <div class="w-8 h-8 rounded-xl flex items-center justify-center text-xs ${isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-700'}">
-                <i class="${p.icon}"></i>
-              </div>
-              <div class="truncate">
-                <div class="text-[10px] uppercase font-bold tracking-wider opacity-80">Bước ${p.step}</div>
-                <div class="text-xs font-extrabold truncate">${p.short}</div>
-              </div>
-            </button>
-          `;
-        }).join('');
-      }
-
-      // 2. Render Active Phase Box
-      const activeObj = daRoadmapPhases.find(p => p.step === activeDaPhase) || daRoadmapPhases[0];
-      const detailBox = document.getElementById('roadmapDetailBox');
-      if (detailBox) {
-        detailBox.innerHTML = `
-          <div class="stagger-in space-y-4">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-emerald-200/60 pb-3">
-              <div>
-                <span class="text-[10px] font-mono font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">Giai đoạn ${activeObj.step} / 5</span>
-                <h4 class="text-base sm:text-lg font-black text-slate-900 mt-1">${activeObj.headline}</h4>
-              </div>
-              <div class="flex items-center gap-2 text-xs font-semibold text-emerald-800 bg-white px-3 py-1 rounded-xl border border-emerald-100 shadow-xs">
-                <i class="fa-regular fa-clock"></i>
-                <span>Thời gian: ${activeObj.timeEstimate}</span>
-              </div>
-            </div>
-
-            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">${activeObj.desc}</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-              <div class="p-3.5 bg-white rounded-xl border border-emerald-100 shadow-xs">
-                <div class="text-xs font-bold text-slate-800 mb-2 flex items-center gap-1.5">
-                  <i class="fa-solid fa-check-circle text-emerald-600"></i> Kỹ năng nòng cốt cần nắm:
-                </div>
-                <ul class="space-y-1.5 text-xs text-slate-600">
-                  ${activeObj.skills.map(s => `<li class="flex items-center gap-2"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>${s}</li>`).join('')}
-                </ul>
-              </div>
-
-              <div class="p-3.5 bg-white rounded-xl border border-emerald-100 shadow-xs flex flex-col justify-between">
-                <div>
-                  <div class="text-xs font-bold text-slate-800 mb-1 flex items-center gap-1.5">
-                    <i class="fa-solid fa-award text-amber-500"></i> Sản phẩm đầu ra (Deliverable):
-                  </div>
-                  <p class="text-xs text-slate-600 leading-relaxed">${activeObj.deliverable}</p>
-                </div>
-                <div class="pt-3 mt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-emerald-700 font-bold">
-                  <span>Trạng thái: Đã chuẩn hoá</span>
-                  <button onclick="copyToClipboard('${activeObj.deliverable}')" class="text-slate-400 hover:text-slate-700 flex items-center gap-1">
-                    <i class="fa-regular fa-copy"></i> Sao chép tên mục
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        `;
-      }
-
-      // 3. Render DA Projects
-      const projContainer = document.getElementById('daProjectsContainer');
-      if (projContainer) {
-        projContainer.innerHTML = daProjects.map(p => `
-          <div class="p-4 bg-white rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-md transition-all space-y-3 flex flex-col justify-between">
-            <div class="space-y-2">
-              <div class="flex items-center justify-between">
-                <span class="text-[10px] font-bold px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-700 border border-emerald-200">${p.badge}</span>
-                <i class="fa-solid fa-chart-simple text-slate-300"></i>
-              </div>
-              <h4 class="font-extrabold text-sm text-slate-900 leading-snug hover:text-emerald-700 transition">${p.title}</h4>
-              <p class="text-xs text-slate-500 line-clamp-3 leading-relaxed">${p.desc}</p>
-              <div class="flex flex-wrap gap-1 pt-1">
-                ${p.tools.map(t => `<span class="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600">#${t}</span>`).join('')}
-              </div>
-            </div>
-            <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
-              <a href="${p.codeUrl}" target="_blank" class="text-xs font-semibold text-slate-600 hover:text-slate-900 flex items-center gap-1">
-                <i class="fa-brands fa-github"></i> Code
-              </a>
-              <a href="${p.demoUrl}" target="_blank" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition flex items-center gap-1 shadow-xs">
-                <span>Xem Demo</span>
-                <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-              </a>
-            </div>
-          </div>
-        `).join('');
-      }
-
-      // 4. Render Cheat Sheets
-      const resContainer = document.getElementById('daResourcesContainer');
-      if (resContainer) {
-        resContainer.innerHTML = daResources.map(r => `
-          <div class="p-3.5 bg-white rounded-2xl border border-slate-200 hover:border-teal-400 hover:shadow-xs transition-all flex items-center justify-between gap-3">
-            <div class="flex items-center gap-3 overflow-hidden">
-              <div class="w-10 h-10 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-base shrink-0">
-                <i class="${r.icon}"></i>
-              </div>
-              <div class="truncate">
-                <div class="font-bold text-xs sm:text-sm text-slate-900 truncate">${r.title}</div>
-                <div class="text-[11px] text-slate-400 truncate">${r.desc}</div>
-              </div>
-            </div>
-            <div class="shrink-0 flex items-center gap-1">
-              <a href="${r.url}" target="_blank" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-teal-600 text-white text-xs font-bold transition">
-                Tải về
-              </a>
-            </div>
-          </div>
-        `).join('');
-      }
-    }
-
-    function selectDaPhase(step) {
-      activeDaPhase = step;
-      renderDaHub();
-    }
-
-    // =========================================================================
-    // 7. RENDER PTIT & MODAL
-    // =========================================================================
-    function renderPtitSection() {
-      const doanContainer = document.getElementById('ptit-doan-container');
-      const duanContainer = document.getElementById('ptit-duan-container');
-      
-      document.getElementById('doan-count').innerText = `${ptitData.doan.length} Đồ Án`;
-      document.getElementById('duan-count').innerText = `${ptitData.duan.length} Dự Án`;
-
-      doanContainer.innerHTML = ptitData.doan.map(item => createPtitCardHTML(item, 'blue')).join('');
-      duanContainer.innerHTML = ptitData.duan.map(item => createPtitCardHTML(item, 'indigo')).join('');
-    }
-
-    function createPtitCardHTML(item, color) {
-      const badgeStyles = color === 'blue' 
-        ? 'bg-blue-100 text-blue-800 border-blue-200' 
-        : 'bg-indigo-100 text-indigo-800 border-indigo-200';
-
-      return `
-        <div class="p-4 bg-white rounded-2xl border border-slate-200/90 hover:border-${color}-400 hover:shadow-md transition-all space-y-3">
-          <div class="flex items-start justify-between gap-2">
-            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md border ${badgeStyles}">
-              ${item.badge}
-            </span>
-            <span class="text-xs text-slate-400 font-mono">${item.date}</span>
-          </div>
-
-          <div>
-            <h4 class="font-extrabold text-sm sm:text-base text-slate-900 hover:text-blue-600 transition-colors">
-              ${item.title}
-            </h4>
-            <p class="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
-              ${item.desc}
-            </p>
-          </div>
-
-          <div class="flex flex-wrap gap-1">
-            ${item.tags.map(t => `<span class="text-[10px] font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600">#${t}</span>`).join('')}
-          </div>
-
-          <div class="pt-2 border-t border-slate-100 flex items-center justify-between gap-2">
-            <button onclick="copyToClipboard('${item.url}')" class="text-xs text-slate-500 hover:text-slate-800 flex items-center gap-1">
-              <i class="fa-regular fa-copy"></i>
-              <span>Copy Link</span>
-            </button>
-            <a href="${item.url}" target="_blank" rel="noopener noreferrer" class="px-3 py-1.5 rounded-xl bg-slate-900 hover:bg-blue-600 text-white text-xs font-bold transition flex items-center gap-1 shadow-xs">
-              <span>Mở Link</span>
-              <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-            </a>
-          </div>
+        <div class="section-label">
+          04 — AI Lab
         </div>
-      `;
-    }
 
-    function openPtitUploadModal() {
-      document.getElementById('ptitUploadModal').classList.remove('hidden');
-    }
+        <h2 class="section-title">
+          Exploring what's next.
+        </h2>
 
-    function closePtitUploadModal() {
-      document.getElementById('ptitUploadModal').classList.add('hidden');
-    }
+        <p class="section-description">
+          Không gian thử nghiệm với AI, automation và những công nghệ mới.
+        </p>
 
-    function handleFileSelect(input) {
-      if (input.files && input.files[0]) {
-        document.getElementById('fileNamePlaceholder').innerText = `Đã chọn: ${input.files[0].name}`;
-      }
-    }
+      </div>
 
-    function handlePtitSubmit(e) {
-      e.preventDefault();
-      const type = document.getElementById('modalPtitType').value;
-      const title = document.getElementById('modalPtitTitle').value;
-      const desc = document.getElementById('modalPtitDesc').value;
-      const url = document.getElementById('modalPtitUrl').value;
 
-      const newItem = {
-        id: 'custom_' + Date.now(),
-        title: title,
-        desc: desc,
-        url: url,
-        tags: ["PTIT", type === 'doan' ? "Đồ Án" : "Dự Án"],
-        date: "2026",
-        badge: type === 'doan' ? "Đồ Án Mới" : "Dự Án Mới"
-      };
+      <div class="ai-grid">
 
-      if (type === 'doan') {
-        ptitData.doan.unshift(newItem);
-      } else {
-        ptitData.duan.unshift(newItem);
-      }
 
-      renderPtitSection();
-      closePtitUploadModal();
-      showToast("Đã lưu mục PTIT thành công!");
-      document.getElementById('ptitUploadForm').reset();
-      document.getElementById('fileNamePlaceholder').innerText = "Chọn file PDF, DOCX, ZIP hoặc kéo thả vào đây";
-    }
+        <div class="ai-main">
 
-    // =========================================================================
-    // 8. RENDER BẢN TIN AI LIVE RADAR
-    // =========================================================================
-    async function fetchLatestAiNews(isManual = false) {
-      const refreshIcon = document.getElementById('refreshAiIcon');
-      if (refreshIcon) refreshIcon.classList.add('fa-spin');
+          <h3>
+            🤖 AI Radar
+          </h3>
 
-      if (isManual) {
-        showToast("Đang đồng bộ bản tin AI mới nhất...");
-      }
+          <p>
+            Theo dõi những xu hướng và cập nhật đáng chú ý
+            trong thế giới Artificial Intelligence.
+          </p>
 
-      await new Promise(r => setTimeout(r, 600));
 
-      const aiGrid = document.getElementById('aiNewsGrid');
-      if (!aiGrid) return;
+          <div class="ai-news">
 
-      aiGrid.innerHTML = aiNewsItems.map((item) => `
-        <div class="glass-card p-5 rounded-2xl flex flex-col justify-between hover:-translate-y-1 transition-all border border-slate-200">
-          <div class="space-y-2.5">
-            <div class="flex items-center justify-between gap-1">
-              <span class="text-[10px] font-bold px-2 py-0.5 rounded-md border ${item.badgeColor}">
-                ${item.source}
-              </span>
-              <span class="text-[11px] font-mono text-slate-400">${item.date}</span>
-            </div>
+            <span>AI NEWS</span>
 
-            <h4 class="font-extrabold text-sm text-slate-900 leading-snug line-clamp-2 hover:text-purple-600 transition-colors">
-              <a href="${item.url}" target="_blank" rel="noopener noreferrer">${item.title}</a>
+            <h4>
+              New AI models & tools
             </h4>
 
-            <p class="text-xs text-slate-500 line-clamp-3 leading-relaxed">
-              ${item.desc}
-            </p>
           </div>
 
-          <div class="pt-4 mt-3 border-t border-slate-100 flex items-center justify-between">
-            <span class="text-[11px] font-semibold text-purple-600 flex items-center gap-1">
-              <i class="fa-solid fa-sparkles text-[10px]"></i> AI Radar
-            </span>
-            <a href="${item.url}" target="_blank" rel="noopener noreferrer" 
-               class="text-xs font-bold text-slate-800 hover:text-purple-600 flex items-center gap-1 transition-colors">
-              <span>Đọc tiếp</span>
-              <i class="fa-solid fa-arrow-right text-[10px]"></i>
-            </a>
+
+          <div class="ai-news">
+
+            <span>RESEARCH</span>
+
+            <h4>
+              Latest AI research
+            </h4>
+
           </div>
+
+
+          <div class="ai-news">
+
+            <span>TOOLS</span>
+
+            <h4>
+              Interesting AI tools
+            </h4>
+
+          </div>
+
         </div>
-      `).join('');
 
-      const now = new Date();
-      const timeStr = `${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
-      const timeEl = document.getElementById('aiNewsLastUpdated');
-      if (timeEl) timeEl.innerText = `Cập nhật: ${timeStr}`;
 
-      if (refreshIcon) refreshIcon.classList.remove('fa-spin');
-      if (isManual) {
-        showToast("Bản tin AI đã được làm mới!");
-      }
-    }
+        <div class="ai-small">
 
-    // =========================================================================
-    // 9. RENDER BẢNG TƯƠNG TÁC LỚP 4 & LỚP 5
-    // =========================================================================
-    function renderLop4and5() {
-      const p4Th = document.getElementById('lop4-thuchanh-container');
-      const p4Tl = document.getElementById('lop4-tailieu-container');
-      if (p4Th) p4Th.innerHTML = lop4Links.thuchanh.map(createSimpleLinkRow).join('');
-      if (p4Tl) p4Tl.innerHTML = lop4Links.tailieu.map(createSimpleLinkRow).join('');
+          <h3>
+            ⚙️ Automation
+          </h3>
 
-      const p5Th = document.getElementById('lop5-tinhoc-container');
-      const p5Cn = document.getElementById('lop5-congnghe-container');
-      if (p5Th) p5Th.innerHTML = lop5Links.tinhoc.map(createSimpleLinkRow).join('');
-      if (p5Cn) p5Cn.innerHTML = lop5Links.congnghe.map(createSimpleLinkRow).join('');
-    }
+          <p>
+            Python → RSS → AI → Database → Website
+          </p>
 
-    function createSimpleLinkRow(item) {
-      return `
-        <div class="p-3 bg-white rounded-xl border border-slate-200 hover:border-blue-400 hover:shadow-xs transition flex items-center justify-between gap-3">
-          <div class="truncate">
-            <div class="font-bold text-xs sm:text-sm text-slate-800 truncate">${item.title}</div>
-            <div class="text-[11px] text-slate-400 truncate">${item.desc}</div>
-          </div>
-          <div class="flex items-center gap-1.5 shrink-0">
-            <button onclick="copyToClipboard('${item.url}')" class="p-1.5 text-slate-400 hover:text-slate-700 transition" title="Sao chép">
-              <i class="fa-regular fa-copy text-xs"></i>
-            </button>
-            <a href="${item.url}" target="_blank" class="px-2.5 py-1 bg-slate-900 hover:bg-blue-600 text-white rounded-lg text-xs font-bold transition">
-              Mở
-            </a>
-          </div>
+          <br>
+
+          <h3>
+            🧪 Experiments
+          </h3>
+
+          <p>
+            AI agents, local AI, prompts và các thử nghiệm cá nhân.
+          </p>
+
         </div>
-      `;
-    }
 
-    // =========================================================================
-    // 10. DRAWER PANELS MANAGER (SMOOTH EXPAND/COLLAPSE WITH SCROLL)
-    // =========================================================================
-    function openPanel(panelName) {
-      const panels = ['data', 'lop4', 'lop5'];
-      
-      panels.forEach(p => {
-        const el = document.getElementById(`panel-${p}`);
-        if (!el) return;
-        if (p === panelName) {
-          el.classList.remove('panel-closed');
-          el.classList.add('panel-open');
-          setTimeout(() => {
-            el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }, 150);
-        } else {
-          el.classList.remove('panel-open');
-          el.classList.add('panel-closed');
-        }
-      });
-    }
+      </div>
 
-    function closePanel(panelName) {
-      const target = document.getElementById(`panel-${panelName}`);
-      if (target) {
-        target.classList.remove('panel-open');
-        target.classList.add('panel-closed');
-      }
-    }
+    </div>
 
-    // =========================================================================
-    // 11. PROJECTS FILTER & SEARCH
-    // =========================================================================
-    function renderProjects() {
-      const grid = document.getElementById('projectsGrid');
-      const emptyState = document.getElementById('emptyState');
-      const searchInput = document.getElementById('searchInput');
-      const q = searchInput ? searchInput.value.toLowerCase() : '';
+  </section>
 
-      const filtered = generalProjects.filter(p => {
-        const matchCat = currentFilter === 'all' || p.category === currentFilter;
-        const matchText = p.title.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || p.tags.some(t => t.toLowerCase().includes(q));
-        return matchCat && matchText;
-      });
 
-      if (filtered.length === 0) {
-        emptyState.classList.remove('hidden');
-        grid.innerHTML = '';
-        return;
-      }
+  <!-- =========================
+       PTIT
+  ========================== -->
 
-      emptyState.classList.add('hidden');
-      grid.innerHTML = filtered.map(p => `
-        <div class="glass-card rounded-2xl p-6 flex flex-col justify-between hover:-translate-y-1 transition-all border border-slate-200">
-          <div>
-            <div class="flex items-center justify-between mb-3">
-              <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-blue-50 text-blue-700">
-                ${p.subCategory}
-              </span>
-              <span class="text-[11px] font-bold text-slate-400 uppercase font-mono">${p.category}</span>
-            </div>
-            <h3 class="text-base font-bold text-slate-900 mb-2">${p.title}</h3>
-            <p class="text-xs text-slate-500 leading-relaxed mb-4">${p.desc}</p>
-          </div>
-          <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
-            <div class="flex flex-wrap gap-1">
-              ${p.tags.map(t => `<span class="text-[10px] font-semibold px-2 py-0.5 rounded bg-slate-100 text-slate-600">#${t}</span>`).join('')}
-            </div>
-            <a href="${p.url}" target="_blank" class="text-xs font-bold text-blue-600 hover:underline">Chi tiết &rarr;</a>
-          </div>
+  <section id="ptit">
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-label">
+          05 — PTIT
         </div>
-      `).join('');
-    }
 
-    function setFilter(cat) {
-      currentFilter = cat;
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        if (btn.dataset.filter === cat) {
-          btn.className = "filter-btn active-tab px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all bg-blue-600 text-white shadow-md shadow-blue-500/25 whitespace-nowrap";
-        } else {
-          btn.className = "filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all bg-white text-slate-600 hover:bg-slate-100 border border-slate-200 whitespace-nowrap";
-        }
-      });
-      renderProjects();
-    }
+        <h2 class="section-title">
+          Learning by building.
+        </h2>
 
-    // =========================================================================
-    // 12. CANVAS PARTICLES & TYPEWRITER ANIMATIONS
-    // =========================================================================
-    function initTypewriter() {
-      const el = document.getElementById('typewriterText');
-      if (!el) return;
-      const phrases = [
-        "Data Analyst & Phân tích Kinh Doanh 📊",
-        "Kỹ sư PTIT & Hệ thống Mạng 🏛️",
-        "Nghiên cứu Trí Tuệ Nhân Tạo & LLM 🧠",
-        "Giảng dạy Tin Học Lớp 4 & STEM 5 💻"
-      ];
-      let pIdx = 0, cIdx = 0, isDeleting = false, speed = 80;
+        <p class="section-description">
+          Hành trình học tập và thực hành công nghệ tại PTIT.
+        </p>
 
-      function loop() {
-        const text = phrases[pIdx];
-        el.innerText = isDeleting ? text.substring(0, cIdx - 1) : text.substring(0, cIdx + 1);
-        cIdx += isDeleting ? -1 : 1;
-        speed = isDeleting ? 35 : 80;
+      </div>
 
-        if (!isDeleting && cIdx === text.length) {
-          speed = 2200;
-          isDeleting = true;
-        } else if (isDeleting && cIdx === 0) {
-          isDeleting = false;
-          pIdx = (pIdx + 1) % phrases.length;
-          speed = 400;
-        }
-        setTimeout(loop, speed);
-      }
-      loop();
-    }
 
-    function initParticleCanvas() {
-      const canvas = document.getElementById('particleCanvas');
-      if (!canvas) return;
-      const ctx = canvas.getContext('2d');
-      let w = canvas.width = window.innerWidth;
-      let h = canvas.height = window.innerHeight;
+      <div class="ptit-grid">
 
-      window.addEventListener('resize', () => {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-      });
 
-      const count = Math.floor(w / 26);
-      const pts = [];
-      const mouse = { x: null, y: null, r: 120 };
+        <div class="ptit-card">
 
-      window.addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; });
-      window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+          <div class="ptit-icon">
+            ☕
+          </div>
 
-      for (let i = 0; i < count; i++) {
-        pts.push({
-          x: Math.random() * w, y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.45, vy: (Math.random() - 0.5) * 0.45,
-          r: Math.random() * 2 + 1
-        });
-      }
+          <h3>
+            Java OOP
+          </h3>
 
-      function draw() {
-        ctx.clearRect(0, 0, w, h);
-        for (let i = 0; i < pts.length; i++) {
-          const p = pts[i];
-          p.x += p.vx; p.y += p.vy;
-          if (p.x < 0 || p.x > w) p.vx *= -1;
-          if (p.y < 0 || p.y > h) p.vy *= -1;
+          <p>
+            Lập trình hướng đối tượng, class, object,
+            inheritance và các project Java.
+          </p>
 
-          if (mouse.x !== null) {
-            const dx = mouse.x - p.x, dy = mouse.y - p.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < mouse.r) {
-              ctx.strokeStyle = `rgba(16, 185, 129, ${1 - dist / mouse.r})`;
-              ctx.lineWidth = 0.8;
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(mouse.x, mouse.y);
-              ctx.stroke();
-            }
-          }
+          <div class="tech-list">
+            <span class="tech">Java</span>
+            <span class="tech">OOP</span>
+            <span class="tech">Swing</span>
+          </div>
 
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(99, 102, 241, 0.45)';
-          ctx.fill();
+        </div>
 
-          for (let j = i + 1; j < pts.length; j++) {
-            const p2 = pts[j];
-            const dx = p.x - p2.x, dy = p.y - p2.y;
-            const d = Math.sqrt(dx * dx + dy * dy);
-            if (d < 85) {
-              ctx.strokeStyle = `rgba(148, 163, 184, ${0.18 * (1 - d / 85)})`;
-              ctx.lineWidth = 0.6;
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.stroke();
-            }
-          }
-        }
-        requestAnimationFrame(draw);
-      }
-      draw();
-    }
 
-    // 3D Tilt Card Effect
-    function initHeroTilt() {
-      const card = document.getElementById('heroTiltCard');
-      if (!card) return;
-      card.addEventListener('mousemove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        card.style.transform = `perspective(800px) rotateX(${-y / 25}deg) rotateY(${x / 25}deg)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = `perspective(800px) rotateX(0deg) rotateY(0deg)`;
-      });
-    }
+        <div class="ptit-card">
 
-    function showToast(msg) {
-      const t = document.getElementById('toastNotification');
-      const m = document.getElementById('toastMessage');
-      if (!t || !m) return;
-      m.innerText = msg;
-      t.classList.remove('translate-y-20', 'opacity-0', 'pointer-events-none');
-      t.classList.add('translate-y-0', 'opacity-100', 'pointer-events-auto');
-      setTimeout(() => {
-        t.classList.remove('translate-y-0', 'opacity-100', 'pointer-events-auto');
-        t.classList.add('translate-y-20', 'opacity-0', 'pointer-events-none');
-      }, 2400);
-    }
+          <div class="ptit-icon">
+            💻
+          </div>
 
-    function copyToClipboard(text) {
-      const temp = document.createElement("input");
-      temp.value = text;
-      document.body.appendChild(temp);
-      temp.select();
-      try {
-        document.execCommand('copy');
-        showToast("Đã sao chép liên kết vào bộ nhớ tạm!");
-      } catch (err) {
-        showToast("Lỗi sao chép.");
-      }
-      document.body.removeChild(temp);
-    }
+          <h3>
+            C++ Projects
+          </h3>
 
-    function toggleMobileMenu() {
-      const m = document.getElementById('mobileMenu');
-      if (m) m.classList.toggle('hidden');
-    }
+          <p>
+            Các bài tập lập trình và project C++
+            trong quá trình học.
+          </p>
 
-    // =========================================================================
-    // 13. KHỞI CHẠY HỆ THỐNG
-    // =========================================================================
-    document.addEventListener('DOMContentLoaded', () => {
-      initParticleCanvas();
-      initTypewriter();
-      initHeroTilt();
-      renderDaHub();
-      renderPtitSection();
-      fetchLatestAiNews(false);
-      renderLop4and5();
-      renderProjects();
+          <div class="tech-list">
+            <span class="tech">C++</span>
+            <span class="tech">Algorithms</span>
+          </div>
 
-      const searchInput = document.getElementById('searchInput');
-      if (searchInput) {
-        searchInput.addEventListener('input', renderProjects);
-      }
+        </div>
 
-      const mobileBtn = document.getElementById('mobileMenuBtn');
-      if (mobileBtn) {
-        mobileBtn.addEventListener('click', toggleMobileMenu);
-      }
-    });
-  </script>
+
+        <div class="ptit-card">
+
+          <div class="ptit-icon">
+            🐍
+          </div>
+
+          <h3>
+            Python
+          </h3>
+
+          <p>
+            Python fundamentals, data structures,
+            algorithms và Data Analysis.
+          </p>
+
+          <div class="tech-list">
+            <span class="tech">Python</span>
+            <span class="tech">Pandas</span>
+            <span class="tech">Algorithms</span>
+          </div>
+
+        </div>
+
+
+        <div class="ptit-card">
+
+          <div class="ptit-icon">
+            🗄️
+          </div>
+
+          <h3>
+            Database
+          </h3>
+
+          <p>
+            Cơ sở dữ liệu, SQL, relational database
+            và data management.
+          </p>
+
+          <div class="tech-list">
+            <span class="tech">SQL</span>
+            <span class="tech">Database</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       EDUCATION
+  ========================== -->
+
+  <section class="education" id="education">
+
+    <div class="container">
+
+      <div class="section-header">
+
+        <div class="section-label">
+          06 — Education
+        </div>
+
+        <h2 class="section-title">
+          Sharing knowledge.
+        </h2>
+
+        <p class="section-description">
+          Khu vực dành cho các nội dung học tập và giáo dục.
+        </p>
+
+      </div>
+
+
+      <div class="education-grid">
+
+
+        <div class="education-card">
+
+          <div class="number">
+            01
+          </div>
+
+          <h3>
+            Tin học 4
+          </h3>
+
+          <p>
+            Tài liệu, bài tập và nội dung học tập
+            môn Tin học lớp 4.
+          </p>
+
+        </div>
+
+
+        <div class="education-card">
+
+          <div class="number">
+            02
+          </div>
+
+          <h3>
+            Công nghệ 5
+          </h3>
+
+          <p>
+            Nội dung học tập, bài tập và tài liệu
+            môn Công nghệ lớp 5.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       ABOUT
+  ========================== -->
+
+  <section id="about">
+
+    <div class="container about-grid">
+
+
+      <div>
+
+        <div class="avatar">
+          VH
+        </div>
+
+      </div>
+
+
+      <div class="about-text">
+
+        <div class="section-label">
+          07 — About
+        </div>
+
+        <h2>
+          Hi, I'm Vincent.
+        </h2>
+
+        <p>
+          Mình là người đang học và xây dựng sự nghiệp
+          trong lĩnh vực IT, với định hướng phát triển
+          về Data Analyst và AI.
+        </p>
+
+        <p>
+          hienhoa.me là nơi mình lưu lại hành trình đó:
+          từ những bài học nhỏ, project PTIT cho đến
+          các thử nghiệm công nghệ cá nhân.
+        </p>
+
+        <p>
+          Mục tiêu không phải chỉ học công nghệ,
+          mà là <strong>học → xây dựng → chia sẻ → cải thiện.</strong>
+        </p>
+
+
+        <div class="socials">
+
+          <!-- THAY LINK CỦA BẠN -->
+
+          <a class="social"
+             href="https://github.com/"
+             target="_blank">
+            GitHub ↗
+          </a>
+
+          <a class="social"
+             href="#"
+             target="_blank">
+            LinkedIn ↗
+          </a>
+
+          <a class="social"
+             href="mailto:hello@hienhoa.me">
+            Email ↗
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================
+       FOOTER
+  ========================== -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-top">
+
+        <div class="footer-brand">
+
+          <h2>
+            hienhoa.me
+          </h2>
+
+          <p>
+            A personal digital lab for Data,
+            AI, Software and continuous learning.
+          </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+          <a href="#projects">
+            Projects
+          </a>
+
+          <a href="#data">
+            Data
+          </a>
+
+          <a href="#ai">
+            AI Lab
+          </a>
+
+          <a href="#ptit">
+            PTIT
+          </a>
+
+          <a href="#education">
+            Education
+          </a>
+
+          <a href="#about">
+            About
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="copyright">
+
+        © 2026 Vincent Hòa · hienhoa.me
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
 </body>
 </html>
+```
