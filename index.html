@@ -2,16 +2,10 @@
 <html lang="vi" class="light">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Vincent Hòa | hienhoa.me - AI, Data Analyst & Tech Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Vincent Hòa | Không Gian Học Tập & Dự Án Cá Nhân</title>
   
-  <!-- SEO & Social Sharing (Open Graph / Zalo / Facebook) -->
-  <meta name="description" content="Không gian ghi lại quá trình học tập, xây dựng dự án PTIT, AI, Data Analyst và giảng dạy Tin học Lớp 4 & Lớp 5 của Vincent Hòa.">
-  <meta property="og:title" content="Vincent Hòa | hienhoa.me - AI & Data Analyst Portfolio">
-  <meta property="og:description" content="Học → Xây dựng → Chia sẻ → Cải thiện. Không gian lưu trữ đồ án PTIT, AI Live Radar và tài liệu Tin học.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://hienhoa.me">
-
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -33,20 +27,21 @@
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       transition: background-color 0.3s ease, color 0.3s ease;
       overflow-x: hidden;
     }
+    .font-mono-code { font-family: 'JetBrains Mono', monospace; }
     .glass-card {
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(226, 232, 240, 0.85);
     }
     .dark .glass-card {
-      background: rgba(15, 23, 42, 0.82);
+      background: rgba(15, 23, 42, 0.85);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border: 1px solid rgba(51, 65, 85, 0.7);
@@ -57,10 +52,10 @@
       -webkit-text-fill-color: transparent;
     }
     .panel-open {
-      animation: panelSlideIn 0.38s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      animation: panelSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
     @keyframes panelSlideIn {
-      0% { opacity: 0; transform: translateY(20px) scale(0.985); }
+      0% { opacity: 0; transform: translateY(18px) scale(0.985); }
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
     .blob {
@@ -74,21 +69,7 @@
     }
     @keyframes floatSlow {
       0% { transform: translate(0px, 0px) scale(1); }
-      100% { transform: translate(30px, 30px) scale(1.08); }
-    }
-    .cursor-glow {
-      position: fixed;
-      width: 320px;
-      height: 320px;
-      border-radius: 50%;
-      pointer-events: none;
-      background: radial-gradient(circle, rgba(99, 102, 241, 0.18) 0%, rgba(56, 189, 248, 0.08) 40%, transparent 70%);
-      transform: translate(-50%, -50%);
-      z-index: 2;
-      transition: opacity 0.3s ease;
-    }
-    .dark .cursor-glow {
-      background: radial-gradient(circle, rgba(129, 140, 248, 0.22) 0%, rgba(34, 211, 238, 0.12) 45%, transparent 70%);
+      100% { transform: translate(25px, 25px) scale(1.08); }
     }
     .step-active {
       border-color: #6366f1 !important;
@@ -103,11 +84,8 @@
 </head>
 <body class="relative min-h-screen flex flex-col justify-between bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100">
 
-  <!-- Interactive Cursor Glow Aura -->
-  <div id="cursorGlow" class="cursor-glow"></div>
-
-  <!-- Interactive Magnetic Particle Network Canvas -->
-  <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-[2]"></canvas>
+  <!-- Interactive Magnetic Particle Network Canvas (Không có vệt neon che mắt) -->
+  <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-[2] opacity-70"></canvas>
 
   <!-- Ambient Blobs -->
   <div class="blob bg-blue-300 dark:bg-blue-900 w-96 h-96 -top-20 -left-20"></div>
@@ -115,7 +93,7 @@
   <div class="blob bg-indigo-200 dark:bg-purple-950 w-80 h-80 bottom-10 left-1/4"></div>
 
   <!-- Header / Navigation Bar -->
-  <header class="sticky top-0 z-40 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800">
+  <header class="sticky top-0 z-40 bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- LOGO 2D FUTURISTIC TECH (SVG VECTOR) -->
@@ -153,38 +131,40 @@
         <div>
           <span class="font-extrabold text-lg tracking-tight text-slate-900 dark:text-white flex items-center gap-2">
             Vincent Hòa
-            <span class="text-[9px] font-black px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-700 dark:bg-indigo-900/60 dark:text-cyan-300 tracking-wider">AI • LAB</span>
+            <span class="text-[9px] font-black px-1.5 py-0.5 rounded bg-indigo-100 text-indigo-700 dark:bg-indigo-900/60 dark:text-cyan-300 tracking-wider">DEV • LAB</span>
           </span>
           <span class="text-xs text-indigo-600 dark:text-indigo-400 font-semibold block tracking-wider uppercase">hienhoa.me</span>
         </div>
       </a>
 
-      <!-- Menu Điều Hướng -->
-      <nav class="hidden lg:flex items-center gap-1.5 text-sm font-semibold text-slate-600 dark:text-slate-300">
-        <button onclick="filterCategory('all')" class="px-3.5 py-2 rounded-xl hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50/70 dark:hover:bg-slate-800 transition">Tất cả</button>
-        <button onclick="togglePanel('ptit')" class="px-3.5 py-2 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
-          <i class="fa-solid fa-graduation-cap text-xs text-blue-600 dark:text-blue-400"></i> PTIT Hub
+      <!-- Menu Điều Hướng Nhanh -->
+      <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
+        <button onclick="togglePanel('ptit')" class="px-3 py-2 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-graduation-cap text-xs text-blue-600 dark:text-blue-400"></i> PTIT
         </button>
-        <button onclick="togglePanel('ai')" class="px-3.5 py-2 rounded-xl hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
-          <i class="fa-solid fa-satellite-dish text-xs text-purple-600 dark:text-purple-400 animate-pulse"></i> Bản Tin AI
+        <button onclick="togglePanel('ai')" class="px-3 py-2 rounded-xl hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-satellite-dish text-xs text-purple-600 dark:text-purple-400 animate-pulse"></i> Radar AI
         </button>
-        <button onclick="togglePanel('data')" class="px-3.5 py-2 rounded-xl hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
+        <button onclick="togglePanel('data')" class="px-3 py-2 rounded-xl hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
           <i class="fa-solid fa-chart-line text-xs text-emerald-600 dark:text-emerald-400"></i> Data Analyst
         </button>
-        <button onclick="togglePanel('lop4')" class="px-3.5 py-2 rounded-xl text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/40 hover:bg-blue-100 transition flex items-center gap-1.5">
+        <button onclick="togglePanel('lop4')" class="px-3 py-2 rounded-xl text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/40 hover:bg-blue-100 transition flex items-center gap-1.5">
           <i class="fa-solid fa-laptop-code text-xs"></i> Tin Học 4
         </button>
-        <button onclick="togglePanel('lop5')" class="px-3.5 py-2 rounded-xl text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/40 hover:bg-indigo-100 transition flex items-center gap-1.5">
+        <button onclick="togglePanel('lop5')" class="px-3 py-2 rounded-xl text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/40 hover:bg-indigo-100 transition flex items-center gap-1.5">
           <i class="fa-solid fa-cubes text-xs"></i> Lớp 5
+        </button>
+        <button onclick="togglePanel('sync')" class="px-3 py-2 rounded-xl text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-cloud-arrow-up text-xs"></i> Lưu Trữ & Đồng Bộ
         </button>
       </nav>
 
-      <!-- Phím tắt Tìm kiếm & Dark Mode Toggle -->
-      <div class="flex items-center gap-2 sm:gap-3">
+      <!-- Search & Dark Mode -->
+      <div class="flex items-center gap-2">
         <button onclick="openSearchModal()" title="Tìm kiếm (Ctrl + K)" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold flex items-center gap-2 border border-slate-200/80 dark:border-slate-700 transition">
           <i class="fa-solid fa-magnifying-glass"></i>
           <span class="hidden sm:inline">Tìm kiếm</span>
-          <kbd class="hidden sm:inline px-1.5 py-0.5 text-[10px] bg-white dark:bg-slate-900 rounded border border-slate-300 dark:border-slate-600 text-slate-400">Ctrl K</kbd>
+          <kbd class="hidden sm:inline px-1.5 py-0.5 text-[10px] bg-white dark:bg-slate-900 rounded border border-slate-300 dark:border-slate-600 text-slate-400 font-mono-code">Ctrl K</kbd>
         </button>
 
         <button onclick="toggleDarkMode()" id="themeToggleBtn" title="Chuyển chế độ Sáng / Tối" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-amber-400 border border-slate-200/80 dark:border-slate-700 transition">
@@ -195,76 +175,82 @@
   </header>
 
   <main class="flex-grow z-10 relative">
-    <!-- Hero Section Nâng Cấp -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-12 text-center relative">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/70 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 text-xs font-semibold mb-6 shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Không gian Tri Thức & Công Nghệ Số
+    <!-- Hero Section: Câu chuyện sinh viên IT năng động -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 text-center relative">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/70 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 text-xs font-semibold mb-5 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Không Gian Làm Việc & Tự Học Cá Nhân
       </div>
       
       <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-tight max-w-4xl mx-auto">
         Xin chào, mình là <span class="text-gradient">Vincent Hòa</span> 👋
       </h1>
       
+      <!-- Typewriter Animation -->
       <div class="mt-4 text-base sm:text-xl font-semibold text-slate-700 dark:text-slate-300 h-8 flex items-center justify-center gap-1.5">
-        <span>Định hướng:</span>
+        <span>Hiện tại:</span>
         <span id="typewriter" class="text-indigo-600 dark:text-cyan-400 border-r-2 border-indigo-600 pr-1 animate-pulse"></span>
       </div>
 
-      <!-- Đoạn Giới Thiệu Chuẩn Chỉnh -->
+      <!-- Đoạn Giới Thiệu Sinh Viên IT Được Thiết Kế Lại -->
       <div class="max-w-3xl mx-auto mt-6 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-3">
         <p>
-          Đây là không gian mình ghi lại <strong class="text-slate-800 dark:text-white">quá trình học tập</strong>, <strong class="text-slate-800 dark:text-white">xây dựng dự án</strong> và <strong class="text-slate-800 dark:text-white">khám phá công nghệ</strong>. Mình là người đang học và xây dựng sự nghiệp trong lĩnh vực IT, với định hướng phát triển trọng tâm về <span class="text-indigo-600 dark:text-cyan-400 font-bold">Data Analyst</span> và <span class="text-purple-600 dark:text-purple-400 font-bold">Trí Tuệ Nhân Tạo (AI)</span>.
+          Đây là không gian mình ghi lại <strong class="text-slate-900 dark:text-white">quá trình học tập</strong>, <strong class="text-slate-900 dark:text-white">xây dựng dự án</strong> và <strong class="text-slate-900 dark:text-white">khám phá công nghệ</strong>. Là một sinh viên IT đang từng bước tích lũy kiến thức và xây dựng sự nghiệp, mình chọn dồn toàn bộ đam mê vào hai hướng đi mũi nhọn: <span class="text-indigo-600 dark:text-cyan-400 font-bold">Data Analyst</span> và <span class="text-purple-600 dark:text-purple-400 font-bold">Trí Tuệ Nhân Tạo (AI)</span>.
         </p>
         <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-          <strong class="text-indigo-600 dark:text-indigo-400">hienhoa.me</strong> là nơi mình lưu lại hành trình đó: từ những bài học nhỏ, project PTIT cho đến các thử nghiệm công nghệ cá nhân.
+          <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">hienhoa.me</strong> là trạm lưu trữ riêng của mình: từ những bài tập lập trình, đồ án tại giảng đường PTIT, bài giảng trợ giảng Tin học Lớp 4 & 5, cho đến những thử nghiệm công nghệ mỗi ngày.
         </p>
       </div>
 
-      <!-- Sơ đồ Triết lý Phát triển -->
+      <!-- Khối Triết lý Học tập tương tác -->
       <div class="max-w-4xl mx-auto mt-8 p-4 rounded-3xl glass-card border border-indigo-100 dark:border-slate-800 shadow-sm">
-        <div class="text-xs font-bold text-slate-400 dark:text-slate-400 uppercase tracking-widest mb-3">Mục tiêu phát triển</div>
+        <div class="text-[11px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-widest mb-3">Triết lý hành động</div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs sm:text-sm font-extrabold">
-          <div class="p-3 rounded-2xl bg-blue-50/80 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-900/60 flex items-center justify-center gap-2">
+          <div class="p-3 rounded-2xl bg-blue-50/80 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-900/60 flex items-center justify-center gap-2 hover:scale-[1.02] transition">
             <i class="fa-solid fa-book-open"></i> HỌC
           </div>
-          <div class="p-3 rounded-2xl bg-indigo-50/80 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-900/60 flex items-center justify-center gap-2">
+          <div class="p-3 rounded-2xl bg-indigo-50/80 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-900/60 flex items-center justify-center gap-2 hover:scale-[1.02] transition">
             <i class="fa-solid fa-code"></i> XÂY DỰNG
           </div>
-          <div class="p-3 rounded-2xl bg-purple-50/80 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200/60 dark:border-purple-900/60 flex items-center justify-center gap-2">
+          <div class="p-3 rounded-2xl bg-purple-50/80 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200/60 dark:border-purple-900/60 flex items-center justify-center gap-2 hover:scale-[1.02] transition">
             <i class="fa-solid fa-share-nodes"></i> CHIA SẺ
           </div>
-          <div class="p-3 rounded-2xl bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-900/60 flex items-center justify-center gap-2">
+          <div class="p-3 rounded-2xl bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-900/60 flex items-center justify-center gap-2 hover:scale-[1.02] transition">
             <i class="fa-solid fa-arrow-trend-up"></i> CẢI THIỆN
           </div>
         </div>
       </div>
 
       <!-- Quick Shortcuts Bảng Điều Khiển -->
-      <div class="grid grid-cols-2 sm:grid-cols-5 gap-3.5 max-w-4xl mx-auto mt-8">
-        <div onclick="togglePanel('ptit')" class="cursor-pointer glass-card p-4 rounded-2xl hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg transition text-center group">
-          <div class="w-10 h-10 mx-auto rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center mb-2 group-hover:scale-110 transition"><i class="fa-solid fa-graduation-cap"></i></div>
-          <div class="font-bold text-sm text-slate-800 dark:text-slate-100">PTIT Hub</div>
-          <div class="text-[11px] text-blue-600 dark:text-blue-400 font-semibold">Đồ Án & Dự Án ▾</div>
+      <div class="grid grid-cols-2 sm:grid-cols-6 gap-3 max-w-5xl mx-auto mt-8">
+        <div onclick="togglePanel('ptit')" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg transition text-center group">
+          <div class="w-9 h-9 mx-auto rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-graduation-cap"></i></div>
+          <div class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">PTIT Hub</div>
+          <div class="text-[10px] text-blue-600 dark:text-blue-400 font-semibold">Bài tập & Đồ án ▾</div>
         </div>
-        <div onclick="togglePanel('ai')" class="cursor-pointer glass-card p-4 rounded-2xl hover:-translate-y-1 hover:border-purple-400 hover:shadow-lg transition text-center group">
-          <div class="w-10 h-10 mx-auto rounded-xl bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 flex items-center justify-center mb-2 group-hover:scale-110 transition"><i class="fa-solid fa-satellite-dish"></i></div>
-          <div class="font-bold text-sm text-slate-800 dark:text-slate-100">Bản Tin AI</div>
-          <div class="text-[11px] text-purple-600 dark:text-purple-400 font-semibold">Live Radar ▾</div>
+        <div onclick="togglePanel('ai')" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-purple-400 hover:shadow-lg transition text-center group">
+          <div class="w-9 h-9 mx-auto rounded-xl bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 flex items-center justify-center mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-satellite-dish"></i></div>
+          <div class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">Bản Tin AI</div>
+          <div class="text-[10px] text-purple-600 dark:text-purple-400 font-semibold">Live Radar ▾</div>
         </div>
-        <div onclick="togglePanel('data')" class="cursor-pointer glass-card p-4 rounded-2xl hover:-translate-y-1 hover:border-emerald-400 hover:shadow-lg transition text-center group">
-          <div class="w-10 h-10 mx-auto rounded-xl bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-300 flex items-center justify-center mb-2 group-hover:scale-110 transition"><i class="fa-solid fa-chart-pie"></i></div>
-          <div class="font-bold text-sm text-slate-800 dark:text-slate-100">Data Analyst</div>
-          <div class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold">Lộ trình & Dự án ▾</div>
+        <div onclick="togglePanel('data')" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-emerald-400 hover:shadow-lg transition text-center group">
+          <div class="w-9 h-9 mx-auto rounded-xl bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-300 flex items-center justify-center mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-chart-pie"></i></div>
+          <div class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">Data Analyst</div>
+          <div class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">Roadmap & DAX ▾</div>
         </div>
-        <div onclick="togglePanel('lop4')" class="cursor-pointer glass-card p-4 rounded-2xl hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg transition text-center group border border-blue-200 dark:border-blue-900/60 bg-blue-50/40 dark:bg-blue-950/20">
-          <div class="w-10 h-10 mx-auto rounded-xl bg-blue-600 text-white flex items-center justify-center mb-2 group-hover:scale-110 transition"><i class="fa-solid fa-laptop-code"></i></div>
-          <div class="font-bold text-sm text-slate-800 dark:text-slate-100">Tin Học 4</div>
-          <div class="text-[11px] text-blue-700 dark:text-blue-300 font-semibold">Bảng Thực Hành ▾</div>
+        <div onclick="togglePanel('lop4')" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg transition text-center group border border-blue-200 dark:border-blue-900/60 bg-blue-50/40 dark:bg-blue-950/20">
+          <div class="w-9 h-9 mx-auto rounded-xl bg-blue-600 text-white flex items-center justify-center mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-laptop-code"></i></div>
+          <div class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">Tin Học 4</div>
+          <div class="text-[10px] text-blue-700 dark:text-blue-300 font-semibold">Phần Mềm & Link ▾</div>
         </div>
-        <div onclick="togglePanel('lop5')" class="cursor-pointer glass-card p-4 rounded-2xl hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg transition text-center group border border-indigo-200 dark:border-indigo-900/60 bg-indigo-50/40 dark:bg-indigo-950/20">
-          <div class="w-10 h-10 mx-auto rounded-xl bg-indigo-600 text-white flex items-center justify-center mb-2 group-hover:scale-110 transition"><i class="fa-solid fa-cubes"></i></div>
-          <div class="font-bold text-sm text-slate-800 dark:text-slate-100">Lớp 5</div>
-          <div class="text-[11px] text-indigo-700 dark:text-indigo-300 font-semibold">Tin & Công Nghệ ▾</div>
+        <div onclick="togglePanel('lop5')" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg transition text-center group border border-indigo-200 dark:border-indigo-900/60 bg-indigo-50/40 dark:bg-indigo-950/20">
+          <div class="w-9 h-9 mx-auto rounded-xl bg-indigo-600 text-white flex items-center justify-center mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-cubes"></i></div>
+          <div class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">Lớp 5</div>
+          <div class="text-[10px] text-indigo-700 dark:text-indigo-300 font-semibold">Tin & Công Nghệ ▾</div>
+        </div>
+        <div onclick="togglePanel('sync')" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-amber-400 hover:shadow-lg transition text-center group border border-amber-200 dark:border-amber-900/60 bg-amber-50/40 dark:bg-amber-950/20">
+          <div class="w-9 h-9 mx-auto rounded-xl bg-amber-500 text-white flex items-center justify-center mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+          <div class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">Đồng Bộ</div>
+          <div class="text-[10px] text-amber-700 dark:text-amber-300 font-semibold">Gist & JSON ▾</div>
         </div>
       </div>
     </section>
@@ -276,13 +262,13 @@
           <div>
             <div class="flex items-center gap-2">
               <span class="w-3.5 h-3.5 rounded-full bg-blue-600 animate-pulse"></span>
-              <h2 class="text-2xl font-black text-slate-900 dark:text-white">PTIT Hub: Đồ Án & Dự Án Thực Hành</h2>
+              <h2 class="text-2xl font-black text-slate-900 dark:text-white">PTIT: Đồ Án & Dự Án Thực Hành</h2>
             </div>
-            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Lưu trữ báo cáo môn học, mã nguồn giải thuật và hệ thống an toàn thông tin tại PTIT.</p>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Nơi lưu trữ các đồ án môn học, mã nguồn giải thuật C++/Python và đồ án tốt nghiệp tại PTIT.</p>
           </div>
           <div class="flex items-center gap-2 self-end sm:self-center">
             <button onclick="openAddPtitModal()" class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition">
-              <i class="fa-solid fa-plus"></i> Đính kèm mới
+              <i class="fa-solid fa-plus"></i> Thêm tài liệu mới
             </button>
             <button onclick="closePanel('ptit')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold transition">
               <i class="fa-solid fa-xmark"></i> Thu gọn
@@ -291,23 +277,25 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Đồ Án -->
           <div class="bg-blue-50/50 dark:bg-blue-950/30 p-5 rounded-2xl border border-blue-100 dark:border-blue-900/60">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md"><i class="fa-solid fa-award"></i></div>
               <div>
                 <h3 class="font-bold text-slate-800 dark:text-slate-100 text-base">Phân Mục: Đồ Án PTIT</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Đồ án tốt nghiệp, đồ án môn học ATTT</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Đồ án tốt nghiệp, báo cáo an toàn mạng</p>
               </div>
             </div>
             <div id="ptit-doan-list" class="space-y-3"></div>
           </div>
 
+          <!-- Dự Án & Bài tập -->
           <div class="bg-indigo-50/50 dark:bg-indigo-950/30 p-5 rounded-2xl border border-indigo-100 dark:border-indigo-900/60">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-md"><i class="fa-solid fa-code-branch"></i></div>
               <div>
-                <h3 class="font-bold text-slate-800 dark:text-slate-100 text-base">Phân Mục: Dự Án & Bài Tập</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Thuật toán C++, đồ thị, phần mềm quản trị</p>
+                <h3 class="font-bold text-slate-800 dark:text-slate-100 text-base">Phân Mục: Bài Tập & Code</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Thuật toán C++, đồ thị, bài tập lớn</p>
               </div>
             </div>
             <div id="ptit-duan-list" class="space-y-3"></div>
@@ -316,7 +304,7 @@
       </div>
     </section>
 
-    <!-- ==================== BẢNG 2: BẢN TIN AI TỰ ĐỘNG ==================== -->
+    <!-- ==================== BẢNG 2: BẢN TIN AI LIVE RADAR ==================== -->
     <section id="panel-ai" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
       <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-purple-300 dark:border-purple-700 shadow-2xl relative overflow-hidden panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
@@ -325,11 +313,11 @@
               <span class="w-3.5 h-3.5 rounded-full bg-purple-600 animate-pulse"></span>
               <h2 class="text-2xl font-black text-slate-900 dark:text-white">Bản Tin AI: Live Radar News</h2>
             </div>
-            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Cập nhật tin tức Trí Tuệ Nhân Tạo từ các nguồn uy tín hàng đầu trong và ngoài nước.</p>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Cập nhật tin tức và bài báo khoa học AI từ các nguồn hàng đầu thế giới & Việt Nam.</p>
           </div>
           <div class="flex items-center gap-2 self-end sm:self-center">
             <button onclick="refreshAiNews()" class="px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition">
-              <i id="ai-refresh-icon" class="fa-solid fa-arrows-rotate"></i> Làm mới tin
+              <i id="ai-refresh-icon" class="fa-solid fa-arrows-rotate"></i> Làm mới
             </button>
             <button onclick="closePanel('ai')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold transition">
               <i class="fa-solid fa-xmark"></i> Thu gọn
@@ -341,78 +329,54 @@
       </div>
     </section>
 
-    <!-- ==================== BẢNG 3: DATA ANALYST HUB ==================== -->
+    <!-- ==================== BẢNG 3: DATA ANALYST HUB (ROADMAP THỰC TẾ) ==================== -->
     <section id="panel-data" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
       <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-emerald-300 dark:border-emerald-700 shadow-2xl relative overflow-hidden panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
           <div>
             <div class="flex items-center gap-2">
               <span class="w-3.5 h-3.5 rounded-full bg-emerald-600 animate-pulse"></span>
-              <h2 class="text-2xl font-black text-slate-900 dark:text-white">Data Analyst: Lộ Trình & Dự Án Thực Chiến</h2>
+              <h2 class="text-2xl font-black text-slate-900 dark:text-white">Lộ Trình Data Analyst Tương Tác</h2>
             </div>
-            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Quy trình 5 bước chinh phục phân tích dữ liệu, kho Dashboard và bộ công cụ Cheat Sheet.</p>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Tick chọn kỹ năng đã đạt được, lưu ghi chú riêng trực tiếp vào trình duyệt.</p>
           </div>
           <button onclick="closePanel('data')" class="self-end sm:self-center px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
             <i class="fa-solid fa-xmark"></i> Thu gọn
           </button>
         </div>
 
-        <!-- 5 GIAI ĐOẠN -->
-        <div class="mb-10">
-          <h3 class="text-base font-extrabold text-slate-800 dark:text-white mb-4 flex items-center gap-2">
-            <i class="fa-solid fa-route text-emerald-600 dark:text-emerald-400"></i> Lộ Trình 5 Giai Đoạn (Nhấp vào từng chặng để xem chi tiết):
-          </h3>
-          <div class="grid grid-cols-2 sm:grid-cols-5 gap-2.5 mb-5" id="roadmap-steps-container"></div>
-          <div id="roadmap-detail-card" class="p-5 rounded-2xl bg-emerald-50/60 dark:bg-emerald-950/30 border border-emerald-200/80 dark:border-emerald-800 transition-all duration-300"></div>
+        <!-- Thanh tiến độ tổng quan -->
+        <div class="mb-6 p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
+          <div class="flex justify-between items-center text-xs font-bold mb-2">
+            <span class="text-slate-700 dark:text-slate-300">Tiến độ hoàn thành lộ trình:</span>
+            <span id="roadmap-pct-text" class="text-emerald-600 dark:text-emerald-400 font-mono-code text-sm">0%</span>
+          </div>
+          <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+            <div id="roadmap-progress-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 0%"></div>
+          </div>
         </div>
 
-        <!-- DỰ ÁN & CHEAT SHEET -->
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 pt-4 border-t border-slate-100 dark:border-slate-800">
-          <div class="lg:col-span-2 space-y-4">
-            <h4 class="font-bold text-slate-800 dark:text-white text-sm flex items-center gap-2">
-              <i class="fa-solid fa-chart-column text-emerald-600 dark:text-emerald-400"></i> Dự Án Phân Tích Dữ Liệu Thực Tế:
-            </h4>
-            <div id="da-projects-list" class="space-y-3"></div>
-          </div>
+        <!-- 5 Chặng lộ trình chi tiết có checkbox và ghi chú -->
+        <div class="space-y-4 mb-8" id="roadmap-accordion-container"></div>
 
-          <div>
-            <h4 class="font-bold text-slate-800 dark:text-white text-sm flex items-center gap-2 mb-4">
-              <i class="fa-solid fa-box-archive text-emerald-600 dark:text-emerald-400"></i> Cheat Sheet & Tài Liệu Tải Về:
-            </h4>
-            <div class="space-y-3">
-              <a href="https://drive.google.com" target="_blank" class="p-3.5 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-400 hover:shadow-sm flex items-center justify-between transition group">
-                <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-950/60 text-red-600 dark:text-red-400 flex items-center justify-center text-xs font-bold">PDF</div>
-                  <div>
-                    <div class="text-xs font-bold text-slate-800 dark:text-slate-100 group-hover:text-emerald-600">SQL for Data Analyst Cheat Sheet</div>
-                    <div class="text-[10px] text-slate-400">Join, Window Functions, CTE tóm tắt</div>
-                  </div>
-                </div>
-                <i class="fa-solid fa-download text-xs text-slate-400 group-hover:text-emerald-500"></i>
-              </a>
-
-              <a href="https://drive.google.com" target="_blank" class="p-3.5 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-400 hover:shadow-sm flex items-center justify-between transition group">
-                <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg bg-blue-100 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs font-bold">PY</div>
-                  <div>
-                    <div class="text-xs font-bold text-slate-800 dark:text-slate-100 group-hover:text-emerald-600">Python Pandas & EDA Toolkit</div>
-                    <div class="text-[10px] text-slate-400">Cẩm nang làm sạch dữ liệu nhanh</div>
-                  </div>
-                </div>
-                <i class="fa-solid fa-download text-xs text-slate-400 group-hover:text-emerald-500"></i>
-              </a>
-
-              <a href="https://drive.google.com" target="_blank" class="p-3.5 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-400 hover:shadow-sm flex items-center justify-between transition group">
-                <div class="flex items-center gap-3">
-                  <div class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-950/60 text-amber-600 dark:text-amber-400 flex items-center justify-center text-xs font-bold">BI</div>
-                  <div>
-                    <div class="text-xs font-bold text-slate-800 dark:text-slate-100 group-hover:text-emerald-600">Template PowerBI (.pbix) Chuẩn</div>
-                    <div class="text-[10px] text-slate-400">Layout Dashboard mẫu doanh nghiệp</div>
-                  </div>
-                </div>
-                <i class="fa-solid fa-download text-xs text-slate-400 group-hover:text-emerald-500"></i>
-              </a>
-            </div>
+        <!-- Cheat Sheet & Dự án mẫu -->
+        <div class="pt-6 border-t border-slate-100 dark:border-slate-800">
+          <h4 class="font-bold text-slate-800 dark:text-white text-sm mb-3 flex items-center gap-2">
+            <i class="fa-solid fa-toolbox text-emerald-600"></i> Bộ Công Cụ & Cheat Sheet Phân Tích:
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <a href="https://drive.google.com" target="_blank" class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-400 flex items-center justify-between text-xs transition">
+              <span class="font-bold text-slate-800 dark:text-slate-200"><i class="fa-solid fa-database text-blue-500 mr-2"></i> SQL Query Cheat Sheet</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
+            </a>
+            <a href="https://drive.google.com" target="_blank" class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-400 flex items-center justify-between text-xs transition">
+              <span class="font-bold text-slate-800 dark:text-slate-200"><i class="fa-brands fa-python text-amber-500 mr-2"></i> Pandas & EDA Guide</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
+            </a>
+            <a href="https://drive.google.com" target="_blank" class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-400 flex items-center justify-between text-xs transition">
+              <span class="font-bold text-slate-800 dark:text-slate-200"><i class="fa-solid fa-chart-simple text-purple-500 mr-2"></i> Power BI DAX Formulas</span>
+              <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
+            </a>
           </div>
         </div>
       </div>
@@ -502,53 +466,92 @@
       </div>
     </section>
 
-    <!-- Projects Grid Section -->
-    <section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
-        <div>
-          <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">Tất Cả Dự Án & Nghiên Cứu</h2>
-          <p class="text-sm text-slate-500 dark:text-slate-400">Lọc và khám phá chi tiết các bài báo cáo, thuật toán và học phần</p>
+    <!-- ==================== BẢNG 6: ĐỒNG BỘ ĐÁM MÂY & BÀI ĐỌC SAU (TÍCH HỢP BẢN 2) ==================== -->
+    <section id="panel-sync" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amber-300 dark:border-amber-700 shadow-2xl relative overflow-hidden panel-open">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span>
+              <h2 class="text-2xl font-black text-slate-900 dark:text-white">Kho Lưu Trữ Cá Nhân & Đồng Bộ Đám Mây</h2>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Dành riêng cho bạn: Lưu bài đọc sau, sao lưu file JSON và đồng bộ dữ liệu qua GitHub Gist[cite: 2].</p>
+          </div>
+          <button onclick="closePanel('sync')" class="self-end sm:self-center px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
+            <i class="fa-solid fa-xmark"></i> Thu gọn
+          </button>
         </div>
 
-        <div class="flex flex-wrap items-center gap-2">
-          <button onclick="filterCategory('all')" class="filter-btn active px-4 py-2 rounded-xl text-xs font-bold transition bg-indigo-600 text-white shadow-sm" data-filter="all">Tất cả</button>
-          <button onclick="filterCategory('ptit')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700" data-filter="ptit">PTIT</button>
-          <button onclick="filterCategory('ai')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700" data-filter="ai">AI</button>
-          <button onclick="filterCategory('data')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700" data-filter="data">Data Analyst</button>
-          <button onclick="togglePanel('lop4')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-blue-700 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-700 border border-blue-200 dark:border-blue-900" data-filter="lop4">Tin Học 4</button>
-          <button onclick="togglePanel('lop5')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-indigo-700 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-slate-700 border border-indigo-200 dark:border-indigo-900" data-filter="lop5">Lớp 5</button>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- 1. Lưu bài đọc sau -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+            <h3 class="font-bold text-slate-800 dark:text-white text-sm mb-2 flex items-center gap-2">
+              <i class="fa-solid fa-bookmark text-amber-500"></i> Bài Viết Đọc Sau (Read Later)
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Dán link tài liệu hay bạn bắt gặp trên mạng vào đây để đọc dần:</p>
+            <div class="flex gap-2 mb-3">
+              <input type="url" id="later-url" placeholder="https://..." class="flex-1 text-xs p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white focus:outline-none">
+              <input type="text" id="later-title" placeholder="Tiêu đề..." class="w-1/3 text-xs p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white focus:outline-none">
+              <button onclick="addLaterItem()" class="px-3 py-2 bg-amber-500 hover:bg-amber-600 text-white rounded-xl text-xs font-bold transition">Lưu</button>
+            </div>
+            <div id="later-list" class="max-h-48 overflow-y-auto space-y-2"></div>
+          </div>
+
+          <!-- 2. Sao lưu file JSON & Đồng bộ Gist -->
+          <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
+            <div>
+              <h3 class="font-bold text-slate-800 dark:text-white text-sm mb-1 flex items-center gap-2">
+                <i class="fa-solid fa-file-code text-indigo-500"></i> Sao Lưu File JSON (Máy tính ↔ Điện thoại)
+              </h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Tải toàn bộ ghi chú và tiến độ học tập về máy:</p>
+              <div class="flex gap-2">
+                <button onclick="exportJsonBackup()" class="px-3 py-2 bg-slate-900 dark:bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-600 transition flex items-center gap-1.5">
+                  <i class="fa-solid fa-download"></i> Xuất file JSON
+                </button>
+                <button onclick="document.getElementById('importFile').click()" class="px-3 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-xl text-xs font-bold hover:bg-slate-200 transition flex items-center gap-1.5 border border-slate-200 dark:border-slate-700">
+                  <i class="fa-solid fa-upload"></i> Nhập từ JSON
+                </button>
+                <input type="file" id="importFile" accept=".json" onchange="importJsonBackup(event)" hidden>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-slate-100 dark:border-slate-800">
+              <h3 class="font-bold text-slate-800 dark:text-white text-sm mb-1 flex items-center gap-2">
+                <i class="fa-brands fa-github text-slate-800 dark:text-slate-200"></i> Đồng Bộ Qua GitHub Gist Bí Mật
+              </h3>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mb-2">Nhập GitHub Token (chỉ cấp quyền <code>gist</code>) để đồng bộ đám mây[cite: 2]:</p>
+              <div class="space-y-2">
+                <input type="password" id="gist-token" placeholder="GitHub Token (ghp_...)" class="w-full text-xs p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white">
+                <input type="text" id="gist-id" placeholder="Gist ID (để trống nếu chưa có)" class="w-full text-xs p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white">
+                <div class="flex gap-2">
+                  <button onclick="pushToGist()" class="px-3 py-1.5 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition">Đẩy lên Gist</button>
+                  <button onclick="pullFromGist()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-xl text-xs font-bold hover:bg-slate-200 transition border border-slate-200 dark:border-slate-700">Kéo về máy</button>
+                </div>
+                <div id="gist-status" class="text-[11px] text-slate-400 italic"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Grid Section -->
+    <section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+        <div>
+          <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">Tất Cả Dự Án & Nghiên Cứu</h2>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Tổng hợp các học phần, bài toán giải thuật và phân tích dữ liệu</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-1.5">
+          <button onclick="filterCategory('all')" class="filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-indigo-600 text-white shadow-sm" data-filter="all">Tất cả</button>
+          <button onclick="filterCategory('ptit')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700" data-filter="ptit">PTIT</button>
+          <button onclick="filterCategory('ai')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700" data-filter="ai">AI</button>
+          <button onclick="filterCategory('data')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700" data-filter="data">Data Analyst</button>
         </div>
       </div>
 
       <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
-    </section>
-
-    <!-- CONTACT & CONNECT SECTION -->
-    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="glass-card rounded-3xl p-8 sm:p-10 border border-indigo-200 dark:border-slate-800 text-center relative overflow-hidden">
-        <div class="w-12 h-12 rounded-2xl bg-indigo-100 dark:bg-indigo-950 text-indigo-600 dark:text-cyan-400 mx-auto flex items-center justify-center text-xl mb-4">
-          <i class="fa-solid fa-paper-plane"></i>
-        </div>
-        <h3 class="text-2xl font-black text-slate-900 dark:text-white">Kết Nối & Trao Đổi Tri Thức</h3>
-        <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-xl mx-auto mt-2 leading-relaxed">
-          Bạn có thể liên hệ trực tiếp với mình qua Email hoặc các kênh kết nối bên dưới để trao đổi về đồ án PTIT, AI, Data Analyst hoặc tài liệu Tin học.
-        </p>
-        
-        <div class="flex flex-wrap items-center justify-center gap-3 mt-6">
-          <a href="mailto:contact@hienhoa.me" class="px-4 py-2.5 rounded-xl bg-slate-900 dark:bg-white text-white dark:text-slate-900 text-xs font-bold hover:bg-indigo-600 dark:hover:bg-cyan-400 transition flex items-center gap-2">
-            <i class="fa-solid fa-envelope"></i> contact@hienhoa.me
-          </a>
-          <a href="https://github.com" target="_blank" class="px-4 py-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 text-xs font-bold transition flex items-center gap-2 border border-slate-200 dark:border-slate-700">
-            <i class="fa-brands fa-github"></i> GitHub
-          </a>
-          <a href="https://linkedin.com" target="_blank" class="px-4 py-2.5 rounded-xl bg-blue-50 dark:bg-blue-950/50 hover:bg-blue-100 text-blue-600 dark:text-blue-400 text-xs font-bold transition flex items-center gap-2 border border-blue-200 dark:border-blue-900">
-            <i class="fa-brands fa-linkedin"></i> LinkedIn
-          </a>
-          <a href="https://zalo.me" target="_blank" class="px-4 py-2.5 rounded-xl bg-cyan-50 dark:bg-cyan-950/50 hover:bg-cyan-100 text-cyan-700 dark:text-cyan-400 text-xs font-bold transition flex items-center gap-2 border border-cyan-200 dark:border-cyan-900">
-            <i class="fa-solid fa-comment-dots"></i> Zalo / Tin Nhắn
-          </a>
-        </div>
-      </div>
     </section>
   </main>
 
@@ -557,8 +560,8 @@
     <div class="glass-card bg-white dark:bg-slate-900 rounded-3xl p-5 max-w-xl w-full shadow-2xl border border-slate-200 dark:border-slate-800 relative">
       <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
         <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
-        <input type="text" id="global-search-input" oninput="handleGlobalSearch(this.value)" placeholder="Tìm kiếm tài liệu, Scratch, PTIT, AI, SQL..." class="w-full bg-transparent text-sm font-semibold text-slate-800 dark:text-white focus:outline-none">
-        <button onclick="closeSearchModal()" class="text-slate-400 hover:text-slate-600 text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800">ESC</button>
+        <input type="text" id="global-search-input" oninput="handleGlobalSearch(this.value)" placeholder="Tìm tài liệu, Scratch, PTIT, AI, SQL..." class="w-full bg-transparent text-sm font-semibold text-slate-800 dark:text-white focus:outline-none">
+        <button onclick="closeSearchModal()" class="text-slate-400 hover:text-slate-600 text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 font-mono-code">ESC</button>
       </div>
       <div id="search-results-box" class="mt-4 max-h-72 overflow-y-auto space-y-2">
         <div class="text-center py-6 text-xs text-slate-400">Nhập từ khóa để tra cứu tức thì toàn bộ kho tài liệu...</div>
@@ -612,13 +615,13 @@
   <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 py-8 text-center text-xs text-slate-500 dark:text-slate-400 z-10">
     <div class="max-w-7xl mx-auto px-4">
       <p class="font-medium text-slate-600 dark:text-slate-300">© 2026 Vincent Hòa. Bản quyền thuộc về <a href="https://hienhoa.me" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">hienhoa.me</a></p>
-      <p class="mt-1">Nền tảng tri thức Công nghệ, AI & Giáo dục số</p>
+      <p class="mt-1">Không gian tự học, nghiên cứu Công nghệ, AI & Giáo dục số</p>
     </div>
   </footer>
 
-  <!-- SCRIPT HỆ THỐNG -->
+  <!-- SCRIPT HỆ THỐNG HOÀN CHỈNH -->
   <script>
-    // 1. CHUYỂN ĐỔI DARK / LIGHT MODE
+    // 1. THEME TOGGLE
     function initTheme() {
       const isDark = localStorage.getItem('theme') === 'dark';
       if (isDark) {
@@ -631,19 +634,18 @@
     }
 
     function toggleDarkMode() {
-      const html = document.documentElement;
-      const isDark = html.classList.toggle('dark');
+      const isDark = document.documentElement.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
       document.getElementById('themeIcon').className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon text-slate-600';
       showToast(isDark ? 'Đã bật chế độ Tối (Dark Mode)' : 'Đã bật chế độ Sáng (Light Mode)');
     }
 
-    // 2. HIỆU ỨNG CHỮ GÕ MÁY (TYPEWRITER)
+    // 2. TYPEWRITER EFFECT (SINH VIÊN IT)
     const typeWords = [
-      "Kỹ sư PTIT & An Toàn TT",
-      "Nghiên cứu Trí Tuệ Nhân Tạo (AI)",
-      "Chuyên viên Data Analyst",
-      "Giảng dạy Tin Học Lớp 4 & STEM"
+      "Sinh viên IT đam mê AI & Data",
+      "Kỹ sư An Toàn Thông Tin tương lai",
+      "Người tự học & Thực hành liên tục",
+      "Giảng dạy Tin Học Lớp 4 & Lớp 5"
     ];
     let wordIdx = 0, charIdx = 0, isDeleting = false;
     function typeLoop() {
@@ -656,7 +658,7 @@
         target.textContent = current.substring(0, charIdx + 1);
         charIdx++;
       }
-      let speed = isDeleting ? 35 : 75;
+      let speed = isDeleting ? 30 : 70;
       if (!isDeleting && charIdx === current.length) {
         speed = 1800;
         isDeleting = true;
@@ -668,135 +670,291 @@
       setTimeout(typeLoop, speed);
     }
 
-    // 3. LỘ TRÌNH 5 GIAI ĐOẠN DATA ANALYST
-    const roadmapPhases = [
+    // 3. ROADMAP DATA ANALYST (LƯU LOCALSTORAGE NHƯ BẢN 2)
+    const defaultRoadmap = [
       {
-        id: 1, title: "Giai đoạn 1", subtitle: "Excel & Thống kê", icon: "fa-solid fa-table",
-        skills: ["Pivot Table & XLOOKUP", "Làm sạch dữ liệu cơ bản", "Thống kê mô tả (Mean, Std)"],
-        deliverable: "Báo cáo phân tích doanh thu tháng bằng Excel Dashboard"
+        title: "Excel Chuyên Sâu & Thống Kê Mô Tả",
+        deliver: "Báo cáo doanh thu tháng bằng Excel Dashboard",
+        note: "",
+        skills: [
+          { t: "Pivot Table & XLOOKUP", done: true },
+          { t: "Làm sạch dữ liệu cơ bản", done: true },
+          { t: "Thống kê mô tả (Mean, Median, Std)", done: false }
+        ]
       },
       {
-        id: 2, title: "Giai đoạn 2", subtitle: "Truy vấn CSDL SQL", icon: "fa-solid fa-database",
-        skills: ["SELECT, JOIN, GROUP BY", "Window Functions (RANK, LEAD/LAG)", "CTE & Subqueries"],
-        deliverable: "Bộ câu lệnh truy vấn phân khúc khách hàng trên MySQL"
+        title: "Truy Vấn Cơ Sở Dữ Liệu SQL",
+        deliver: "Bộ câu lệnh phân khúc khách hàng trên MySQL/PostgreSQL",
+        note: "",
+        skills: [
+          { t: "SELECT, JOIN, GROUP BY, HAVING", done: true },
+          { t: "Window Functions (RANK, DENSE_RANK, LEAD/LAG)", done: false },
+          { t: "CTE & Tối ưu hóa Subqueries", done: false }
+        ]
       },
       {
-        id: 3, title: "Giai đoạn 3", subtitle: "Python EDA & Clean", icon: "fa-brands fa-python",
-        skills: ["NumPy & Pandas chuyên sâu", "Matplotlib & Seaborn", "Khám phá tương quan biến (EDA)"],
-        deliverable: "Jupyter Notebook phân tích dữ liệu E-commerce 100K dòng"
+        title: "Python for DA (EDA & Làm Sạch)",
+        deliver: "Jupyter Notebook phân tích dữ liệu E-commerce",
+        note: "",
+        skills: [
+          { t: "NumPy & Pandas thao tác DataFrame", done: false },
+          { t: "Matplotlib & Seaborn trực quan hóa", done: false },
+          { t: "Phân tích tương quan & xử lý giá trị khuyết", done: false }
+        ]
       },
       {
-        id: 4, title: "Giai đoạn 4", subtitle: "BI & Dashboarding", icon: "fa-solid fa-chart-line",
-        skills: ["Power BI Desktop", "Data Modeling (Star Schema)", "DAX Measures tính toán tăng trưởng"],
-        deliverable: "Executive Interactive Dashboard giám sát KPI doanh nghiệp"
+        title: "Business Intelligence & Power BI",
+        deliver: "Executive Interactive Dashboard giám sát chỉ số kinh doanh",
+        note: "",
+        skills: [
+          { t: "Power BI Desktop & Power Query", done: false },
+          { t: "Mô hình hóa dữ liệu (Star Schema)", done: false },
+          { t: "DAX Measures tính toán tăng trưởng MoM/YoY", done: false }
+        ]
       },
       {
-        id: 5, title: "Giai đoạn 5", subtitle: "Tư duy Kinh Doanh", icon: "fa-solid fa-briefcase",
-        skills: ["Phân tích RFM (Khách hàng)", "Cohort Analysis (Giữ chân)", "Storytelling với số liệu"],
-        deliverable: "Bản báo cáo đề xuất tối ưu hóa chiến dịch Marketing"
+        title: "Tư Duy Kinh Doanh & Phân Tích Thực Chiến",
+        deliver: "Báo cáo đề xuất tối ưu hóa chiến dịch Marketing",
+        note: "",
+        skills: [
+          { t: "Phân tích nhóm khách hàng RFM", done: false },
+          { t: "Cohort Analysis (Tỷ lệ giữ chân khách hàng)", done: false },
+          { t: "Kể chuyện bằng số liệu (Data Storytelling)", done: false }
+        ]
       }
     ];
 
-    let currentPhaseId = 1;
-    function renderRoadmap() {
-      const stepsContainer = document.getElementById('roadmap-steps-container');
-      stepsContainer.innerHTML = roadmapPhases.map(p => `
-        <button onclick="selectRoadmapPhase(${p.id})" class="p-3 rounded-2xl border text-center transition ${p.id === currentPhaseId ? 'step-active' : 'bg-white dark:bg-slate-900 border-slate-200/90 dark:border-slate-800 hover:border-slate-300'}">
-          <div class="w-7 h-7 mx-auto rounded-lg ${p.id === currentPhaseId ? 'bg-indigo-600 text-white' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300'} flex items-center justify-center text-xs mb-1.5">
-            <i class="${p.icon}"></i>
-          </div>
-          <div class="text-[11px] font-extrabold ${p.id === currentPhaseId ? 'text-indigo-900 dark:text-cyan-300' : 'text-slate-800 dark:text-slate-100'}">${p.title}</div>
-          <div class="text-[10px] text-slate-400 truncate">${p.subtitle}</div>
-        </button>
-      `).join('');
+    let userRoadmap = JSON.parse(localStorage.getItem('hienhoa.roadmap')) || defaultRoadmap;
 
-      const activeData = roadmapPhases.find(p => p.id === currentPhaseId);
-      const detailCard = document.getElementById('roadmap-detail-card');
-      detailCard.innerHTML = `
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-          <div class="flex items-center gap-2">
-            <span class="px-2.5 py-0.5 rounded-full bg-emerald-600 text-white text-[11px] font-black">${activeData.title}</span>
-            <span class="font-extrabold text-sm text-slate-800 dark:text-white">${activeData.subtitle}</span>
-          </div>
-          <span class="text-[11px] text-emerald-800 dark:text-emerald-300 font-semibold bg-emerald-100/70 dark:bg-emerald-950/70 px-2 py-0.5 rounded-md">🎯 Sản phẩm đầu ra: ${activeData.deliverable}</span>
-        </div>
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
-          ${activeData.skills.map(s => `
-            <div class="bg-white/80 dark:bg-slate-900/80 p-2.5 rounded-xl border border-emerald-100 dark:border-emerald-900/50 text-xs text-slate-700 dark:text-slate-300 flex items-center gap-2">
-              <i class="fa-solid fa-circle-check text-emerald-500 text-xs"></i> ${s}
+    function saveRoadmap() {
+      localStorage.setItem('hienhoa.roadmap', JSON.stringify(userRoadmap));
+      updateRoadmapUI();
+    }
+
+    function updateRoadmapUI() {
+      let total = 0, done = 0;
+      userRoadmap.forEach(p => p.skills.forEach(s => { total++; if (s.done) done++; }));
+      const pct = total ? Math.round((done / total) * 100) : 0;
+
+      document.getElementById('roadmap-pct-text').textContent = pct + '%';
+      document.getElementById('roadmap-progress-bar').style.width = pct + '%';
+
+      const container = document.getElementById('roadmap-accordion-container');
+      container.innerHTML = userRoadmap.map((phase, pIdx) => {
+        const pDone = phase.skills.filter(s => s.done).length;
+        return `
+          <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden">
+            <div class="p-4 flex items-center justify-between cursor-pointer bg-slate-50/70 dark:bg-slate-800/40" onclick="toggleRoadmapItem(${pIdx})">
+              <div class="flex items-center gap-3">
+                <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 font-mono-code font-bold text-xs flex items-center justify-center">${pIdx + 1}</span>
+                <span class="font-bold text-xs sm:text-sm text-slate-800 dark:text-white">${phase.title}</span>
+              </div>
+              <span class="text-xs font-mono-code text-slate-400">${pDone}/${phase.skills.length}</span>
             </div>
-          `).join('')}
-        </div>
-      `;
+            <div id="phase-body-${pIdx}" class="${pIdx === 0 ? '' : 'hidden'} p-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs space-y-2">
+              <div class="text-[11px] text-emerald-700 dark:text-emerald-300 font-semibold mb-2">🎯 Đầu ra: ${phase.deliver}</div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                ${phase.skills.map((s, sIdx) => `
+                  <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 cursor-pointer">
+                    <input type="checkbox" onchange="toggleSkillDone(${pIdx}, ${sIdx}, this.checked)" ${s.done ? 'checked' : ''} class="rounded text-emerald-600">
+                    <span class="${s.done ? 'line-through text-slate-400' : 'text-slate-700 dark:text-slate-200'}">${s.t}</span>
+                  </label>
+                `).join('')}
+              </div>
+              <div class="mt-3">
+                <label class="block text-[11px] font-bold text-slate-500 mb-1">Ghi chú cá nhân chặng này:</label>
+                <input type="text" value="${phase.note || ''}" onchange="savePhaseNote(${pIdx}, this.value)" placeholder="Ví dụ: Đang vướng hàm Window Function..." class="w-full text-xs p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent text-slate-800 dark:text-white">
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
     }
 
-    function selectRoadmapPhase(id) {
-      currentPhaseId = id;
-      renderRoadmap();
+    function toggleRoadmapItem(idx) {
+      document.getElementById(`phase-body-${idx}`).classList.toggle('hidden');
+    }
+    function toggleSkillDone(pIdx, sIdx, val) {
+      userRoadmap[pIdx].skills[sIdx].done = val;
+      saveRoadmap();
+    }
+    function savePhaseNote(pIdx, val) {
+      userRoadmap[pIdx].note = val;
+      saveRoadmap();
+      showToast('Đã lưu ghi chú!');
     }
 
-    // 4. DỰ ÁN THỰC CHIẾN DATA ANALYST
-    const daProjects = [
-      {
-        title: "E-Commerce Revenue & Retention Dashboard",
-        tool: "Power BI & SQL",
-        desc: "Mô hình hóa dữ liệu giao dịch 12 tháng, đo lường tăng trưởng MoM, AOV và tỷ lệ khách quay lại.",
-        demoUrl: "https://app.powerbi.com",
-        githubUrl: "https://github.com"
-      },
-      {
-        title: "Customer RFM Segmentation & Cohort Analysis",
-        tool: "Python (Pandas, Seaborn)",
-        desc: "Phân loại nhóm khách hàng VIP, Potential, At-Risk để tối ưu hóa ngân sách tiếp thị.",
-        demoUrl: "https://github.com",
-        githubUrl: "https://github.com"
-      }
+    // 4. READ LATER (ĐỌC SAU - TÍCH HỢP TỪ BẢN 2)
+    let readLaterList = JSON.parse(localStorage.getItem('hienhoa.readLater')) || [
+      { id: 1, title: "DeepSeek-R1 Architecture Paper", url: "https://arxiv.org", read: false }
     ];
 
-    function renderDaProjects() {
-      const container = document.getElementById('da-projects-list');
-      container.innerHTML = daProjects.map(item => `
-        <div class="p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 hover:border-emerald-400 hover:shadow-sm transition">
-          <div class="flex items-center justify-between mb-1.5">
-            <h5 class="font-bold text-slate-800 dark:text-slate-100 text-xs sm:text-sm">${item.title}</h5>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300">${item.tool}</span>
+    function saveLater() {
+      localStorage.setItem('hienhoa.readLater', JSON.stringify(readLaterList));
+      renderLater();
+    }
+
+    function renderLater() {
+      const box = document.getElementById('later-list');
+      if (!readLaterList.length) {
+        box.innerHTML = `<div class="text-xs text-slate-400 py-3 text-center">Chưa có bài nào cần đọc sau.</div>`;
+        return;
+      }
+      box.innerHTML = readLaterList.map(item => `
+        <div class="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 text-xs">
+          <div class="flex items-center gap-2 overflow-hidden">
+            <input type="checkbox" onchange="toggleLaterDone(${item.id})" ${item.read ? 'checked' : ''} class="rounded">
+            <a href="${item.url}" target="_blank" class="${item.read ? 'line-through text-slate-400' : 'font-bold text-slate-800 dark:text-white'} truncate hover:text-indigo-600">${item.title}</a>
           </div>
-          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-3">${item.desc}</p>
-          <div class="flex items-center gap-2">
-            <a href="${item.demoUrl}" target="_blank" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-xs font-bold transition flex items-center gap-1">
-              Live Demo <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-            </a>
-            <a href="${item.githubUrl}" target="_blank" class="px-3 py-1 bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-bold transition flex items-center gap-1">
-              <i class="fa-brands fa-github text-[11px]"></i> Mã nguồn
-            </a>
-          </div>
+          <button onclick="delLaterItem(${item.id})" class="text-slate-400 hover:text-red-500 text-xs ml-2"><i class="fa-solid fa-xmark"></i></button>
         </div>
       `).join('');
     }
 
-    // 5. DỮ LIỆU PTIT HUB
-    let ptitItems = {
+    function addLaterItem() {
+      const url = document.getElementById('later-url').value.trim();
+      const title = document.getElementById('later-title').value.trim() || url;
+      if (!url) return;
+      readLaterList.unshift({ id: Date.now(), title, url, read: false });
+      saveLater();
+      document.getElementById('later-url').value = '';
+      document.getElementById('later-title').value = '';
+      showToast('Đã lưu vào danh sách Đọc sau!');
+    }
+
+    function toggleLaterDone(id) {
+      const it = readLaterList.find(x => x.id === id);
+      if (it) it.read = !it.read;
+      saveLater();
+    }
+
+    function delLaterItem(id) {
+      readLaterList = readLaterList.filter(x => x.id !== id);
+      saveLater();
+    }
+
+    // 5. SAO LƯU JSON & GITHUB GIST (BẢN 2)
+    function exportJsonBackup() {
+      const backupData = {
+        roadmap: userRoadmap,
+        later: readLaterList,
+        ptit: ptitItems,
+        updatedAt: new Date().toISOString()
+      };
+      const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `hienhoa-backup-${new Date().toISOString().slice(0, 10)}.json`;
+      a.click();
+      showToast('Đã xuất file JSON sao lưu thành công!');
+    }
+
+    function importJsonBackup(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const data = JSON.parse(e.target.result);
+          if (data.roadmap) userRoadmap = data.roadmap;
+          if (data.later) readLaterList = data.later;
+          if (data.ptit) ptitItems = data.ptit;
+          saveRoadmap();
+          saveLater();
+          renderPtitHub();
+          showToast('Đã phục hồi dữ liệu từ JSON thành công!');
+        } catch (err) {
+          alert('File JSON không hợp lệ!');
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    async function pushToGist() {
+      const token = document.getElementById('gist-token').value.trim();
+      let gistId = document.getElementById('gist-id').value.trim();
+      const status = document.getElementById('gist-status');
+      if (!token) { alert('Vui lòng nhập GitHub Token!'); return; }
+
+      status.textContent = 'Đang đẩy dữ liệu lên GitHub Gist...';
+      const content = JSON.stringify({ roadmap: userRoadmap, later: readLaterList, ptit: ptitItems }, null, 2);
+
+      try {
+        let res;
+        if (gistId) {
+          res = await fetch(`https://api.github.com/gists/${gistId}`, {
+            method: 'PATCH',
+            headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ files: { 'hienhoa-vault.json': { content } } })
+          });
+        } else {
+          res = await fetch('https://api.github.com/gists', {
+            method: 'POST',
+            headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+            body: JSON.stringify({ description: 'HienHoa Vault Data', public: false, files: { 'hienhoa-vault.json': { content } } })
+          });
+        }
+        const data = await res.json();
+        if (data.id) {
+          document.getElementById('gist-id').value = data.id;
+          status.textContent = `Đã đồng bộ thành công! Gist ID: ${data.id}`;
+          showToast('Đã đồng bộ dữ liệu lên Gist!');
+        }
+      } catch (err) {
+        status.textContent = 'Lỗi kết nối GitHub!';
+      }
+    }
+
+    async function pullFromGist() {
+      const token = document.getElementById('gist-token').value.trim();
+      const gistId = document.getElementById('gist-id').value.trim();
+      const status = document.getElementById('gist-status');
+      if (!token || !gistId) { alert('Cần cả Token và Gist ID!'); return; }
+
+      status.textContent = 'Đang kéo dữ liệu về máy...';
+      try {
+        const res = await fetch(`https://api.github.com/gists/${gistId}`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const data = await res.json();
+        const fileContent = data.files['hienhoa-vault.json'].content;
+        const parsed = JSON.parse(fileContent);
+        if (parsed.roadmap) userRoadmap = parsed.roadmap;
+        if (parsed.later) readLaterList = parsed.later;
+        if (parsed.ptit) ptitItems = parsed.ptit;
+        saveRoadmap();
+        saveLater();
+        renderPtitHub();
+        status.textContent = 'Đã kéo và cập nhật xong!';
+        showToast('Đã nạp dữ liệu từ Gist về máy!');
+      } catch (err) {
+        status.textContent = 'Lỗi khi kéo dữ liệu!';
+      }
+    }
+
+    // 6. DỮ LIỆU PTIT HUB
+    let ptitItems = JSON.parse(localStorage.getItem('hienhoa.ptit')) || {
       doan: [
-        { title: "Đồ Án Tốt Nghiệp: Hệ Thống Phát Hiện Xâm Nhập IDS", desc: "Ứng dụng Machine Learning phân loại luồng mạng độc hại tại PTIT.", url: "https://drive.google.com" },
-        { title: "Đồ Án An Toàn Mạng: Triển Khai VPN & Firewall", desc: "Cấu hình phân quyền VLAN, bảo mật tường lửa MikroTik & pfSense.", url: "https://drive.google.com" }
+        { title: "Đồ Án: Phân Tích An Toàn Mạng Doanh Nghiệp", desc: "Triển khai xác thực đa lớp, mã hóa AES và tường lửa MikroTik.", url: "https://drive.google.com" },
+        { title: "Báo Cáo Nghiên Cứu Mật Mã Khóa Công Khai RSA", desc: "Ứng dụng chữ ký số và giải thuật trao đổi khóa Diffie-Hellman.", url: "https://drive.google.com" }
       ],
       duan: [
-        { title: "Kho Giải Thuật C++ & Cấu Trúc Dữ Liệu", desc: "Cài đặt thuật toán BFS, DFS, UCS, Dijkstra và Cây nhị phân.", url: "https://github.com" },
-        { title: "Ứng Dụng Mã Hóa Dữ Liệu AES & RSA", desc: "Xây dựng chương trình mã hóa tập tin với giao diện trực quan.", url: "https://github.com" }
+        { title: "Cài Đặt Cấu Trúc Dữ Liệu & Giải Thuật C++", desc: "Mã nguồn cài đặt cây nhị phân, BFS, DFS, UCS, Dijkstra.", url: "https://github.com" },
+        { title: "Tool Tự Động Hóa Quản Lý Mạng Cục Bộ LAN", desc: "Script Python quét cổng mở và kiểm tra thiết bị mạng kết nối.", url: "https://github.com" }
       ]
     };
 
     function renderPtitHub() {
-      document.getElementById('ptit-doan-list').innerHTML = ptitItems.doan.map(item => createPtitItemHTML(item, 'fa-file-pdf')).join('');
-      document.getElementById('ptit-duan-list').innerHTML = ptitItems.duan.map(item => createPtitItemHTML(item, 'fa-code')).join('');
+      document.getElementById('ptit-doan-list').innerHTML = ptitItems.doan.map(i => createPtitHTML(i, 'fa-award')).join('');
+      document.getElementById('ptit-duan-list').innerHTML = ptitItems.duan.map(i => createPtitHTML(i, 'fa-code')).join('');
     }
 
-    function createPtitItemHTML(item, iconClass) {
+    function createPtitHTML(item, icon) {
       return `
         <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-blue-400 transition flex items-center justify-between gap-3">
           <div class="flex items-center gap-3 overflow-hidden">
             <div class="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 flex items-center justify-center text-xs shrink-0">
-              <i class="fa-solid ${iconClass}"></i>
+              <i class="fa-solid ${icon}"></i>
             </div>
             <div class="truncate">
               <div class="font-bold text-xs text-slate-800 dark:text-slate-100 truncate">${item.title}</div>
@@ -807,7 +965,7 @@
             <button onclick="copyToClipboard('${item.url}')" title="Sao chép" class="p-1.5 text-slate-400 hover:text-blue-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition text-xs">
               <i class="fa-regular fa-copy"></i>
             </button>
-            <a href="${item.url}" target="_blank" class="px-2.5 py-1 bg-slate-900 dark:bg-blue-600 hover:bg-blue-600 dark:hover:bg-blue-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1">
+            <a href="${item.url}" target="_blank" class="px-2.5 py-1 bg-slate-900 dark:bg-blue-600 hover:bg-blue-600 text-white rounded-lg text-xs font-bold transition flex items-center gap-1">
               Mở <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
           </div>
@@ -825,28 +983,28 @@
       const url = document.getElementById('modal-ptit-url').value;
 
       ptitItems[cat].unshift({ title, desc, url });
+      localStorage.setItem('hienhoa.ptit', JSON.stringify(ptitItems));
       renderPtitHub();
       closeAddPtitModal();
-      showToast('Đã thêm đề tài PTIT mới thành công!');
+      showToast('Đã thêm tài liệu PTIT thành công!');
       e.target.reset();
     }
 
-    // 6. BẢN TIN AI LIVE RADAR
+    // 7. BẢN TIN AI LIVE RADAR
     const aiNewsList = [
-      { source: "OpenAI Official", badgeColor: "bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300", title: "Cải tiến mới trên các mô hình lý luận thế hệ mới", snippet: "Tăng cường khả năng suy luận đa bước, lập trình tự động và tối ưu hóa chi phí API.", url: "https://openai.com/news", time: "Vừa cập nhật" },
+      { source: "OpenAI Official", badgeColor: "bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300", title: "Cải tiến mới trên các mô hình lý luận đa bước", snippet: "Tăng cường khả năng suy luận logic, hỗ trợ viết code thông minh và tối ưu tài nguyên API.", url: "https://openai.com/news", time: "Vừa cập nhật" },
       { source: "MIT Tech Review", badgeColor: "bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300", title: "Tác động của Generative AI trong xử lý dữ liệu lớn", snippet: "Các nhà khoa học đánh giá AI đóng vai trò như thế nào trong phân tích chuỗi cung ứng toàn cầu.", url: "https://www.technologyreview.com", time: "Hôm nay" },
-      { source: "TechCrunch AI", badgeColor: "bg-green-100 dark:bg-green-950 text-green-700 dark:text-green-300", title: "Làn sóng đầu tư các mô hình ngôn ngữ mã nguồn mở", snippet: "Các doanh nghiệp công nghệ đẩy mạnh triển khai mô hình AI cục bộ bảo vệ quyền riêng tư.", url: "https://techcrunch.com/category/artificial-intelligence/", time: "Hôm qua" },
-      { source: "VnExpress Số Hóa", badgeColor: "bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300", title: "Việt Nam đẩy mạnh ứng dụng AI vào giáo dục và đào tạo", snippet: "Các trường đại học và học viện công nghệ tích hợp trí tuệ nhân tạo vào chương trình kỹ thuật số.", url: "https://vnexpress.net/so-hoa/cong-nghe/ai", time: "2 ngày trước" }
+      { source: "TechCrunch AI", badgeColor: "bg-green-100 dark:bg-green-950 text-green-700 dark:text-green-300", title: "Làn sóng các mô hình ngôn ngữ mã nguồn mở", snippet: "Doanh nghiệp công nghệ đẩy mạnh triển khai mô hình AI cục bộ để bảo vệ an toàn dữ liệu.", url: "https://techcrunch.com/category/artificial-intelligence/", time: "Hôm qua" },
+      { source: "VnExpress Số Hóa", badgeColor: "bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300", title: "Việt Nam đẩy mạnh ứng dụng AI trong trường học", snippet: "Học viện và đại học công nghệ tích hợp trí tuệ nhân tạo vào chương trình kỹ thuật số.", url: "https://vnexpress.net/so-hoa/cong-nghe/ai", time: "2 ngày trước" }
     ];
 
     function renderAiNews() {
-      const container = document.getElementById('ai-news-grid');
-      container.innerHTML = aiNewsList.map(news => `
+      document.getElementById('ai-news-grid').innerHTML = aiNewsList.map(news => `
         <div class="p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 hover:border-purple-400 hover:shadow-md transition flex flex-col justify-between">
           <div>
             <div class="flex items-center justify-between gap-2 mb-2">
               <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full ${news.badgeColor}">${news.source}</span>
-              <span class="text-[10px] text-slate-400 font-medium">${news.time}</span>
+              <span class="text-[10px] text-slate-400">${news.time}</span>
             </div>
             <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white leading-snug mb-2 hover:text-purple-600 transition line-clamp-2">${news.title}</h4>
             <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed mb-4">${news.snippet}</p>
@@ -864,20 +1022,20 @@
       setTimeout(() => {
         icon.classList.remove('fa-spin');
         renderAiNews();
-        showToast('Đã cập nhật Bản tin AI!');
-      }, 700);
+        showToast('Đã làm mới dữ liệu Bản tin AI!');
+      }, 600);
     }
 
-    // 7. TIN HỌC LỚP 4 & LỚP 5
+    // 8. TIN HỌC LỚP 4 & LỚP 5
     const lop4Links = {
       thuchanh: [
-        { title: "Lập trình Scratch 3.0 Trực tuyến", desc: "Môi trường kéo thả khối lệnh cho học sinh", url: "https://scratch.mit.edu", icon: "fa-shapes" },
+        { title: "Lập trình Scratch 3.0 Trực tuyến", desc: "Kéo thả khối lệnh làm quen lập trình cho học sinh", url: "https://scratch.mit.edu", icon: "fa-shapes" },
         { title: "Luyện gõ bàn phím 10 ngón TypingClub", desc: "Thực hành gõ hàng phím cơ sở và phím Shift", url: "https://www.typingclub.com", icon: "fa-keyboard" },
         { title: "Tải bộ gõ tiếng Việt UniKey", desc: "Phần mềm gõ dấu tiếng Việt kiểu Telex và Vni", url: "https://www.unikey.org", icon: "fa-download" }
       ],
       tailieu: [
         { title: "Thư mục bài tập Word & PowerPoint", desc: "Văn bản mẫu gõ thơ, chèn ảnh, hiệu ứng", url: "https://drive.google.com", icon: "fa-file-word" },
-        { title: "Trắc nghiệm An toàn mạng Quizizz", desc: "Bộ câu hỏi tương tác sử dụng Internet an toàn", url: "https://quizizz.com", icon: "fa-circle-question" }
+        { title: "Trắc nghiệm An toàn mạng Quizizz", desc: "Bộ câu hỏi ôn tập tương tác an toàn Internet", url: "https://quizizz.com", icon: "fa-circle-question" }
       ]
     };
 
@@ -892,17 +1050,14 @@
       ]
     };
 
-    function renderLop4() {
-      document.getElementById('lop4-thuchanh-list').innerHTML = lop4Links.thuchanh.map(createSchoolLinkHTML).join('');
-      document.getElementById('lop4-tailieu-list').innerHTML = lop4Links.tailieu.map(createSchoolLinkHTML).join('');
+    function renderSchools() {
+      document.getElementById('lop4-thuchanh-list').innerHTML = lop4Links.thuchanh.map(createSchoolHTML).join('');
+      document.getElementById('lop4-tailieu-list').innerHTML = lop4Links.tailieu.map(createSchoolHTML).join('');
+      document.getElementById('lop5-tinhoc-list').innerHTML = lop5Links.tinhoc.map(createSchoolHTML).join('');
+      document.getElementById('lop5-congnghe-list').innerHTML = lop5Links.congnghe.map(createSchoolHTML).join('');
     }
 
-    function renderLop5() {
-      document.getElementById('lop5-tinhoc-list').innerHTML = lop5Links.tinhoc.map(createSchoolLinkHTML).join('');
-      document.getElementById('lop5-congnghe-list').innerHTML = lop5Links.congnghe.map(createSchoolLinkHTML).join('');
-    }
-
-    function createSchoolLinkHTML(item) {
+    function createSchoolHTML(item) {
       return `
         <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 transition flex items-center justify-between gap-3">
           <div class="flex items-center gap-3 overflow-hidden">
@@ -918,7 +1073,7 @@
             <button onclick="copyToClipboard('${item.url}')" title="Sao chép" class="p-1.5 text-slate-400 hover:text-indigo-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition text-xs">
               <i class="fa-regular fa-copy"></i>
             </button>
-            <a href="${item.url}" target="_blank" class="px-2.5 py-1 bg-slate-900 dark:bg-indigo-600 hover:bg-indigo-600 dark:hover:bg-indigo-500 text-white rounded-lg text-xs font-bold transition flex items-center gap-1">
+            <a href="${item.url}" target="_blank" class="px-2.5 py-1 bg-slate-900 dark:bg-indigo-600 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold transition flex items-center gap-1">
               Mở <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
           </div>
@@ -926,7 +1081,7 @@
       `;
     }
 
-    // 8. PROJECTS GRID & FILTER
+    // 9. DỰ ÁN & FILTER
     const projectsData = [
       { id: 1, title: "Tổng hợp Thuật toán C++ & Cấu trúc dữ liệu", category: "ptit", subCategory: "Bài tập", desc: "Cài đặt BFS, DFS, UCS, cây nhị phân và quy hoạch động tối ưu.", tags: ["C++", "DSA", "PTIT"] },
       { id: 2, title: "Đồ Án: Phân tích An Toàn Mạng Doanh Nghiệp", category: "ptit", subCategory: "Đồ Án", desc: "Triển khai xác thực đa lớp, mã hóa AES và cấu hình hạ tầng mạng an toàn.", tags: ["Security", "Network", "PTIT"] },
@@ -937,9 +1092,9 @@
     function filterCategory(cat) {
       document.querySelectorAll('.filter-btn').forEach(btn => {
         if(btn.dataset.filter === cat) {
-          btn.className = 'filter-btn active px-4 py-2 rounded-xl text-xs font-bold transition bg-indigo-600 text-white shadow-sm';
+          btn.className = 'filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-indigo-600 text-white shadow-sm';
         } else {
-          btn.className = 'filter-btn px-4 py-2 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700';
+          btn.className = 'filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700';
         }
       });
 
@@ -961,9 +1116,9 @@
       `).join('');
     }
 
-    // 9. PANEL CONTROLS
+    // 10. PANEL CONTROLS
     function togglePanel(panelName) {
-      const allPanels = ['ptit', 'ai', 'data', 'lop4', 'lop5'];
+      const allPanels = ['ptit', 'ai', 'data', 'lop4', 'lop5', 'sync'];
       allPanels.forEach(p => {
         const el = document.getElementById(`panel-${p}`);
         if (p === panelName) {
@@ -974,12 +1129,11 @@
         }
       });
     }
-
     function closePanel(panelName) {
       document.getElementById(`panel-${panelName}`).classList.add('hidden');
     }
 
-    // 10. GLOBAL SEARCH MODAL (Ctrl + K)
+    // 11. SEARCH MODAL (Ctrl + K)
     function openSearchModal() {
       document.getElementById('search-modal').classList.remove('hidden');
       document.getElementById('global-search-input').focus();
@@ -1010,8 +1164,7 @@
         ...lop5Links.tinhoc.map(l => ({ title: l.title, desc: l.desc, category: 'LỚP 5 TIN HỌC', url: l.url })),
         ...lop5Links.congnghe.map(l => ({ title: l.title, desc: l.desc, category: 'LỚP 5 CÔNG NGHỆ', url: l.url })),
         ...ptitItems.doan.map(l => ({ title: l.title, desc: l.desc, category: 'PTIT ĐỒ ÁN', url: l.url })),
-        ...ptitItems.duan.map(l => ({ title: l.title, desc: l.desc, category: 'PTIT DỰ ÁN', url: l.url })),
-        ...daProjects.map(l => ({ title: l.title, desc: l.desc, category: 'DATA ANALYST', url: l.demoUrl }))
+        ...ptitItems.duan.map(l => ({ title: l.title, desc: l.desc, category: 'PTIT DỰ ÁN', url: l.url }))
       ];
 
       const matches = allItems.filter(item => 
@@ -1036,7 +1189,7 @@
       `).join('');
     }
 
-    // 11. TOAST NOTIFICATION & COPY
+    // 12. TOAST & CLIPBOARD
     function showToast(msg) {
       const toast = document.getElementById('toast');
       document.getElementById('toast-message').textContent = msg;
@@ -1045,59 +1198,37 @@
         toast.classList.add('translate-y-24', 'opacity-0');
       }, 2500);
     }
-
     function copyToClipboard(text) {
       navigator.clipboard.writeText(text);
       showToast('Đã sao chép liên kết vào bộ nhớ tạm!');
     }
 
-    // =========================================================================
-    // 12. HIỆU ỨNG CHUỘT TƯƠNG TÁC (MAGNETIC PARTICLES + NEON GLOW AURA)
-    // =========================================================================
+    // 13. INTERACTIVE MAGNETIC PARTICLE NETWORK (KHÔNG CÓ QUẦNG SÁNG NEON VƯỚNG MẮT)
     function initInteractiveMouseCanvas() {
       const canvas = document.getElementById('particleCanvas');
       const ctx = canvas.getContext('2d');
-      const cursorGlow = document.getElementById('cursorGlow');
-      
       let w = canvas.width = window.innerWidth;
       let h = canvas.height = window.innerHeight;
 
-      // Tọa độ chuột
-      const mouse = {
-        x: w / 2,
-        y: h / 2,
-        radius: 170, // Bán kính hút từ tính
-        isHovered: true
-      };
+      const mouse = { x: w / 2, y: h / 2, radius: 150, isHovered: false };
 
       window.addEventListener('mousemove', (e) => {
         mouse.x = e.clientX;
         mouse.y = e.clientY;
         mouse.isHovered = true;
-        // Cập nhật vị trí của quầng sáng Neon Glow
-        cursorGlow.style.left = e.clientX + 'px';
-        cursorGlow.style.top = e.clientY + 'px';
-        cursorGlow.style.opacity = '1';
       });
+      window.addEventListener('mouseleave', () => { mouse.isHovered = false; });
 
-      window.addEventListener('mouseleave', () => {
-        mouse.isHovered = false;
-        cursorGlow.style.opacity = '0';
-      });
-
-      // Tạo danh sách các hạt mạng nơ-ron
       const particles = [];
-      const particleCount = Math.min(Math.floor(w / 28), 55);
+      const particleCount = Math.min(Math.floor(w / 32), 48);
 
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * w,
           y: Math.random() * h,
-          originX: Math.random() * w,
-          originY: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.7,
-          vy: (Math.random() - 0.5) * 0.7,
-          radius: Math.random() * 2.2 + 1.2
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          radius: Math.random() * 2 + 1
         });
       }
 
@@ -1109,57 +1240,50 @@
 
         for (let i = 0; i < particles.length; i++) {
           let p = particles[i];
-
-          // Di chuyển tự do
           p.x += p.vx;
           p.y += p.vy;
 
           if (p.x < 0 || p.x > w) p.vx *= -1;
           if (p.y < 0 || p.y > h) p.vy *= -1;
 
-          // Hiệu ứng tương tác chuột (Magnetic pull & laser connect)
+          // Hút từ tính theo chuột
           if (mouse.isHovered) {
             const dx = mouse.x - p.x;
             const dy = mouse.y - p.y;
-            const distToMouse = Math.hypot(dx, dy);
+            const dist = Math.hypot(dx, dy);
 
-            // Bị hút nhẹ về phía con trỏ chuột
-            if (distToMouse < mouse.radius) {
-              const force = (mouse.radius - distToMouse) / mouse.radius;
-              p.x += (dx / distToMouse) * force * 1.8;
-              p.y += (dy / distToMouse) * force * 1.8;
+            if (dist < mouse.radius) {
+              const force = (mouse.radius - dist) / mouse.radius;
+              p.x += (dx / dist) * force * 1.5;
+              p.y += (dy / dist) * force * 1.5;
 
-              // Vẽ tia laser nối từ hạt vào chuột
               ctx.beginPath();
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(mouse.x, mouse.y);
-              ctx.strokeStyle = `rgba(${lineBaseColor}, ${0.35 * (1 - distToMouse / mouse.radius)})`;
-              ctx.lineWidth = 1.3;
+              ctx.strokeStyle = `rgba(${lineBaseColor}, ${0.3 * (1 - dist / mouse.radius)})`;
+              ctx.lineWidth = 1.1;
               ctx.stroke();
             }
           }
 
-          // Vẽ hạt
           ctx.beginPath();
           ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
           ctx.fillStyle = particleColor;
           ctx.fill();
 
-          // Nối các hạt gần nhau tạo thành mạng lưới (Neural Network)
           for (let j = i + 1; j < particles.length; j++) {
             let p2 = particles[j];
             let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-            if (dist < 130) {
+            if (dist < 120) {
               ctx.beginPath();
               ctx.moveTo(p.x, p.y);
               ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = `rgba(${lineBaseColor}, ${0.16 * (1 - dist / 130)})`;
-              ctx.lineWidth = 0.9;
+              ctx.strokeStyle = `rgba(${lineBaseColor}, ${0.14 * (1 - dist / 120)})`;
+              ctx.lineWidth = 0.8;
               ctx.stroke();
             }
           }
         }
-
         requestAnimationFrame(draw);
       }
       draw();
@@ -1170,17 +1294,16 @@
       });
     }
 
-    // KHỞI CHẠY HỆ THỐNG
+    // KHỞI CHẠY
     window.addEventListener('DOMContentLoaded', () => {
       initTheme();
       initInteractiveMouseCanvas();
       typeLoop();
-      renderRoadmap();
-      renderDaProjects();
+      updateRoadmapUI();
+      renderLater();
       renderPtitHub();
       renderAiNews();
-      renderLop4();
-      renderLop5();
+      renderSchools();
       filterCategory('all');
     });
   </script>
