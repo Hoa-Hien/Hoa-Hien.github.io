@@ -12,10 +12,8 @@
   <meta property="og:url" content="https://hienhoa.me">
   <title>Vincent Hòa | Không Gian Học Tập & Dự Án Cá Nhân</title>
 
-  <!-- Favicon SVG inline (chữ V hexagon) -->
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,4 92,26 92,74 50,96 8,74 8,26' fill='%236366f1'/%3E%3Cpath d='M30 32 L46 70 L54 70 L38 32 Z M70 32 L54 70 L46 70 L62 32 Z' fill='white'/%3E%3C/svg%3E">
 
-  <!-- Ngăn FOUC dark mode: chạy trước khi body render -->
   <script>
     (function () {
       try {
@@ -88,7 +86,91 @@
       z-index: 100; border-radius: 0 0 .5rem 0;
     }
     .skip-link:focus { left: 0; }
-    /* Tôn trọng người dùng giảm chuyển động */
+    :focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; border-radius: 6px; }
+
+    /* ==================== EFFECTS ENGINE CSS ==================== */
+    body.fx-cursor, body.fx-cursor * { cursor: none !important; }
+    @media (max-width: 768px) { body.fx-cursor, body.fx-cursor * { cursor: auto !important; } }
+
+    #fxCursor {
+      position: fixed; top: 0; left: 0; width: 12px; height: 12px;
+      border-radius: 50%; background: #6366f1; pointer-events: none;
+      z-index: 9999; transform: translate(-50%, -50%);
+      transition: transform .08s ease, width .2s, height .2s, background .2s;
+      mix-blend-mode: difference;
+      box-shadow: 0 0 12px rgba(99,102,241,.6);
+      opacity: 0;
+    }
+    #fxCursorRing {
+      position: fixed; top: 0; left: 0; width: 38px; height: 38px;
+      border: 1.5px solid rgba(99,102,241,.6); border-radius: 50%;
+      pointer-events: none; z-index: 9998; transform: translate(-50%, -50%);
+      transition: transform .15s ease-out, width .25s, height .25s, border-color .2s, opacity .3s;
+      opacity: 0;
+    }
+    #fxCursor.hover { width: 24px; height: 24px; background: #a855f7; }
+    #fxCursorRing.hover { width: 60px; height: 60px; border-color: rgba(168,85,247,.8); }
+
+    .fx-ripple {
+      position: fixed; border-radius: 50%; pointer-events: none;
+      border: 2px solid #6366f1; z-index: 9997;
+      animation: fxRipple .6s cubic-bezier(.16,1,.3,1) forwards;
+    }
+    @keyframes fxRipple {
+      0%   { width: 0; height: 0; opacity: 1; transform: translate(-50%,-50%); }
+      100% { width: 120px; height: 120px; opacity: 0; transform: translate(-50%,-50%); }
+    }
+
+    .fx-spotlight { position: relative; overflow: hidden; }
+    .fx-spotlight::before {
+      content: ''; position: absolute; inset: -1px;
+      background: radial-gradient(220px circle at var(--mx,50%) var(--my,50%),
+        rgba(99,102,241,.35), transparent 60%);
+      opacity: 0; transition: opacity .3s; pointer-events: none;
+      border-radius: inherit;
+    }
+    .fx-spotlight:hover::before { opacity: 1; }
+
+    .fx-trail {
+      position: fixed; width: 6px; height: 6px; border-radius: 50%;
+      background: radial-gradient(circle, #a855f7, transparent 70%);
+      pointer-events: none; z-index: 9996;
+      animation: fxTrail .8s ease-out forwards;
+    }
+    @keyframes fxTrail {
+      0%   { opacity: .9; transform: translate(-50%,-50%) scale(1); }
+      100% { opacity: 0;  transform: translate(-50%,-50%) scale(.2) translateY(15px); }
+    }
+
+    #fxToggle {
+      position: fixed; right: 20px; bottom: 90px; z-index: 9995;
+      width: 46px; height: 46px; border-radius: 50%;
+      background: linear-gradient(135deg,#6366f1,#a855f7);
+      color: white; border: none; cursor: pointer;
+      box-shadow: 0 8px 24px rgba(99,102,241,.4);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px; transition: transform .25s;
+    }
+    #fxToggle:hover { transform: rotate(30deg) scale(1.1); }
+
+    #fxPanel {
+      position: fixed; right: 20px; bottom: 146px; z-index: 9995;
+      width: 260px; padding: 16px;
+      background: rgba(255,255,255,.95); backdrop-filter: blur(16px);
+      border: 1px solid rgba(226,232,240,.9);
+      border-radius: 20px; box-shadow: 0 16px 40px rgba(0,0,0,.15);
+      transform-origin: bottom right;
+      transition: transform .25s cubic-bezier(.16,1,.3,1), opacity .25s;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .dark #fxPanel { background: rgba(15,23,42,.95); border-color: rgba(51,65,85,.7); color: #e2e8f0; }
+    #fxPanel.hidden { transform: scale(.85); opacity: 0; pointer-events: none; }
+    #fxPanel h4 { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .05em; margin-bottom: 10px; color: #6366f1; }
+    .fx-row { display: flex; align-items: center; justify-content: space-between; padding: 7px 0; font-size: 12px; font-weight: 600; border-bottom: 1px solid rgba(148,163,184,.15); }
+    .fx-row:last-child { border-bottom: none; }
+    .fx-row label { cursor: pointer; display: flex; align-items: center; gap: 6px; }
+    .fx-row input[type=checkbox] { accent-color: #6366f1; cursor: pointer; }
+
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after {
         animation-duration: .01ms !important;
@@ -96,18 +178,17 @@
         transition-duration: .01ms !important;
         scroll-behavior: auto !important;
       }
-      #particleCanvas { display: none; }
-      .blob { display: none; }
+      #particleCanvas, .blob { display: none; }
+      #fxCursor, #fxCursorRing, .fx-ripple, .fx-trail { display: none !important; }
+      #fxToggle { display: none !important; }
     }
-    /* Focus ring rõ ràng cho keyboard nav */
-    :focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; border-radius: 6px; }
   </style>
 </head>
 <body class="relative min-h-screen flex flex-col justify-between bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100">
 
   <a href="#main" class="skip-link">Bỏ qua điều hướng</a>
 
-  <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-[2] opacity-70" aria-hidden="true"></canvas>
+  <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-[2] opacity-80" aria-hidden="true"></canvas>
 
   <div class="blob bg-blue-300 dark:bg-blue-900 w-96 h-96 -top-20 -left-20" aria-hidden="true"></div>
   <div class="blob bg-purple-300 dark:bg-indigo-900 w-[30rem] h-[30rem] top-1/3 -right-24" aria-hidden="true"></div>
@@ -180,7 +261,6 @@
   </header>
 
   <main id="main" class="flex-grow z-10 relative">
-    <!-- HERO -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 text-center relative">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/70 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 text-xs font-semibold mb-5 shadow-sm">
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Không Gian Làm Việc & Tự Học Cá Nhân
@@ -218,7 +298,6 @@
         </div>
       </div>
 
-      <!-- Quick shortcuts -->
       <div class="grid grid-cols-2 sm:grid-cols-6 gap-3 max-w-5xl mx-auto mt-8">
         <button data-panel="ptit" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg transition text-center group">
           <div class="w-9 h-9 mx-auto rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-graduation-cap"></i></div>
@@ -253,7 +332,6 @@
       </div>
     </section>
 
-    <!-- PANEL 1: PTIT -->
     <section id="panel-ptit" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
       <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-blue-300 dark:border-blue-700 shadow-2xl panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
@@ -300,7 +378,6 @@
       </div>
     </section>
 
-    <!-- PANEL 2: AI -->
     <section id="panel-ai" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
       <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-purple-300 dark:border-purple-700 shadow-2xl panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
@@ -326,7 +403,6 @@
       </div>
     </section>
 
-    <!-- PANEL 3: DATA ANALYST -->
     <section id="panel-data" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
       <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-emerald-300 dark:border-emerald-700 shadow-2xl panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
@@ -376,7 +452,6 @@
       </div>
     </section>
 
-    <!-- PANEL 4: LỚP 4 -->
     <section id="panel-lop4" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
       <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-blue-300 dark:border-blue-700 shadow-2xl panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
@@ -416,7 +491,6 @@
       </div>
     </section>
 
-    <!-- PANEL 5: LỚP 5 -->
     <section id="panel-lop5" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
       <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-indigo-300 dark:border-indigo-700 shadow-2xl panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
@@ -456,7 +530,6 @@
       </div>
     </section>
 
-    <!-- PANEL 6: SYNC -->
     <section id="panel-sync" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
       <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amber-300 dark:border-amber-700 shadow-2xl panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
@@ -512,7 +585,7 @@
               </h3>
               <p class="text-[11px] text-slate-500 dark:text-slate-400 mb-2">
                 Tạo <a href="https://github.com/settings/tokens/new?scopes=gist&description=HienHoa%20Vault" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 underline">Personal Access Token</a> (chỉ scope <code>gist</code>).
-                Token chỉ được dùng trong phiên, không lưu lại.
+                Token chỉ dùng trong phiên, không lưu lại.
               </p>
               <div class="space-y-2">
                 <input type="password" id="gist-token" placeholder="GitHub Token (ghp_...)" autocomplete="off" class="w-full text-xs p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white">
@@ -529,14 +602,13 @@
       </div>
     </section>
 
-    <!-- PROJECTS -->
     <section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
           <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">Tất Cả Dự Án & Nghiên Cứu</h2>
           <p class="text-sm text-slate-500 dark:text-slate-400">Tổng hợp học phần, bài toán giải thuật và phân tích dữ liệu</p>
         </div>
-        <div class="flex flex-wrap items-center gap-1.5" role="tablist">
+        <div class="flex flex-wrap items-center gap-1.5">
           <button onclick="filterCategory('all')" class="filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-indigo-600 text-white shadow-sm" data-filter="all">Tất cả</button>
           <button onclick="filterCategory('ptit')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700" data-filter="ptit">PTIT</button>
           <button onclick="filterCategory('ai')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700" data-filter="ai">AI</button>
@@ -547,7 +619,6 @@
     </section>
   </main>
 
-  <!-- SEARCH MODAL -->
   <div id="search-modal" class="hidden fixed inset-0 z-50 flex items-start justify-center p-4 pt-20 bg-slate-900/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Tìm kiếm toàn cục">
     <div class="glass-card bg-white dark:bg-slate-900 rounded-3xl p-5 max-w-xl w-full shadow-2xl border border-slate-200 dark:border-slate-800 relative">
       <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
@@ -562,7 +633,6 @@
     </div>
   </div>
 
-  <!-- MODAL PTIT -->
   <div id="modal-ptit" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Thêm tài liệu PTIT">
     <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-100 dark:border-slate-800 relative">
       <div class="flex items-center justify-between mb-5">
@@ -608,20 +678,37 @@
     </div>
   </footer>
 
+  <!-- ============ EFFECTS UI ============ -->
+  <div id="fxCursor" aria-hidden="true"></div>
+  <div id="fxCursorRing" aria-hidden="true"></div>
+  <button id="fxToggle" title="Bật/tắt hiệu ứng chuột" aria-label="Bật/tắt hiệu ứng chuột">
+    <i class="fa-solid fa-wand-magic-sparkles"></i>
+  </button>
+  <div id="fxPanel" class="hidden" role="dialog" aria-label="Cấu hình hiệu ứng">
+    <h4>✨ Hiệu ứng chuột</h4>
+    <div class="fx-row"><label><i class="fa-solid fa-cube"></i> Mạng nhện hạt</label><input type="checkbox" data-fx="particles" checked></div>
+    <div class="fx-row"><label><i class="fa-solid fa-arrow-pointer"></i> Con trỏ tùy chỉnh</label><input type="checkbox" data-fx="cursor"></div>
+    <div class="fx-row"><label><i class="fa-solid fa-circle-notch"></i> Gợn sóng khi click</label><input type="checkbox" data-fx="ripple" checked></div>
+    <div class="fx-row"><label><i class="fa-solid fa-star"></i> Vệt sao rơi</label><input type="checkbox" data-fx="trail"></div>
+    <div class="fx-row"><label><i class="fa-solid fa-lightbulb"></i> Đèn soi glass-card</label><input type="checkbox" data-fx="spotlight" checked></div>
+    <div class="fx-row"><label><i class="fa-solid fa-hand-pointer"></i> Nút hút từ tính</label><input type="checkbox" data-fx="magnetic"></div>
+    <p style="font-size:10px; opacity:.6; margin-top:10px; text-align:center;">Cấu hình được lưu tự động</p>
+  </div>
+
+  <!-- ============================================================
+       SCRIPT CHÍNH: Logic ứng dụng (theme, roadmap, gist, ...)
+       ============================================================ -->
   <script>
   (function () {
     'use strict';
 
-    /* ============ UTILITIES ============ */
     const $ = (s, r = document) => r.querySelector(s);
     const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 
-    // Ngăn XSS: escape mọi dữ liệu chèn qua innerHTML
     const escapeHtml = (str) => String(str ?? '').replace(/[&<>"']/g, c => ({
       '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
     })[c]);
 
-    // Parse an toàn, không throw
     const safeParse = (str, fallback) => {
       try {
         const v = JSON.parse(str);
@@ -633,7 +720,6 @@
       let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
     };
 
-    // Chỉ cho phép http(s) — chặn javascript: URL
     const safeUrl = (url) => {
       try {
         const u = new URL(url, location.href);
@@ -950,7 +1036,6 @@
         </div>`;
     }
 
-    // Event delegation — không inline onclick với dữ liệu người dùng
     ['ptit-doan-list', 'ptit-duan-list'].forEach(id => {
       document.getElementById(id).addEventListener('click', (e) => {
         const btn = e.target.closest('[data-action]');
@@ -1078,7 +1163,6 @@
       $('#lop5-tinhoc-list').innerHTML = lop5Links.tinhoc.map(createSchoolHTML).join('');
       $('#lop5-congnghe-list').innerHTML = lop5Links.congnghe.map(createSchoolHTML).join('');
     }
-    // Event delegation cho nút copy ở các list trường học
     ['lop4-thuchanh-list','lop4-tailieu-list','lop5-tinhoc-list','lop5-congnghe-list'].forEach(id => {
       document.getElementById(id).addEventListener('click', (e) => {
         const btn = e.target.closest('[data-copy]');
@@ -1140,7 +1224,6 @@
       $('#panel-' + name).classList.add('hidden');
       if (location.hash === '#panel-' + name) history.replaceState(null, '', location.pathname);
     };
-    // Click shortcut buttons có data-panel
     document.addEventListener('click', (e) => {
       const btn = e.target.closest('[data-panel]');
       if (!btn) return;
@@ -1169,7 +1252,6 @@
       }
       if (e.key === 'Escape') { closeSearchModal(); }
     });
-    // Đóng modal khi click nền
     $('#search-modal').addEventListener('click', (e) => { if (e.target.id === 'search-modal') closeSearchModal(); });
     $('#modal-ptit').addEventListener('click', (e) => { if (e.target.id === 'modal-ptit') closeAddPtitModal(); });
 
@@ -1238,93 +1320,9 @@
     }
     window.copyToClipboard = copyToClipboard;
 
-    /* ============ PARTICLE NETWORK ============ */
-    function initParticles() {
-      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const canvas = $('#particleCanvas');
-      const ctx = canvas.getContext('2d');
-      let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
-      const mouse = { x: -9999, y: -9999, radius: 150, active: false };
-      let running = true;
-
-      function resize() {
-        w = canvas.clientWidth = window.innerWidth;
-        h = canvas.clientHeight = window.innerHeight;
-        canvas.width = w * dpr; canvas.height = h * dpr;
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      }
-      resize();
-
-      const count = Math.min(Math.floor(w / 32), window.innerWidth < 640 ? 22 : 48);
-      const particles = Array.from({ length: count }, () => ({
-        x: Math.random() * w,
-        y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.6,
-        vy: (Math.random() - 0.5) * 0.6,
-        r: Math.random() * 2 + 1
-      }));
-
-      window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true; });
-      window.addEventListener('mouseleave', () => { mouse.active = false; });
-      window.addEventListener('resize', resize);
-      document.addEventListener('visibilitychange', () => {
-        running = !document.hidden;
-        if (running) requestAnimationFrame(draw);
-      });
-
-      function draw() {
-        if (!running) return;
-        ctx.clearRect(0, 0, w, h);
-        const isDark = document.documentElement.classList.contains('dark');
-        const pCol = isDark ? '#38bdf8' : '#6366f1';
-        const lineRGB = isDark ? '56,189,248' : '99,102,241';
-
-        for (let i = 0; i < particles.length; i++) {
-          const p = particles[i];
-          p.x += p.vx; p.y += p.vy;
-          if (p.x < 0 || p.x > w) p.vx *= -1;
-          if (p.y < 0 || p.y > h) p.vy *= -1;
-
-          if (mouse.active) {
-            const dx = mouse.x - p.x, dy = mouse.y - p.y;
-            const d = Math.hypot(dx, dy);
-            if (d < mouse.radius && d > 0.01) {
-              const f = (mouse.radius - d) / mouse.radius;
-              p.x += (dx / d) * f * 1.5;
-              p.y += (dy / d) * f * 1.5;
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y);
-              ctx.strokeStyle = `rgba(${lineRGB},${0.3 * (1 - d / mouse.radius)})`;
-              ctx.lineWidth = 1.1; ctx.stroke();
-            }
-          }
-
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fillStyle = pCol; ctx.fill();
-
-          for (let j = i + 1; j < particles.length; j++) {
-            const p2 = particles[j];
-            const dx = p.x - p2.x, dy = p.y - p2.y;
-            const d2 = dx * dx + dy * dy;
-            if (d2 < 14400) { // 120^2
-              const d = Math.sqrt(d2);
-              ctx.beginPath();
-              ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = `rgba(${lineRGB},${0.14 * (1 - d / 120)})`;
-              ctx.lineWidth = 0.8; ctx.stroke();
-            }
-          }
-        }
-        requestAnimationFrame(draw);
-      }
-      draw();
-    }
-
     /* ============ BOOT ============ */
     window.addEventListener('DOMContentLoaded', () => {
       syncThemeIcon();
-      initParticles();
       typeLoop();
       updateRoadmapUI();
       renderLater();
@@ -1333,6 +1331,250 @@
       renderSchools();
       filterCategory('all');
       restoreFromHash();
+    });
+  })();
+  </script>
+
+  <!-- ============================================================
+       SCRIPT 2: EFFECTS ENGINE — 6 hiệu ứng chuột có toggle
+       ============================================================ -->
+  <script>
+  (function () {
+    'use strict';
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isMobile = matchMedia('(max-width: 768px)').matches;
+    const toggleBtn = document.getElementById('fxToggle');
+    const panel = document.getElementById('fxPanel');
+    if (reduced) { if (toggleBtn) toggleBtn.style.display = 'none'; return; }
+
+    const DEFAULT = { particles: true, cursor: false, ripple: true, trail: false, spotlight: true, magnetic: false };
+    const saved = (() => {
+      try { return { ...DEFAULT, ...JSON.parse(localStorage.getItem('hienhoa.fx') || '{}') }; }
+      catch { return DEFAULT; }
+    })();
+    function persist() {
+      try { localStorage.setItem('hienhoa.fx', JSON.stringify(saved)); } catch {}
+    }
+
+    const state = { mx: -9999, my: -9999 };
+    window.addEventListener('mousemove', e => { state.mx = e.clientX; state.my = e.clientY; }, { passive: true });
+
+    /* ---------- 1. PARTICLE NETWORK ---------- */
+    let particleLoop = null;
+    function startParticles() {
+      const canvas = document.getElementById('particleCanvas');
+      if (!canvas || particleLoop) return;
+      const ctx = canvas.getContext('2d');
+      const dpr = Math.min(devicePixelRatio || 1, 2);
+      let w = 0, h = 0, raf = null;
+      const mouse = { x: -9999, y: -9999, radius: 200 };
+
+      function resize() {
+        w = innerWidth; h = innerHeight;
+        canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      const N = Math.min(Math.floor(w / 28), isMobile ? 24 : 60);
+      const particles = Array.from({ length: N }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - .5) * .7, vy: (Math.random() - .5) * .7,
+        r: Math.random() * 2.2 + 1.2,
+        hue: Math.random() * 40 + 220
+      }));
+
+      function loop() {
+        ctx.clearRect(0, 0, w, h);
+        const dark = document.documentElement.classList.contains('dark');
+        const lineBase = dark ? '129,140,248' : '99,102,241';
+
+        mouse.x = state.mx; mouse.y = state.my;
+
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i];
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0 || p.x > w) p.vx *= -1;
+          if (p.y < 0 || p.y > h) p.vy *= -1;
+
+          if (mouse.x > -1000) {
+            const dx = mouse.x - p.x, dy = mouse.y - p.y;
+            const d = Math.hypot(dx, dy);
+            if (d < mouse.radius && d > 0.01) {
+              const f = (mouse.radius - d) / mouse.radius;
+              p.x += (dx / d) * f * 2.4;
+              p.y += (dy / d) * f * 2.4;
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y);
+              ctx.strokeStyle = `hsla(${p.hue}, 85%, 62%, ${0.55 * (1 - d / mouse.radius)})`;
+              ctx.lineWidth = 1.4;
+              ctx.stroke();
+            }
+          }
+
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = `hsla(${p.hue}, 80%, ${dark ? 65 : 55}%, .9)`;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = `hsla(${p.hue}, 80%, 60%, .5)`;
+          ctx.fill();
+          ctx.shadowBlur = 0;
+
+          for (let j = i + 1; j < particles.length; j++) {
+            const q = particles[j];
+            const dx = p.x - q.x, dy = p.y - q.y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < 14400) {
+              const d = Math.sqrt(d2);
+              ctx.beginPath();
+              ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y);
+              ctx.strokeStyle = `rgba(${lineBase}, ${0.22 * (1 - d / 120)})`;
+              ctx.lineWidth = 1;
+              ctx.stroke();
+            }
+          }
+        }
+        raf = requestAnimationFrame(loop);
+      }
+      particleLoop = { stop() { cancelAnimationFrame(raf); raf = null; } };
+      loop();
+    }
+    function stopParticles() {
+      if (particleLoop) { particleLoop.stop(); particleLoop = null; }
+      const c = document.getElementById('particleCanvas');
+      if (c) c.getContext('2d').clearRect(0, 0, c.width, c.height);
+    }
+
+    /* ---------- 2. CUSTOM CURSOR ---------- */
+    const cursorDot = document.getElementById('fxCursor');
+    const cursorRing = document.getElementById('fxCursorRing');
+    let ringX = 0, ringY = 0, dotX = 0, dotY = 0, cursorRafOn = false;
+
+    function cursorMove() {
+      if (!cursorRafOn) return;
+      dotX += (state.mx - dotX) * 0.9;
+      dotY += (state.my - dotY) * 0.9;
+      ringX += (state.mx - ringX) * 0.18;
+      ringY += (state.my - ringY) * 0.18;
+      cursorDot.style.transform = `translate(${dotX}px, ${dotY}px) translate(-50%,-50%)`;
+      cursorRing.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%,-50%)`;
+      requestAnimationFrame(cursorMove);
+    }
+    function onCursorOver(e) {
+      const t = e.target.closest('a, button, [role="button"], input, select, .glass-card');
+      if (t) { cursorDot.classList.add('hover'); cursorRing.classList.add('hover'); }
+      else   { cursorDot.classList.remove('hover'); cursorRing.classList.remove('hover'); }
+    }
+    function startCursor() {
+      if (isMobile) return;
+      document.body.classList.add('fx-cursor');
+      cursorDot.style.opacity = '1';
+      cursorRing.style.opacity = '1';
+      cursorRafOn = true;
+      cursorMove();
+      document.addEventListener('mouseover', onCursorOver);
+    }
+    function stopCursor() {
+      document.body.classList.remove('fx-cursor');
+      cursorDot.style.opacity = '0';
+      cursorRing.style.opacity = '0';
+      cursorRafOn = false;
+      document.removeEventListener('mouseover', onCursorOver);
+    }
+
+    /* ---------- 3. RIPPLE ---------- */
+    function onRipple(e) {
+      if (e.button !== undefined && e.button !== 0) return;
+      const r = document.createElement('span');
+      r.className = 'fx-ripple';
+      r.style.left = e.clientX + 'px';
+      r.style.top = e.clientY + 'px';
+      const dark = document.documentElement.classList.contains('dark');
+      r.style.borderColor = dark ? '#a855f7' : '#6366f1';
+      document.body.appendChild(r);
+      setTimeout(() => r.remove(), 650);
+    }
+
+    /* ---------- 4. TRAIL ---------- */
+    let trailThrottle = 0;
+    function onTrail() {
+      const now = Date.now();
+      if (now - trailThrottle < 40) return;
+      trailThrottle = now;
+      const t = document.createElement('span');
+      t.className = 'fx-trail';
+      t.style.left = state.mx + 'px';
+      t.style.top = state.my + 'px';
+      t.style.background = `radial-gradient(circle, hsl(${Math.random() * 60 + 240}, 90%, 65%), transparent 70%)`;
+      document.body.appendChild(t);
+      setTimeout(() => t.remove(), 850);
+    }
+
+    /* ---------- 5. SPOTLIGHT ---------- */
+    function onSpotlight(e) {
+      const card = e.target.closest('.glass-card');
+      if (!card) return;
+      if (!card.classList.contains('fx-spotlight')) card.classList.add('fx-spotlight');
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+    }
+
+    /* ---------- 6. MAGNETIC ---------- */
+    const magnetTargets = () => document.querySelectorAll('button:not(#fxToggle), .filter-btn, a[data-panel]');
+    function onMagnetic(e) {
+      magnetTargets().forEach(el => {
+        const r = el.getBoundingClientRect();
+        const cx = r.left + r.width / 2;
+        const cy = r.top + r.height / 2;
+        const dx = e.clientX - cx;
+        const dy = e.clientY - cy;
+        const dist = Math.hypot(dx, dy);
+        const range = 80;
+        if (dist < range && dist > 0.01) {
+          const pull = (range - dist) / range * 6;
+          el.style.transform = `translate(${dx / dist * pull}px, ${dy / dist * pull}px)`;
+          el.style.transition = 'transform .15s ease-out';
+        } else if (el.style.transform) {
+          el.style.transform = '';
+        }
+      });
+    }
+
+    /* ---------- ĐIỀU KHIỂN BẬT/TẮT ---------- */
+    const handlers = {
+      ripple:    { on: () => window.addEventListener('click', onRipple), off: () => window.removeEventListener('click', onRipple) },
+      trail:     { on: () => window.addEventListener('mousemove', onTrail, { passive: true }), off: () => window.removeEventListener('mousemove', onTrail) },
+      spotlight: { on: () => document.addEventListener('mousemove', onSpotlight, { passive: true }), off: () => document.removeEventListener('mousemove', onSpotlight) },
+      magnetic:  { on: () => window.addEventListener('mousemove', onMagnetic, { passive: true }), off: () => window.removeEventListener('mousemove', onMagnetic) }
+    };
+    function apply(type, on) {
+      if (type === 'particles') return on ? startParticles() : stopParticles();
+      if (type === 'cursor')    return on ? startCursor() : stopCursor();
+      if (handlers[type]) return on ? handlers[type].on() : handlers[type].off();
+    }
+
+    /* ---------- UI ---------- */
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        panel.classList.toggle('hidden');
+      });
+    }
+    document.addEventListener('click', e => {
+      if (!panel.contains(e.target) && !toggleBtn.contains(e.target)) panel.classList.add('hidden');
+    });
+    document.querySelectorAll('#fxPanel input[data-fx]').forEach(cb => {
+      const key = cb.dataset.fx;
+      cb.checked = !!saved[key];
+      apply(key, saved[key]);
+      cb.addEventListener('change', () => {
+        saved[key] = cb.checked;
+        persist();
+        apply(key, cb.checked);
+      });
     });
   })();
   </script>
