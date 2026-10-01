@@ -1,11 +1,32 @@
 <!DOCTYPE html>
-<html lang="vi" class="light">
+<html lang="vi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Không gian tự học, dự án cá nhân và nghiên cứu AI / Data Analyst của Vincent Hòa — hienhoa.me">
+  <meta name="theme-color" content="#4f46e5">
+  <meta property="og:title" content="Vincent Hòa | Không Gian Học Tập & Dự Án Cá Nhân">
+  <meta property="og:description" content="PTIT Hub · AI Radar · Data Analyst Roadmap · Tin Học Lớp 4 & 5">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://hienhoa.me">
   <title>Vincent Hòa | Không Gian Học Tập & Dự Án Cá Nhân</title>
-  
+
+  <!-- Favicon SVG inline (chữ V hexagon) -->
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpolygon points='50,4 92,26 92,74 50,96 8,74 8,26' fill='%236366f1'/%3E%3Cpath d='M30 32 L46 70 L54 70 L38 32 Z M70 32 L54 70 L46 70 L62 32 Z' fill='white'/%3E%3C/svg%3E">
+
+  <!-- Ngăn FOUC dark mode: chạy trước khi body render -->
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem('theme');
+        if (t === 'dark' || (!t && matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -13,117 +34,102 @@
       theme: {
         extend: {
           colors: {
-            brand: {
-              50: '#eef2ff',
-              100: '#e0e7ff',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
-            }
+            brand: { 50:'#eef2ff',100:'#e0e7ff',500:'#6366f1',600:'#4f46e5',700:'#4338ca' }
           }
         }
       }
-    }
+    };
   </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      transition: background-color 0.3s ease, color 0.3s ease;
+      transition: background-color .3s ease, color .3s ease;
       overflow-x: hidden;
     }
     .font-mono-code { font-family: 'JetBrains Mono', monospace; }
     .glass-card {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255,255,255,.9);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(226, 232, 240, 0.85);
+      border: 1px solid rgba(226,232,240,.85);
     }
     .dark .glass-card {
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(51, 65, 85, 0.7);
+      background: rgba(15,23,42,.85);
+      border-color: rgba(51,65,85,.7);
     }
     .text-gradient {
-      background: linear-gradient(135deg, #2563eb, #6366f1, #a855f7);
+      background: linear-gradient(135deg,#2563eb,#6366f1,#a855f7);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    .panel-open {
-      animation: panelSlideIn 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
+    .panel-open { animation: panelSlideIn .35s cubic-bezier(.16,1,.3,1) forwards; }
     @keyframes panelSlideIn {
-      0% { opacity: 0; transform: translateY(18px) scale(0.985); }
+      0% { opacity: 0; transform: translateY(18px) scale(.985); }
       100% { opacity: 1; transform: translateY(0) scale(1); }
     }
     .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(85px);
-      z-index: 1;
-      opacity: 0.35;
+      position: absolute; border-radius: 50%;
+      filter: blur(85px); z-index: 1; opacity: .35;
       pointer-events: none;
       animation: floatSlow 14s ease-in-out infinite alternate;
     }
     @keyframes floatSlow {
-      0% { transform: translate(0px, 0px) scale(1); }
-      100% { transform: translate(25px, 25px) scale(1.08); }
+      0% { transform: translate(0,0) scale(1); }
+      100% { transform: translate(25px,25px) scale(1.08); }
     }
-    .step-active {
-      border-color: #6366f1 !important;
-      background-color: #eef2ff !important;
-      box-shadow: 0 4px 15px -2px rgba(99, 102, 241, 0.25);
+    .line-clamp-2 { display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .line-clamp-3 { display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden; }
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      padding: .5rem 1rem; background: #4f46e5; color: white;
+      z-index: 100; border-radius: 0 0 .5rem 0;
     }
-    .dark .step-active {
-      background-color: rgba(99, 102, 241, 0.2) !important;
-      border-color: #818cf8 !important;
+    .skip-link:focus { left: 0; }
+    /* Tôn trọng người dùng giảm chuyển động */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+      #particleCanvas { display: none; }
+      .blob { display: none; }
     }
+    /* Focus ring rõ ràng cho keyboard nav */
+    :focus-visible { outline: 2px solid #6366f1; outline-offset: 2px; border-radius: 6px; }
   </style>
 </head>
 <body class="relative min-h-screen flex flex-col justify-between bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100">
 
-  <!-- Interactive Magnetic Particle Network Canvas (Không có vệt neon che mắt) -->
-  <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-[2] opacity-70"></canvas>
+  <a href="#main" class="skip-link">Bỏ qua điều hướng</a>
 
-  <!-- Ambient Blobs -->
-  <div class="blob bg-blue-300 dark:bg-blue-900 w-96 h-96 -top-20 -left-20"></div>
-  <div class="blob bg-purple-300 dark:bg-indigo-900 w-[30rem] h-[30rem] top-1/3 -right-24"></div>
-  <div class="blob bg-indigo-200 dark:bg-purple-950 w-80 h-80 bottom-10 left-1/4"></div>
+  <canvas id="particleCanvas" class="fixed inset-0 pointer-events-none z-[2] opacity-70" aria-hidden="true"></canvas>
 
-  <!-- Header / Navigation Bar -->
+  <div class="blob bg-blue-300 dark:bg-blue-900 w-96 h-96 -top-20 -left-20" aria-hidden="true"></div>
+  <div class="blob bg-purple-300 dark:bg-indigo-900 w-[30rem] h-[30rem] top-1/3 -right-24" aria-hidden="true"></div>
+  <div class="blob bg-indigo-200 dark:bg-purple-950 w-80 h-80 bottom-10 left-1/4" aria-hidden="true"></div>
+
   <header class="sticky top-0 z-40 bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-slate-200/80 dark:border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      
-      <!-- LOGO 2D FUTURISTIC TECH (SVG VECTOR) -->
-      <a href="#" class="flex items-center gap-3.5 group">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-3">
+      <a href="#" class="flex items-center gap-3.5 group" aria-label="Trang chủ Vincent Hòa">
         <div class="relative w-11 h-11 flex items-center justify-center transition-transform duration-300 group-hover:scale-105">
-          <svg class="w-11 h-11 drop-shadow-[0_0_8px_rgba(99,102,241,0.5)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <polygon points="50,4 92,26 92,74 50,96 8,74 8,26" stroke="url(#hexGradient)" stroke-width="4.5" stroke-linejoin="round" class="dark:stroke-[url(#hexGradientDark)]"/>
-            <polygon points="50,14 82,31 82,69 50,86 18,69 18,31" stroke="currentColor" stroke-opacity="0.12" stroke-width="1.5"/>
-            <path d="M28 32 L46 72 L54 72 L38 32 Z" fill="url(#brandGrad)" />
-            <path d="M72 32 L56 72 L48 72 L64 32 Z" fill="url(#brandGrad)" opacity="0.9" />
+          <svg class="w-11 h-11 drop-shadow-[0_0_8px_rgba(99,102,241,.5)]" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <polygon points="50,4 92,26 92,74 50,96 8,74 8,26" stroke="url(#hexGradient)" stroke-width="4.5" stroke-linejoin="round"/>
+            <polygon points="50,14 82,31 82,69 50,86 18,69 18,31" stroke="currentColor" stroke-opacity=".12" stroke-width="1.5"/>
+            <path d="M28 32 L46 72 L54 72 L38 32 Z" fill="url(#brandGrad)"/>
+            <path d="M72 32 L56 72 L48 72 L64 32 Z" fill="url(#brandGrad)" opacity=".9"/>
             <path d="M42 52 L66 52" stroke="#22d3ee" stroke-width="3.5" stroke-linecap="round"/>
-            <circle cx="50" cy="52" r="3" fill="#ffffff" />
-            <circle cx="50" cy="4" r="2.5" fill="#22d3ee" />
-            <circle cx="92" cy="26" r="2.5" fill="#6366f1" />
-            <circle cx="8" cy="26" r="2.5" fill="#a855f7" />
+            <circle cx="50" cy="52" r="3" fill="#fff"/>
             <defs>
               <linearGradient id="hexGradient" x1="8" y1="4" x2="92" y2="96" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#0284c7"/>
-                <stop offset="0.5" stop-color="#6366f1"/>
-                <stop offset="1" stop-color="#a855f7"/>
-              </linearGradient>
-              <linearGradient id="hexGradientDark" x1="8" y1="4" x2="92" y2="96" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#38bdf8"/>
-                <stop offset="0.5" stop-color="#818cf8"/>
-                <stop offset="1" stop-color="#c084fc"/>
+                <stop stop-color="#0284c7"/><stop offset=".5" stop-color="#6366f1"/><stop offset="1" stop-color="#a855f7"/>
               </linearGradient>
               <linearGradient id="brandGrad" x1="28" y1="32" x2="72" y2="72" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#2563eb"/>
-                <stop offset="0.6" stop-color="#4f46e5"/>
-                <stop offset="1" stop-color="#9333ea"/>
+                <stop stop-color="#2563eb"/><stop offset=".6" stop-color="#4f46e5"/><stop offset="1" stop-color="#9333ea"/>
               </linearGradient>
             </defs>
           </svg>
@@ -137,138 +143,130 @@
         </div>
       </a>
 
-      <!-- Menu Điều Hướng Nhanh -->
-      <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-600 dark:text-slate-300">
-        <button onclick="togglePanel('ptit')" class="px-3 py-2 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
+      <nav class="hidden lg:flex items-center gap-1 text-sm font-semibold text-slate-600 dark:text-slate-300" aria-label="Điều hướng chính">
+        <button data-panel="ptit" class="px-3 py-2 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
           <i class="fa-solid fa-graduation-cap text-xs text-blue-600 dark:text-blue-400"></i> PTIT
         </button>
-        <button onclick="togglePanel('ai')" class="px-3 py-2 rounded-xl hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
-          <i class="fa-solid fa-satellite-dish text-xs text-purple-600 dark:text-purple-400 animate-pulse"></i> Radar AI
+        <button data-panel="ai" class="px-3 py-2 rounded-xl hover:text-purple-600 dark:hover:text-purple-400 hover:bg-purple-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-satellite-dish text-xs text-purple-600 dark:text-purple-400"></i> Bản tin AI
         </button>
-        <button onclick="togglePanel('data')" class="px-3 py-2 rounded-xl hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
+        <button data-panel="data" class="px-3 py-2 rounded-xl hover:text-emerald-600 dark:hover:text-emerald-400 hover:bg-emerald-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
           <i class="fa-solid fa-chart-line text-xs text-emerald-600 dark:text-emerald-400"></i> Data Analyst
         </button>
-        <button onclick="togglePanel('lop4')" class="px-3 py-2 rounded-xl text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-900/40 hover:bg-blue-100 transition flex items-center gap-1.5">
+        <button data-panel="lop4" class="px-3 py-2 rounded-xl hover:text-blue-600 dark:hover:text-blue-400 hover:bg-blue-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
           <i class="fa-solid fa-laptop-code text-xs"></i> Tin Học 4
         </button>
-        <button onclick="togglePanel('lop5')" class="px-3 py-2 rounded-xl text-indigo-700 dark:text-indigo-300 bg-indigo-50 dark:bg-indigo-900/40 hover:bg-indigo-100 transition flex items-center gap-1.5">
+        <button data-panel="lop5" class="px-3 py-2 rounded-xl hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
           <i class="fa-solid fa-cubes text-xs"></i> Lớp 5
         </button>
-        <button onclick="togglePanel('sync')" class="px-3 py-2 rounded-xl text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 hover:bg-amber-100 transition flex items-center gap-1.5">
-          <i class="fa-solid fa-cloud-arrow-up text-xs"></i> Lưu Trữ & Đồng Bộ
+        <button data-panel="sync" class="px-3 py-2 rounded-xl hover:text-amber-600 dark:hover:text-amber-400 hover:bg-amber-50 dark:hover:bg-slate-800 transition flex items-center gap-1.5">
+          <i class="fa-solid fa-cloud-arrow-up text-xs"></i> Lưu Trữ
         </button>
       </nav>
 
-      <!-- Search & Dark Mode -->
       <div class="flex items-center gap-2">
-        <button onclick="openSearchModal()" title="Tìm kiếm (Ctrl + K)" class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold flex items-center gap-2 border border-slate-200/80 dark:border-slate-700 transition">
+        <button onclick="openSearchModal()" title="Tìm kiếm (Ctrl + K)" aria-label="Mở tìm kiếm"
+          class="px-3 py-2 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 text-xs font-semibold flex items-center gap-2 border border-slate-200/80 dark:border-slate-700 transition">
           <i class="fa-solid fa-magnifying-glass"></i>
           <span class="hidden sm:inline">Tìm kiếm</span>
           <kbd class="hidden sm:inline px-1.5 py-0.5 text-[10px] bg-white dark:bg-slate-900 rounded border border-slate-300 dark:border-slate-600 text-slate-400 font-mono-code">Ctrl K</kbd>
         </button>
-
-        <button onclick="toggleDarkMode()" id="themeToggleBtn" title="Chuyển chế độ Sáng / Tối" class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-amber-400 border border-slate-200/80 dark:border-slate-700 transition">
+        <button onclick="toggleDarkMode()" id="themeToggleBtn" title="Chuyển chế độ Sáng / Tối" aria-label="Chuyển chế độ sáng tối"
+          class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 flex items-center justify-center text-slate-600 dark:text-amber-400 border border-slate-200/80 dark:border-slate-700 transition">
           <i id="themeIcon" class="fa-solid fa-moon"></i>
         </button>
       </div>
     </div>
   </header>
 
-  <main class="flex-grow z-10 relative">
-    <!-- Hero Section: Câu chuyện sinh viên IT năng động -->
+  <main id="main" class="flex-grow z-10 relative">
+    <!-- HERO -->
     <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 text-center relative">
       <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 dark:bg-indigo-950/60 border border-indigo-200/70 dark:border-indigo-800 text-indigo-700 dark:text-indigo-300 text-xs font-semibold mb-5 shadow-sm">
         <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Không Gian Làm Việc & Tự Học Cá Nhân
       </div>
-      
+
       <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 dark:text-white leading-tight max-w-4xl mx-auto">
         Xin chào, mình là <span class="text-gradient">Vincent Hòa</span> 👋
       </h1>
-      
-      <!-- Typewriter Animation -->
+
       <div class="mt-4 text-base sm:text-xl font-semibold text-slate-700 dark:text-slate-300 h-8 flex items-center justify-center gap-1.5">
         <span>Hiện tại:</span>
         <span id="typewriter" class="text-indigo-600 dark:text-cyan-400 border-r-2 border-indigo-600 pr-1 animate-pulse"></span>
       </div>
 
-      <!-- Đoạn Giới Thiệu Sinh Viên IT Được Thiết Kế Lại -->
       <div class="max-w-3xl mx-auto mt-6 text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed space-y-3">
         <p>
-          Đây là không gian mình ghi lại <strong class="text-slate-900 dark:text-white">quá trình học tập</strong>, <strong class="text-slate-900 dark:text-white">xây dựng dự án</strong> và <strong class="text-slate-900 dark:text-white">khám phá công nghệ</strong>. Là một sinh viên IT đang từng bước tích lũy kiến thức và xây dựng sự nghiệp, mình chọn dồn toàn bộ đam mê vào hai hướng đi mũi nhọn: <span class="text-indigo-600 dark:text-cyan-400 font-bold">Data Analyst</span> và <span class="text-purple-600 dark:text-purple-400 font-bold">Trí Tuệ Nhân Tạo (AI)</span>.
+          Đây là không gian mình ghi lại <strong class="text-slate-900 dark:text-white">quá trình học tập</strong>,
+          <strong class="text-slate-900 dark:text-white">xây dựng dự án</strong> và
+          <strong class="text-slate-900 dark:text-white">khám phá công nghệ</strong>. Là một sinh viên IT đang từng bước tích lũy kiến thức, mình dồn đam mê vào hai hướng mũi nhọn:
+          <span class="text-indigo-600 dark:text-cyan-400 font-bold">Data Analyst</span> và
+          <span class="text-purple-600 dark:text-purple-400 font-bold">Trí Tuệ Nhân Tạo (AI)</span>.
         </p>
         <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-          <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">hienhoa.me</strong> là trạm lưu trữ riêng của mình: từ những bài tập lập trình, đồ án tại giảng đường PTIT, bài giảng trợ giảng Tin học Lớp 4 & 5, cho đến những thử nghiệm công nghệ mỗi ngày.
+          <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">hienhoa.me</strong> là trạm lưu trữ riêng: từ bài tập lập trình, đồ án tại PTIT, bài giảng trợ giảng Tin học Lớp 4 & 5, đến những thử nghiệm công nghệ mỗi ngày.
         </p>
       </div>
 
-      <!-- Khối Triết lý Học tập tương tác -->
       <div class="max-w-4xl mx-auto mt-8 p-4 rounded-3xl glass-card border border-indigo-100 dark:border-slate-800 shadow-sm">
-        <div class="text-[11px] font-bold text-slate-400 dark:text-slate-400 uppercase tracking-widest mb-3">Triết lý hành động</div>
+        <div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-3">Triết lý hành động</div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs sm:text-sm font-extrabold">
-          <div class="p-3 rounded-2xl bg-blue-50/80 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-900/60 flex items-center justify-center gap-2 hover:scale-[1.02] transition">
-            <i class="fa-solid fa-book-open"></i> HỌC
-          </div>
-          <div class="p-3 rounded-2xl bg-indigo-50/80 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-900/60 flex items-center justify-center gap-2 hover:scale-[1.02] transition">
-            <i class="fa-solid fa-code"></i> XÂY DỰNG
-          </div>
-          <div class="p-3 rounded-2xl bg-purple-50/80 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200/60 dark:border-purple-900/60 flex items-center justify-center gap-2 hover:scale-[1.02] transition">
-            <i class="fa-solid fa-share-nodes"></i> CHIA SẺ
-          </div>
-          <div class="p-3 rounded-2xl bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-900/60 flex items-center justify-center gap-2 hover:scale-[1.02] transition">
-            <i class="fa-solid fa-arrow-trend-up"></i> CẢI THIỆN
-          </div>
+          <div class="p-3 rounded-2xl bg-blue-50/80 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200/60 dark:border-blue-900/60 flex items-center justify-center gap-2"><i class="fa-solid fa-book-open"></i> HỌC</div>
+          <div class="p-3 rounded-2xl bg-indigo-50/80 dark:bg-indigo-950/40 text-indigo-700 dark:text-indigo-300 border border-indigo-200/60 dark:border-indigo-900/60 flex items-center justify-center gap-2"><i class="fa-solid fa-code"></i> XÂY DỰNG</div>
+          <div class="p-3 rounded-2xl bg-purple-50/80 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border border-purple-200/60 dark:border-purple-900/60 flex items-center justify-center gap-2"><i class="fa-solid fa-share-nodes"></i> CHIA SẺ</div>
+          <div class="p-3 rounded-2xl bg-emerald-50/80 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200/60 dark:border-emerald-900/60 flex items-center justify-center gap-2"><i class="fa-solid fa-arrow-trend-up"></i> CẢI THIỆN</div>
         </div>
       </div>
 
-      <!-- Quick Shortcuts Bảng Điều Khiển -->
+      <!-- Quick shortcuts -->
       <div class="grid grid-cols-2 sm:grid-cols-6 gap-3 max-w-5xl mx-auto mt-8">
-        <div onclick="togglePanel('ptit')" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg transition text-center group">
+        <button data-panel="ptit" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg transition text-center group">
           <div class="w-9 h-9 mx-auto rounded-xl bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 flex items-center justify-center mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-graduation-cap"></i></div>
           <div class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">PTIT Hub</div>
           <div class="text-[10px] text-blue-600 dark:text-blue-400 font-semibold">Bài tập & Đồ án ▾</div>
-        </div>
-        <div onclick="togglePanel('ai')" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-purple-400 hover:shadow-lg transition text-center group">
+        </button>
+        <button data-panel="ai" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-purple-400 hover:shadow-lg transition text-center group">
           <div class="w-9 h-9 mx-auto rounded-xl bg-purple-100 dark:bg-purple-900 text-purple-600 dark:text-purple-300 flex items-center justify-center mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-satellite-dish"></i></div>
           <div class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">Bản Tin AI</div>
-          <div class="text-[10px] text-purple-600 dark:text-purple-400 font-semibold">Live Radar ▾</div>
-        </div>
-        <div onclick="togglePanel('data')" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-emerald-400 hover:shadow-lg transition text-center group">
+          <div class="text-[10px] text-purple-600 dark:text-purple-400 font-semibold">Tin tuyển chọn ▾</div>
+        </button>
+        <button data-panel="data" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-emerald-400 hover:shadow-lg transition text-center group">
           <div class="w-9 h-9 mx-auto rounded-xl bg-emerald-100 dark:bg-emerald-900 text-emerald-600 dark:text-emerald-300 flex items-center justify-center mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-chart-pie"></i></div>
           <div class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">Data Analyst</div>
           <div class="text-[10px] text-emerald-600 dark:text-emerald-400 font-semibold">Roadmap & DAX ▾</div>
-        </div>
-        <div onclick="togglePanel('lop4')" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg transition text-center group border border-blue-200 dark:border-blue-900/60 bg-blue-50/40 dark:bg-blue-950/20">
+        </button>
+        <button data-panel="lop4" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-blue-400 hover:shadow-lg transition text-center group border border-blue-200 dark:border-blue-900/60 bg-blue-50/40 dark:bg-blue-950/20">
           <div class="w-9 h-9 mx-auto rounded-xl bg-blue-600 text-white flex items-center justify-center mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-laptop-code"></i></div>
           <div class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">Tin Học 4</div>
           <div class="text-[10px] text-blue-700 dark:text-blue-300 font-semibold">Phần Mềm & Link ▾</div>
-        </div>
-        <div onclick="togglePanel('lop5')" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg transition text-center group border border-indigo-200 dark:border-indigo-900/60 bg-indigo-50/40 dark:bg-indigo-950/20">
+        </button>
+        <button data-panel="lop5" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-indigo-400 hover:shadow-lg transition text-center group border border-indigo-200 dark:border-indigo-900/60 bg-indigo-50/40 dark:bg-indigo-950/20">
           <div class="w-9 h-9 mx-auto rounded-xl bg-indigo-600 text-white flex items-center justify-center mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-cubes"></i></div>
           <div class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">Lớp 5</div>
           <div class="text-[10px] text-indigo-700 dark:text-indigo-300 font-semibold">Tin & Công Nghệ ▾</div>
-        </div>
-        <div onclick="togglePanel('sync')" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-amber-400 hover:shadow-lg transition text-center group border border-amber-200 dark:border-amber-900/60 bg-amber-50/40 dark:bg-amber-950/20">
+        </button>
+        <button data-panel="sync" class="cursor-pointer glass-card p-3.5 rounded-2xl hover:-translate-y-1 hover:border-amber-400 hover:shadow-lg transition text-center group border border-amber-200 dark:border-amber-900/60 bg-amber-50/40 dark:bg-amber-950/20">
           <div class="w-9 h-9 mx-auto rounded-xl bg-amber-500 text-white flex items-center justify-center mb-1.5 group-hover:scale-110 transition"><i class="fa-solid fa-cloud-arrow-up"></i></div>
           <div class="font-bold text-xs sm:text-sm text-slate-800 dark:text-slate-100">Đồng Bộ</div>
           <div class="text-[10px] text-amber-700 dark:text-amber-300 font-semibold">Gist & JSON ▾</div>
-        </div>
+        </button>
       </div>
     </section>
 
-    <!-- ==================== BẢNG 1: PTIT HUB ==================== -->
+    <!-- PANEL 1: PTIT -->
     <section id="panel-ptit" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
-      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-blue-300 dark:border-blue-700 shadow-2xl relative overflow-hidden panel-open">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-blue-300 dark:border-blue-700 shadow-2xl panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
           <div>
             <div class="flex items-center gap-2">
               <span class="w-3.5 h-3.5 rounded-full bg-blue-600 animate-pulse"></span>
               <h2 class="text-2xl font-black text-slate-900 dark:text-white">PTIT: Đồ Án & Dự Án Thực Hành</h2>
             </div>
-            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Nơi lưu trữ các đồ án môn học, mã nguồn giải thuật C++/Python và đồ án tốt nghiệp tại PTIT.</p>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Lưu trữ đồ án môn học, mã nguồn giải thuật C++/Python và đồ án tốt nghiệp tại PTIT.</p>
           </div>
           <div class="flex items-center gap-2 self-end sm:self-center">
             <button onclick="openAddPtitModal()" class="px-3.5 py-1.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition">
-              <i class="fa-solid fa-plus"></i> Thêm tài liệu mới
+              <i class="fa-solid fa-plus"></i> Thêm tài liệu
             </button>
             <button onclick="closePanel('ptit')" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold transition">
               <i class="fa-solid fa-xmark"></i> Thu gọn
@@ -277,7 +275,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Đồ Án -->
           <div class="bg-blue-50/50 dark:bg-blue-950/30 p-5 rounded-2xl border border-blue-100 dark:border-blue-900/60">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-10 h-10 rounded-xl bg-blue-600 text-white flex items-center justify-center shadow-md"><i class="fa-solid fa-award"></i></div>
@@ -289,7 +286,6 @@
             <div id="ptit-doan-list" class="space-y-3"></div>
           </div>
 
-          <!-- Dự Án & Bài tập -->
           <div class="bg-indigo-50/50 dark:bg-indigo-950/30 p-5 rounded-2xl border border-indigo-100 dark:border-indigo-900/60">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-md"><i class="fa-solid fa-code-branch"></i></div>
@@ -304,16 +300,18 @@
       </div>
     </section>
 
-    <!-- ==================== BẢNG 2: BẢN TIN AI LIVE RADAR ==================== -->
+    <!-- PANEL 2: AI -->
     <section id="panel-ai" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
-      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-purple-300 dark:border-purple-700 shadow-2xl relative overflow-hidden panel-open">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-purple-300 dark:border-purple-700 shadow-2xl panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
           <div>
             <div class="flex items-center gap-2">
               <span class="w-3.5 h-3.5 rounded-full bg-purple-600 animate-pulse"></span>
-              <h2 class="text-2xl font-black text-slate-900 dark:text-white">Bản Tin AI: Live Radar News</h2>
+              <h2 class="text-2xl font-black text-slate-900 dark:text-white">Bản Tin AI: Tuyển Chọn</h2>
             </div>
-            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Cập nhật tin tức và bài báo khoa học AI từ các nguồn hàng đầu thế giới & Việt Nam.</p>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">
+              Danh sách tin AI tuyển chọn (cập nhật thủ công). <span class="italic">Lần cuối: <span id="ai-last-updated">—</span></span>
+            </p>
           </div>
           <div class="flex items-center gap-2 self-end sm:self-center">
             <button onclick="refreshAiNews()" class="px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold flex items-center gap-1.5 shadow-sm transition">
@@ -324,56 +322,52 @@
             </button>
           </div>
         </div>
-
         <div id="ai-news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4"></div>
       </div>
     </section>
 
-    <!-- ==================== BẢNG 3: DATA ANALYST HUB (ROADMAP THỰC TẾ) ==================== -->
+    <!-- PANEL 3: DATA ANALYST -->
     <section id="panel-data" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
-      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-emerald-300 dark:border-emerald-700 shadow-2xl relative overflow-hidden panel-open">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-emerald-300 dark:border-emerald-700 shadow-2xl panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
           <div>
             <div class="flex items-center gap-2">
               <span class="w-3.5 h-3.5 rounded-full bg-emerald-600 animate-pulse"></span>
               <h2 class="text-2xl font-black text-slate-900 dark:text-white">Lộ Trình Data Analyst Tương Tác</h2>
             </div>
-            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Tick chọn kỹ năng đã đạt được, lưu ghi chú riêng trực tiếp vào trình duyệt.</p>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Tick chọn kỹ năng đã đạt được, ghi chú riêng được lưu vào trình duyệt.</p>
           </div>
           <button onclick="closePanel('data')" class="self-end sm:self-center px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
             <i class="fa-solid fa-xmark"></i> Thu gọn
           </button>
         </div>
 
-        <!-- Thanh tiến độ tổng quan -->
         <div class="mb-6 p-4 rounded-2xl bg-slate-50 dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800">
           <div class="flex justify-between items-center text-xs font-bold mb-2">
             <span class="text-slate-700 dark:text-slate-300">Tiến độ hoàn thành lộ trình:</span>
             <span id="roadmap-pct-text" class="text-emerald-600 dark:text-emerald-400 font-mono-code text-sm">0%</span>
           </div>
           <div class="w-full h-2.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
-            <div id="roadmap-progress-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 0%"></div>
+            <div id="roadmap-progress-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width:0%"></div>
           </div>
         </div>
 
-        <!-- 5 Chặng lộ trình chi tiết có checkbox và ghi chú -->
         <div class="space-y-4 mb-8" id="roadmap-accordion-container"></div>
 
-        <!-- Cheat Sheet & Dự án mẫu -->
         <div class="pt-6 border-t border-slate-100 dark:border-slate-800">
           <h4 class="font-bold text-slate-800 dark:text-white text-sm mb-3 flex items-center gap-2">
             <i class="fa-solid fa-toolbox text-emerald-600"></i> Bộ Công Cụ & Cheat Sheet Phân Tích:
           </h4>
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
-            <a href="https://drive.google.com" target="_blank" class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-400 flex items-center justify-between text-xs transition">
+            <a href="https://drive.google.com" target="_blank" rel="noopener" class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-400 flex items-center justify-between text-xs transition">
               <span class="font-bold text-slate-800 dark:text-slate-200"><i class="fa-solid fa-database text-blue-500 mr-2"></i> SQL Query Cheat Sheet</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
             </a>
-            <a href="https://drive.google.com" target="_blank" class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-400 flex items-center justify-between text-xs transition">
+            <a href="https://drive.google.com" target="_blank" rel="noopener" class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-400 flex items-center justify-between text-xs transition">
               <span class="font-bold text-slate-800 dark:text-slate-200"><i class="fa-brands fa-python text-amber-500 mr-2"></i> Pandas & EDA Guide</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
             </a>
-            <a href="https://drive.google.com" target="_blank" class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-400 flex items-center justify-between text-xs transition">
+            <a href="https://drive.google.com" target="_blank" rel="noopener" class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-emerald-400 flex items-center justify-between text-xs transition">
               <span class="font-bold text-slate-800 dark:text-slate-200"><i class="fa-solid fa-chart-simple text-purple-500 mr-2"></i> Power BI DAX Formulas</span>
               <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-400"></i>
             </a>
@@ -382,9 +376,9 @@
       </div>
     </section>
 
-    <!-- ==================== BẢNG 4: TIN HỌC LỚP 4 ==================== -->
+    <!-- PANEL 4: LỚP 4 -->
     <section id="panel-lop4" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
-      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-blue-300 dark:border-blue-700 shadow-2xl relative overflow-hidden panel-open">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-blue-300 dark:border-blue-700 shadow-2xl panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
           <div>
             <div class="flex items-center gap-2">
@@ -397,7 +391,6 @@
             <i class="fa-solid fa-xmark"></i> Thu gọn
           </button>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="bg-blue-50/50 dark:bg-blue-950/30 p-5 rounded-2xl border border-blue-100 dark:border-blue-900/60">
             <div class="flex items-center gap-3 mb-4">
@@ -409,13 +402,12 @@
             </div>
             <div id="lop4-thuchanh-list" class="space-y-3"></div>
           </div>
-
           <div class="bg-indigo-50/50 dark:bg-indigo-950/30 p-5 rounded-2xl border border-indigo-100 dark:border-indigo-900/60">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-md"><i class="fa-solid fa-book-open-reader"></i></div>
               <div>
                 <h3 class="font-bold text-slate-800 dark:text-slate-100 text-base">Học Liệu & Bài Tập</h3>
-                <p class="text-xs text-slate-500 dark:text-slate-400">Bài tập Word, slide trình chiếu mẫu, câu hỏi trắc nghiệm</p>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Bài tập Word, slide mẫu, trắc nghiệm</p>
               </div>
             </div>
             <div id="lop4-tailieu-list" class="space-y-3"></div>
@@ -424,9 +416,9 @@
       </div>
     </section>
 
-    <!-- ==================== BẢNG 5: LỚP 5 ==================== -->
+    <!-- PANEL 5: LỚP 5 -->
     <section id="panel-lop5" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
-      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-indigo-300 dark:border-indigo-700 shadow-2xl relative overflow-hidden panel-open">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-indigo-300 dark:border-indigo-700 shadow-2xl panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
           <div>
             <div class="flex items-center gap-2">
@@ -439,7 +431,6 @@
             <i class="fa-solid fa-xmark"></i> Thu gọn
           </button>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div class="bg-blue-50/50 dark:bg-blue-950/30 p-5 rounded-2xl border border-blue-100 dark:border-blue-900/60">
             <div class="flex items-center gap-3 mb-4">
@@ -451,7 +442,6 @@
             </div>
             <div id="lop5-tinhoc-list" class="space-y-3"></div>
           </div>
-
           <div class="bg-purple-50/50 dark:bg-purple-950/30 p-5 rounded-2xl border border-purple-100 dark:border-purple-900/60">
             <div class="flex items-center gap-3 mb-4">
               <div class="w-10 h-10 rounded-xl bg-purple-500 text-white flex items-center justify-center shadow-md"><i class="fa-solid fa-microchip"></i></div>
@@ -466,16 +456,16 @@
       </div>
     </section>
 
-    <!-- ==================== BẢNG 6: ĐỒNG BỘ ĐÁM MÂY & BÀI ĐỌC SAU (TÍCH HỢP BẢN 2) ==================== -->
+    <!-- PANEL 6: SYNC -->
     <section id="panel-sync" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 scroll-mt-24">
-      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amber-300 dark:border-amber-700 shadow-2xl relative overflow-hidden panel-open">
+      <div class="glass-card rounded-3xl p-6 sm:p-8 border-2 border-amber-300 dark:border-amber-700 shadow-2xl panel-open">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-100 dark:border-slate-800 pb-5 mb-6">
           <div>
             <div class="flex items-center gap-2">
               <span class="w-3.5 h-3.5 rounded-full bg-amber-500"></span>
               <h2 class="text-2xl font-black text-slate-900 dark:text-white">Kho Lưu Trữ Cá Nhân & Đồng Bộ Đám Mây</h2>
             </div>
-            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Dành riêng cho bạn: Lưu bài đọc sau, sao lưu file JSON và đồng bộ dữ liệu qua GitHub Gist[cite: 2].</p>
+            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-1">Lưu bài đọc sau, sao lưu JSON, đồng bộ dữ liệu qua GitHub Gist (bí mật).</p>
           </div>
           <button onclick="closePanel('sync')" class="self-end sm:self-center px-3.5 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold flex items-center gap-1.5 transition">
             <i class="fa-solid fa-xmark"></i> Thu gọn
@@ -483,12 +473,11 @@
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <!-- 1. Lưu bài đọc sau -->
           <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
             <h3 class="font-bold text-slate-800 dark:text-white text-sm mb-2 flex items-center gap-2">
-              <i class="fa-solid fa-bookmark text-amber-500"></i> Bài Viết Đọc Sau (Read Later)
+              <i class="fa-solid fa-bookmark text-amber-500"></i> Bài Viết Đọc Sau
             </h3>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Dán link tài liệu hay bạn bắt gặp trên mạng vào đây để đọc dần:</p>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mb-3">Dán link tài liệu hay để đọc dần:</p>
             <div class="flex gap-2 mb-3">
               <input type="url" id="later-url" placeholder="https://..." class="flex-1 text-xs p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white focus:outline-none">
               <input type="text" id="later-title" placeholder="Tiêu đề..." class="w-1/3 text-xs p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white focus:outline-none">
@@ -497,31 +486,36 @@
             <div id="later-list" class="max-h-48 overflow-y-auto space-y-2"></div>
           </div>
 
-          <!-- 2. Sao lưu file JSON & Đồng bộ Gist -->
           <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 space-y-4">
             <div>
               <h3 class="font-bold text-slate-800 dark:text-white text-sm mb-1 flex items-center gap-2">
-                <i class="fa-solid fa-file-code text-indigo-500"></i> Sao Lưu File JSON (Máy tính ↔ Điện thoại)
+                <i class="fa-solid fa-file-code text-indigo-500"></i> Sao Lưu File JSON
               </h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Tải toàn bộ ghi chú và tiến độ học tập về máy:</p>
-              <div class="flex gap-2">
+              <p class="text-xs text-slate-500 dark:text-slate-400 mb-2">Tải toàn bộ ghi chú và tiến độ về máy:</p>
+              <div class="flex gap-2 flex-wrap">
                 <button onclick="exportJsonBackup()" class="px-3 py-2 bg-slate-900 dark:bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-600 transition flex items-center gap-1.5">
-                  <i class="fa-solid fa-download"></i> Xuất file JSON
+                  <i class="fa-solid fa-download"></i> Xuất JSON
                 </button>
                 <button onclick="document.getElementById('importFile').click()" class="px-3 py-2 bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 rounded-xl text-xs font-bold hover:bg-slate-200 transition flex items-center gap-1.5 border border-slate-200 dark:border-slate-700">
-                  <i class="fa-solid fa-upload"></i> Nhập từ JSON
+                  <i class="fa-solid fa-upload"></i> Nhập JSON
                 </button>
-                <input type="file" id="importFile" accept=".json" onchange="importJsonBackup(event)" hidden>
+                <button onclick="clearAllData()" class="px-3 py-2 bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400 rounded-xl text-xs font-bold hover:bg-red-100 dark:hover:bg-red-950/60 transition flex items-center gap-1.5 border border-red-200 dark:border-red-900/60">
+                  <i class="fa-solid fa-trash"></i> Xóa hết
+                </button>
+                <input type="file" id="importFile" accept=".json,application/json" onchange="importJsonBackup(event)" hidden>
               </div>
             </div>
 
             <div class="pt-3 border-t border-slate-100 dark:border-slate-800">
               <h3 class="font-bold text-slate-800 dark:text-white text-sm mb-1 flex items-center gap-2">
-                <i class="fa-brands fa-github text-slate-800 dark:text-slate-200"></i> Đồng Bộ Qua GitHub Gist Bí Mật
+                <i class="fa-brands fa-github"></i> Đồng Bộ Qua GitHub Gist
               </h3>
-              <p class="text-[11px] text-slate-500 dark:text-slate-400 mb-2">Nhập GitHub Token (chỉ cấp quyền <code>gist</code>) để đồng bộ đám mây[cite: 2]:</p>
+              <p class="text-[11px] text-slate-500 dark:text-slate-400 mb-2">
+                Tạo <a href="https://github.com/settings/tokens/new?scopes=gist&description=HienHoa%20Vault" target="_blank" rel="noopener" class="text-indigo-600 dark:text-indigo-400 underline">Personal Access Token</a> (chỉ scope <code>gist</code>).
+                Token chỉ được dùng trong phiên, không lưu lại.
+              </p>
               <div class="space-y-2">
-                <input type="password" id="gist-token" placeholder="GitHub Token (ghp_...)" class="w-full text-xs p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white">
+                <input type="password" id="gist-token" placeholder="GitHub Token (ghp_...)" autocomplete="off" class="w-full text-xs p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white">
                 <input type="text" id="gist-id" placeholder="Gist ID (để trống nếu chưa có)" class="w-full text-xs p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-800 dark:text-white">
                 <div class="flex gap-2">
                   <button onclick="pushToGist()" class="px-3 py-1.5 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-700 transition">Đẩy lên Gist</button>
@@ -535,32 +529,31 @@
       </div>
     </section>
 
-    <!-- Projects Grid Section -->
+    <!-- PROJECTS -->
     <section id="projects" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
         <div>
           <h2 class="text-2xl font-extrabold text-slate-900 dark:text-white tracking-tight">Tất Cả Dự Án & Nghiên Cứu</h2>
-          <p class="text-sm text-slate-500 dark:text-slate-400">Tổng hợp các học phần, bài toán giải thuật và phân tích dữ liệu</p>
+          <p class="text-sm text-slate-500 dark:text-slate-400">Tổng hợp học phần, bài toán giải thuật và phân tích dữ liệu</p>
         </div>
-
-        <div class="flex flex-wrap items-center gap-1.5">
+        <div class="flex flex-wrap items-center gap-1.5" role="tablist">
           <button onclick="filterCategory('all')" class="filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-indigo-600 text-white shadow-sm" data-filter="all">Tất cả</button>
           <button onclick="filterCategory('ptit')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700" data-filter="ptit">PTIT</button>
           <button onclick="filterCategory('ai')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700" data-filter="ai">AI</button>
           <button onclick="filterCategory('data')" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700" data-filter="data">Data Analyst</button>
         </div>
       </div>
-
       <div id="projects-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
     </section>
   </main>
 
-  <!-- SEARCH MODAL (Ctrl + K) -->
-  <div id="search-modal" class="hidden fixed inset-0 z-50 flex items-start justify-center p-4 pt-20 bg-slate-900/60 backdrop-blur-sm">
+  <!-- SEARCH MODAL -->
+  <div id="search-modal" class="hidden fixed inset-0 z-50 flex items-start justify-center p-4 pt-20 bg-slate-900/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Tìm kiếm toàn cục">
     <div class="glass-card bg-white dark:bg-slate-900 rounded-3xl p-5 max-w-xl w-full shadow-2xl border border-slate-200 dark:border-slate-800 relative">
       <div class="flex items-center gap-3 border-b border-slate-100 dark:border-slate-800 pb-3">
         <i class="fa-solid fa-magnifying-glass text-slate-400"></i>
-        <input type="text" id="global-search-input" oninput="handleGlobalSearch(this.value)" placeholder="Tìm tài liệu, Scratch, PTIT, AI, SQL..." class="w-full bg-transparent text-sm font-semibold text-slate-800 dark:text-white focus:outline-none">
+        <input type="text" id="global-search-input" placeholder="Tìm tài liệu, Scratch, PTIT, AI, SQL..."
+          class="w-full bg-transparent text-sm font-semibold text-slate-800 dark:text-white focus:outline-none" aria-label="Từ khóa tìm kiếm">
         <button onclick="closeSearchModal()" class="text-slate-400 hover:text-slate-600 text-xs px-2 py-1 rounded bg-slate-100 dark:bg-slate-800 font-mono-code">ESC</button>
       </div>
       <div id="search-results-box" class="mt-4 max-h-72 overflow-y-auto space-y-2">
@@ -569,35 +562,33 @@
     </div>
   </div>
 
-  <!-- Modal PTIT -->
-  <div id="modal-ptit" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
+  <!-- MODAL PTIT -->
+  <div id="modal-ptit" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label="Thêm tài liệu PTIT">
     <div class="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-slate-100 dark:border-slate-800 relative">
       <div class="flex items-center justify-between mb-5">
         <h3 class="font-extrabold text-lg text-slate-800 dark:text-white">Đính Kèm Tài Liệu PTIT</h3>
-        <button onclick="closeAddPtitModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <button onclick="closeAddPtitModal()" aria-label="Đóng" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
       </div>
-
       <form id="ptit-add-form" onsubmit="handleSavePtitItem(event)" class="space-y-4">
         <div>
-          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Phân mục:</label>
+          <label for="modal-ptit-category" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Phân mục:</label>
           <select id="modal-ptit-category" class="w-full text-xs font-semibold p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:outline-none focus:border-blue-600">
             <option value="doan">Đồ Án (Tốt nghiệp, Môn học)</option>
             <option value="duan">Dự Án / Bài Tập Lập Trình</option>
           </select>
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Tên đề tài / bài tập:</label>
-          <input type="text" id="modal-ptit-title" required placeholder="VD: Báo cáo An toàn mạng PTIT" class="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:outline-none focus:border-blue-600">
+          <label for="modal-ptit-title" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Tên đề tài / bài tập:</label>
+          <input type="text" id="modal-ptit-title" required maxlength="120" placeholder="VD: Báo cáo An toàn mạng PTIT" class="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:outline-none focus:border-blue-600">
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Mô tả ngắn gọn:</label>
-          <input type="text" id="modal-ptit-desc" required placeholder="VD: Cấu hình mã hóa AES, phân quyền VLAN" class="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:outline-none focus:border-blue-600">
+          <label for="modal-ptit-desc" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Mô tả ngắn gọn:</label>
+          <input type="text" id="modal-ptit-desc" required maxlength="200" placeholder="VD: Cấu hình mã hóa AES, phân quyền VLAN" class="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:outline-none focus:border-blue-600">
         </div>
         <div>
-          <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Liên kết Drive / GitHub:</label>
+          <label for="modal-ptit-url" class="block text-xs font-bold text-slate-700 dark:text-slate-300 mb-1">Liên kết Drive / GitHub:</label>
           <input type="url" id="modal-ptit-url" required placeholder="https://drive.google.com/..." class="w-full text-xs p-3 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-slate-800 dark:text-white focus:outline-none focus:border-blue-600">
         </div>
-
         <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-xl text-xs font-bold transition shadow-md">
           Lưu & Hiển Thị Lên Bảng
         </button>
@@ -605,13 +596,11 @@
     </div>
   </div>
 
-  <!-- Toast Notification -->
-  <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs font-semibold translate-y-24 opacity-0 transition-all duration-300">
+  <div id="toast" class="fixed bottom-6 right-6 z-[60] bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs font-semibold translate-y-24 opacity-0 transition-all duration-300" role="status" aria-live="polite">
     <i class="fa-solid fa-circle-check text-emerald-400 text-sm"></i>
     <span id="toast-message">Đã sao chép liên kết!</span>
   </div>
 
-  <!-- Footer -->
   <footer class="border-t border-slate-200 dark:border-slate-800 bg-white/70 dark:bg-slate-900/60 py-8 text-center text-xs text-slate-500 dark:text-slate-400 z-10">
     <div class="max-w-7xl mx-auto px-4">
       <p class="font-medium text-slate-600 dark:text-slate-300">© 2026 Vincent Hòa. Bản quyền thuộc về <a href="https://hienhoa.me" class="text-indigo-600 dark:text-indigo-400 font-semibold hover:underline">hienhoa.me</a></p>
@@ -619,115 +608,113 @@
     </div>
   </footer>
 
-  <!-- SCRIPT HỆ THỐNG HOÀN CHỈNH -->
   <script>
-    // 1. THEME TOGGLE
-    function initTheme() {
-      const isDark = localStorage.getItem('theme') === 'dark';
-      if (isDark) {
-        document.documentElement.classList.add('dark');
-        document.getElementById('themeIcon').className = 'fa-solid fa-sun text-amber-400';
-      } else {
-        document.documentElement.classList.remove('dark');
-        document.getElementById('themeIcon').className = 'fa-solid fa-moon text-slate-600';
-      }
-    }
+  (function () {
+    'use strict';
 
-    function toggleDarkMode() {
+    /* ============ UTILITIES ============ */
+    const $ = (s, r = document) => r.querySelector(s);
+    const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+
+    // Ngăn XSS: escape mọi dữ liệu chèn qua innerHTML
+    const escapeHtml = (str) => String(str ?? '').replace(/[&<>"']/g, c => ({
+      '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+    })[c]);
+
+    // Parse an toàn, không throw
+    const safeParse = (str, fallback) => {
+      try {
+        const v = JSON.parse(str);
+        return v ?? fallback;
+      } catch { return fallback; }
+    };
+
+    const debounce = (fn, ms = 180) => {
+      let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); };
+    };
+
+    // Chỉ cho phép http(s) — chặn javascript: URL
+    const safeUrl = (url) => {
+      try {
+        const u = new URL(url, location.href);
+        return (u.protocol === 'http:' || u.protocol === 'https:') ? u.href : '#';
+      } catch { return '#'; }
+    };
+
+    /* ============ THEME ============ */
+    function syncThemeIcon() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const icon = $('#themeIcon');
+      if (icon) icon.className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon text-slate-600';
+    }
+    window.toggleDarkMode = function () {
       const isDark = document.documentElement.classList.toggle('dark');
-      localStorage.setItem('theme', isDark ? 'dark' : 'light');
-      document.getElementById('themeIcon').className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon text-slate-600';
-      showToast(isDark ? 'Đã bật chế độ Tối (Dark Mode)' : 'Đã bật chế độ Sáng (Light Mode)');
-    }
+      try { localStorage.setItem('theme', isDark ? 'dark' : 'light'); } catch {}
+      syncThemeIcon();
+      showToast(isDark ? 'Đã bật chế độ Tối' : 'Đã bật chế độ Sáng');
+    };
 
-    // 2. TYPEWRITER EFFECT (SINH VIÊN IT)
+    /* ============ TYPEWRITER ============ */
     const typeWords = [
-      "Sinh viên IT đam mê AI & Data",
-      "Kỹ sư An Toàn Thông Tin tương lai",
-      "Người tự học & Thực hành liên tục",
-      "Giảng dạy Tin Học Lớp 4 & Lớp 5"
+      'Sinh viên IT đam mê AI & Data',
+      'Kỹ sư An Toàn Thông Tin tương lai',
+      'Người tự học & Thực hành liên tục',
+      'Trợ giảng Tin Học Lớp 4 & Lớp 5'
     ];
-    let wordIdx = 0, charIdx = 0, isDeleting = false;
     function typeLoop() {
-      const current = typeWords[wordIdx];
-      const target = document.getElementById('typewriter');
-      if (isDeleting) {
-        target.textContent = current.substring(0, charIdx - 1);
-        charIdx--;
-      } else {
-        target.textContent = current.substring(0, charIdx + 1);
-        charIdx++;
-      }
-      let speed = isDeleting ? 30 : 70;
-      if (!isDeleting && charIdx === current.length) {
-        speed = 1800;
-        isDeleting = true;
-      } else if (isDeleting && charIdx === 0) {
-        isDeleting = false;
-        wordIdx = (wordIdx + 1) % typeWords.length;
-        speed = 400;
-      }
-      setTimeout(typeLoop, speed);
+      const target = $('#typewriter');
+      if (!target) return;
+      let w = 0, c = 0, del = false;
+      const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (reduced) { target.textContent = typeWords[0]; return; }
+      (function tick() {
+        const cur = typeWords[w];
+        target.textContent = del ? cur.substring(0, --c) : cur.substring(0, ++c);
+        let sp = del ? 30 : 70;
+        if (!del && c === cur.length) { sp = 1800; del = true; }
+        else if (del && c === 0) { del = false; w = (w + 1) % typeWords.length; sp = 400; }
+        setTimeout(tick, sp);
+      })();
     }
 
-    // 3. ROADMAP DATA ANALYST (LƯU LOCALSTORAGE NHƯ BẢN 2)
+    /* ============ ROADMAP ============ */
     const defaultRoadmap = [
-      {
-        title: "Excel Chuyên Sâu & Thống Kê Mô Tả",
-        deliver: "Báo cáo doanh thu tháng bằng Excel Dashboard",
-        note: "",
-        skills: [
-          { t: "Pivot Table & XLOOKUP", done: true },
-          { t: "Làm sạch dữ liệu cơ bản", done: true },
-          { t: "Thống kê mô tả (Mean, Median, Std)", done: false }
-        ]
-      },
-      {
-        title: "Truy Vấn Cơ Sở Dữ Liệu SQL",
-        deliver: "Bộ câu lệnh phân khúc khách hàng trên MySQL/PostgreSQL",
-        note: "",
-        skills: [
-          { t: "SELECT, JOIN, GROUP BY, HAVING", done: true },
-          { t: "Window Functions (RANK, DENSE_RANK, LEAD/LAG)", done: false },
-          { t: "CTE & Tối ưu hóa Subqueries", done: false }
-        ]
-      },
-      {
-        title: "Python for DA (EDA & Làm Sạch)",
-        deliver: "Jupyter Notebook phân tích dữ liệu E-commerce",
-        note: "",
-        skills: [
-          { t: "NumPy & Pandas thao tác DataFrame", done: false },
-          { t: "Matplotlib & Seaborn trực quan hóa", done: false },
-          { t: "Phân tích tương quan & xử lý giá trị khuyết", done: false }
-        ]
-      },
-      {
-        title: "Business Intelligence & Power BI",
-        deliver: "Executive Interactive Dashboard giám sát chỉ số kinh doanh",
-        note: "",
-        skills: [
-          { t: "Power BI Desktop & Power Query", done: false },
-          { t: "Mô hình hóa dữ liệu (Star Schema)", done: false },
-          { t: "DAX Measures tính toán tăng trưởng MoM/YoY", done: false }
-        ]
-      },
-      {
-        title: "Tư Duy Kinh Doanh & Phân Tích Thực Chiến",
-        deliver: "Báo cáo đề xuất tối ưu hóa chiến dịch Marketing",
-        note: "",
-        skills: [
-          { t: "Phân tích nhóm khách hàng RFM", done: false },
-          { t: "Cohort Analysis (Tỷ lệ giữ chân khách hàng)", done: false },
-          { t: "Kể chuyện bằng số liệu (Data Storytelling)", done: false }
-        ]
-      }
+      { title:'Excel Chuyên Sâu & Thống Kê Mô Tả', deliver:'Báo cáo doanh thu tháng bằng Excel Dashboard', note:'',
+        skills:[
+          {t:'Pivot Table & XLOOKUP', done:true},
+          {t:'Làm sạch dữ liệu cơ bản', done:true},
+          {t:'Thống kê mô tả (Mean, Median, Std)', done:false}
+        ]},
+      { title:'Truy Vấn Cơ Sở Dữ Liệu SQL', deliver:'Bộ câu lệnh phân khúc khách hàng trên MySQL/PostgreSQL', note:'',
+        skills:[
+          {t:'SELECT, JOIN, GROUP BY, HAVING', done:true},
+          {t:'Window Functions (RANK, LEAD/LAG)', done:false},
+          {t:'CTE & tối ưu Subqueries', done:false}
+        ]},
+      { title:'Python for DA (EDA & Làm Sạch)', deliver:'Jupyter Notebook phân tích dữ liệu E-commerce', note:'',
+        skills:[
+          {t:'NumPy & Pandas thao tác DataFrame', done:false},
+          {t:'Matplotlib & Seaborn trực quan hóa', done:false},
+          {t:'Phân tích tương quan & xử lý missing', done:false}
+        ]},
+      { title:'Business Intelligence & Power BI', deliver:'Executive Dashboard giám sát KPI kinh doanh', note:'',
+        skills:[
+          {t:'Power BI Desktop & Power Query', done:false},
+          {t:'Mô hình hóa dữ liệu (Star Schema)', done:false},
+          {t:'DAX Measures tính MoM/YoY', done:false}
+        ]},
+      { title:'Tư Duy Kinh Doanh & Phân Tích Thực Chiến', deliver:'Báo cáo đề xuất tối ưu chiến dịch Marketing', note:'',
+        skills:[
+          {t:'Phân tích nhóm khách hàng RFM', done:false},
+          {t:'Cohort Analysis (retention)', done:false},
+          {t:'Data Storytelling', done:false}
+        ]}
     ];
-
-    let userRoadmap = JSON.parse(localStorage.getItem('hienhoa.roadmap')) || defaultRoadmap;
+    let userRoadmap = safeParse(localStorage.getItem('hienhoa.roadmap'), null) || defaultRoadmap;
+    if (!Array.isArray(userRoadmap)) userRoadmap = defaultRoadmap;
 
     function saveRoadmap() {
-      localStorage.setItem('hienhoa.roadmap', JSON.stringify(userRoadmap));
+      try { localStorage.setItem('hienhoa.roadmap', JSON.stringify(userRoadmap)); } catch {}
       updateRoadmapUI();
     }
 
@@ -735,221 +722,209 @@
       let total = 0, done = 0;
       userRoadmap.forEach(p => p.skills.forEach(s => { total++; if (s.done) done++; }));
       const pct = total ? Math.round((done / total) * 100) : 0;
+      $('#roadmap-pct-text').textContent = pct + '%';
+      $('#roadmap-progress-bar').style.width = pct + '%';
 
-      document.getElementById('roadmap-pct-text').textContent = pct + '%';
-      document.getElementById('roadmap-progress-bar').style.width = pct + '%';
-
-      const container = document.getElementById('roadmap-accordion-container');
-      container.innerHTML = userRoadmap.map((phase, pIdx) => {
+      $('#roadmap-accordion-container').innerHTML = userRoadmap.map((phase, pIdx) => {
         const pDone = phase.skills.filter(s => s.done).length;
         return `
           <div class="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden">
-            <div class="p-4 flex items-center justify-between cursor-pointer bg-slate-50/70 dark:bg-slate-800/40" onclick="toggleRoadmapItem(${pIdx})">
-              <div class="flex items-center gap-3">
+            <button type="button" class="w-full p-4 flex items-center justify-between cursor-pointer bg-slate-50/70 dark:bg-slate-800/40 text-left" onclick="toggleRoadmapItem(${pIdx})" aria-expanded="${pIdx === 0}">
+              <span class="flex items-center gap-3">
                 <span class="w-6 h-6 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-400 font-mono-code font-bold text-xs flex items-center justify-center">${pIdx + 1}</span>
-                <span class="font-bold text-xs sm:text-sm text-slate-800 dark:text-white">${phase.title}</span>
-              </div>
+                <span class="font-bold text-xs sm:text-sm text-slate-800 dark:text-white">${escapeHtml(phase.title)}</span>
+              </span>
               <span class="text-xs font-mono-code text-slate-400">${pDone}/${phase.skills.length}</span>
-            </div>
+            </button>
             <div id="phase-body-${pIdx}" class="${pIdx === 0 ? '' : 'hidden'} p-4 pt-3 border-t border-slate-100 dark:border-slate-800 text-xs space-y-2">
-              <div class="text-[11px] text-emerald-700 dark:text-emerald-300 font-semibold mb-2">🎯 Đầu ra: ${phase.deliver}</div>
+              <div class="text-[11px] text-emerald-700 dark:text-emerald-300 font-semibold mb-2">🎯 Đầu ra: ${escapeHtml(phase.deliver)}</div>
               <div class="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 ${phase.skills.map((s, sIdx) => `
                   <label class="flex items-center gap-2 p-2 rounded-xl border border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40 cursor-pointer">
-                    <input type="checkbox" onchange="toggleSkillDone(${pIdx}, ${sIdx}, this.checked)" ${s.done ? 'checked' : ''} class="rounded text-emerald-600">
-                    <span class="${s.done ? 'line-through text-slate-400' : 'text-slate-700 dark:text-slate-200'}">${s.t}</span>
+                    <input type="checkbox" onchange="toggleSkillDone(${pIdx},${sIdx},this.checked)" ${s.done ? 'checked' : ''} class="rounded text-emerald-600">
+                    <span class="${s.done ? 'line-through text-slate-400' : 'text-slate-700 dark:text-slate-200'}">${escapeHtml(s.t)}</span>
                   </label>
                 `).join('')}
               </div>
               <div class="mt-3">
                 <label class="block text-[11px] font-bold text-slate-500 mb-1">Ghi chú cá nhân chặng này:</label>
-                <input type="text" value="${phase.note || ''}" onchange="savePhaseNote(${pIdx}, this.value)" placeholder="Ví dụ: Đang vướng hàm Window Function..." class="w-full text-xs p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent text-slate-800 dark:text-white">
+                <input type="text" value="${escapeHtml(phase.note || '')}" onchange="savePhaseNote(${pIdx}, this.value)" placeholder="VD: Đang vướng hàm Window Function..." class="w-full text-xs p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-transparent text-slate-800 dark:text-white">
               </div>
             </div>
-          </div>
-        `;
+          </div>`;
       }).join('');
     }
+    window.toggleRoadmapItem = (i) => $('#phase-body-' + i).classList.toggle('hidden');
+    window.toggleSkillDone = (p, s, v) => { userRoadmap[p].skills[s].done = v; saveRoadmap(); };
+    window.savePhaseNote = (p, v) => { userRoadmap[p].note = v; saveRoadmap(); showToast('Đã lưu ghi chú!'); };
 
-    function toggleRoadmapItem(idx) {
-      document.getElementById(`phase-body-${idx}`).classList.toggle('hidden');
-    }
-    function toggleSkillDone(pIdx, sIdx, val) {
-      userRoadmap[pIdx].skills[sIdx].done = val;
-      saveRoadmap();
-    }
-    function savePhaseNote(pIdx, val) {
-      userRoadmap[pIdx].note = val;
-      saveRoadmap();
-      showToast('Đã lưu ghi chú!');
-    }
-
-    // 4. READ LATER (ĐỌC SAU - TÍCH HỢP TỪ BẢN 2)
-    let readLaterList = JSON.parse(localStorage.getItem('hienhoa.readLater')) || [
-      { id: 1, title: "DeepSeek-R1 Architecture Paper", url: "https://arxiv.org", read: false }
+    /* ============ READ LATER ============ */
+    let readLaterList = safeParse(localStorage.getItem('hienhoa.readLater'), null) || [
+      { id: 1, title: 'DeepSeek-R1 Architecture Paper', url: 'https://arxiv.org', read: false }
     ];
+    if (!Array.isArray(readLaterList)) readLaterList = [];
 
     function saveLater() {
-      localStorage.setItem('hienhoa.readLater', JSON.stringify(readLaterList));
+      try { localStorage.setItem('hienhoa.readLater', JSON.stringify(readLaterList)); } catch {}
       renderLater();
     }
-
     function renderLater() {
-      const box = document.getElementById('later-list');
+      const box = $('#later-list');
       if (!readLaterList.length) {
-        box.innerHTML = `<div class="text-xs text-slate-400 py-3 text-center">Chưa có bài nào cần đọc sau.</div>`;
+        box.innerHTML = '<div class="text-xs text-slate-400 py-3 text-center">Chưa có bài nào cần đọc sau.</div>';
         return;
       }
-      box.innerHTML = readLaterList.map(item => `
-        <div class="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 text-xs">
-          <div class="flex items-center gap-2 overflow-hidden">
-            <input type="checkbox" onchange="toggleLaterDone(${item.id})" ${item.read ? 'checked' : ''} class="rounded">
-            <a href="${item.url}" target="_blank" class="${item.read ? 'line-through text-slate-400' : 'font-bold text-slate-800 dark:text-white'} truncate hover:text-indigo-600">${item.title}</a>
-          </div>
-          <button onclick="delLaterItem(${item.id})" class="text-slate-400 hover:text-red-500 text-xs ml-2"><i class="fa-solid fa-xmark"></i></button>
-        </div>
-      `).join('');
+      box.innerHTML = readLaterList.map(item => {
+        const href = safeUrl(item.url);
+        return `
+          <div class="flex items-center justify-between p-2.5 rounded-xl border border-slate-100 dark:border-slate-800 text-xs gap-2">
+            <label class="flex items-center gap-2 overflow-hidden cursor-pointer flex-1">
+              <input type="checkbox" onchange="toggleLaterDone(${item.id})" ${item.read ? 'checked' : ''} class="rounded shrink-0">
+              <a href="${href}" target="_blank" rel="noopener" class="${item.read ? 'line-through text-slate-400' : 'font-bold text-slate-800 dark:text-white'} truncate hover:text-indigo-600">${escapeHtml(item.title)}</a>
+            </label>
+            <button onclick="delLaterItem(${item.id})" aria-label="Xóa" class="text-slate-400 hover:text-red-500 text-xs"><i class="fa-solid fa-xmark"></i></button>
+          </div>`;
+      }).join('');
     }
-
-    function addLaterItem() {
-      const url = document.getElementById('later-url').value.trim();
-      const title = document.getElementById('later-title').value.trim() || url;
+    window.addLaterItem = () => {
+      const url = $('#later-url').value.trim();
+      const title = $('#later-title').value.trim() || url;
       if (!url) return;
-      readLaterList.unshift({ id: Date.now(), title, url, read: false });
+      readLaterList.unshift({ id: Date.now() + Math.random(), title, url, read: false });
       saveLater();
-      document.getElementById('later-url').value = '';
-      document.getElementById('later-title').value = '';
+      $('#later-url').value = ''; $('#later-title').value = '';
       showToast('Đã lưu vào danh sách Đọc sau!');
-    }
-
-    function toggleLaterDone(id) {
+    };
+    window.toggleLaterDone = (id) => {
       const it = readLaterList.find(x => x.id === id);
-      if (it) it.read = !it.read;
-      saveLater();
-    }
+      if (it) it.read = !it.read; saveLater();
+    };
+    window.delLaterItem = (id) => { readLaterList = readLaterList.filter(x => x.id !== id); saveLater(); };
 
-    function delLaterItem(id) {
-      readLaterList = readLaterList.filter(x => x.id !== id);
-      saveLater();
-    }
-
-    // 5. SAO LƯU JSON & GITHUB GIST (BẢN 2)
-    function exportJsonBackup() {
-      const backupData = {
+    /* ============ JSON BACKUP ============ */
+    window.exportJsonBackup = () => {
+      const data = {
+        _schema: 1,
         roadmap: userRoadmap,
         later: readLaterList,
         ptit: ptitItems,
         updatedAt: new Date().toISOString()
       };
-      const blob = new Blob([JSON.stringify(backupData, null, 2)], { type: 'application/json' });
+      const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
       const a = document.createElement('a');
       a.href = URL.createObjectURL(blob);
       a.download = `hienhoa-backup-${new Date().toISOString().slice(0, 10)}.json`;
       a.click();
-      showToast('Đã xuất file JSON sao lưu thành công!');
-    }
-
-    function importJsonBackup(event) {
+      URL.revokeObjectURL(a.href);
+      showToast('Đã xuất file JSON!');
+    };
+    window.importJsonBackup = (event) => {
       const file = event.target.files[0];
       if (!file) return;
       const reader = new FileReader();
       reader.onload = (e) => {
-        try {
-          const data = JSON.parse(e.target.result);
-          if (data.roadmap) userRoadmap = data.roadmap;
-          if (data.later) readLaterList = data.later;
-          if (data.ptit) ptitItems = data.ptit;
-          saveRoadmap();
-          saveLater();
-          renderPtitHub();
-          showToast('Đã phục hồi dữ liệu từ JSON thành công!');
-        } catch (err) {
-          alert('File JSON không hợp lệ!');
-        }
+        const data = safeParse(e.target.result, null);
+        if (!data || typeof data !== 'object') { alert('File JSON không hợp lệ!'); return; }
+        if (Array.isArray(data.roadmap)) userRoadmap = data.roadmap;
+        if (Array.isArray(data.later)) readLaterList = data.later;
+        if (data.ptit && typeof data.ptit === 'object') ptitItems = data.ptit;
+        saveRoadmap(); saveLater(); savePtit(); renderPtitHub();
+        showToast('Đã phục hồi dữ liệu!');
       };
       reader.readAsText(file);
+      event.target.value = '';
+    };
+    window.clearAllData = () => {
+      if (!confirm('Xóa TOÀN BỘ dữ liệu cá nhân (roadmap, đọc sau, PTIT)? Hành động không hoàn tác được.')) return;
+      ['hienhoa.roadmap', 'hienhoa.readLater', 'hienhoa.ptit'].forEach(k => { try { localStorage.removeItem(k); } catch {} });
+      location.reload();
+    };
+
+    /* ============ GIST SYNC ============ */
+    async function gistRequest(url, opts) {
+      const res = await fetch(url, opts);
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      return res.json();
     }
-
-    async function pushToGist() {
-      const token = document.getElementById('gist-token').value.trim();
-      let gistId = document.getElementById('gist-id').value.trim();
-      const status = document.getElementById('gist-status');
+    window.pushToGist = async () => {
+      const token = $('#gist-token').value.trim();
+      let gistId = $('#gist-id').value.trim();
+      const status = $('#gist-status');
       if (!token) { alert('Vui lòng nhập GitHub Token!'); return; }
-
-      status.textContent = 'Đang đẩy dữ liệu lên GitHub Gist...';
+      status.textContent = 'Đang đẩy dữ liệu lên Gist...';
       const content = JSON.stringify({ roadmap: userRoadmap, later: readLaterList, ptit: ptitItems }, null, 2);
-
+      const headers = { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json', 'Accept': 'application/vnd.github+json' };
       try {
-        let res;
+        let data;
         if (gistId) {
-          res = await fetch(`https://api.github.com/gists/${gistId}`, {
-            method: 'PATCH',
-            headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+          data = await gistRequest(`https://api.github.com/gists/${gistId}`, {
+            method: 'PATCH', headers,
             body: JSON.stringify({ files: { 'hienhoa-vault.json': { content } } })
           });
         } else {
-          res = await fetch('https://api.github.com/gists', {
-            method: 'POST',
-            headers: { 'Authorization': `Bearer ${token}`, 'Content-Type': 'application/json' },
+          data = await gistRequest('https://api.github.com/gists', {
+            method: 'POST', headers,
             body: JSON.stringify({ description: 'HienHoa Vault Data', public: false, files: { 'hienhoa-vault.json': { content } } })
           });
         }
-        const data = await res.json();
         if (data.id) {
-          document.getElementById('gist-id').value = data.id;
-          status.textContent = `Đã đồng bộ thành công! Gist ID: ${data.id}`;
-          showToast('Đã đồng bộ dữ liệu lên Gist!');
-        }
+          $('#gist-id').value = data.id;
+          status.textContent = `Đồng bộ thành công! Gist ID: ${data.id}`;
+          showToast('Đã đồng bộ lên Gist!');
+        } else { status.textContent = 'Không nhận được Gist ID.'; }
       } catch (err) {
-        status.textContent = 'Lỗi kết nối GitHub!';
+        status.textContent = 'Lỗi: ' + err.message;
       }
-    }
-
-    async function pullFromGist() {
-      const token = document.getElementById('gist-token').value.trim();
-      const gistId = document.getElementById('gist-id').value.trim();
-      const status = document.getElementById('gist-status');
+    };
+    window.pullFromGist = async () => {
+      const token = $('#gist-token').value.trim();
+      const gistId = $('#gist-id').value.trim();
+      const status = $('#gist-status');
       if (!token || !gistId) { alert('Cần cả Token và Gist ID!'); return; }
-
-      status.textContent = 'Đang kéo dữ liệu về máy...';
+      status.textContent = 'Đang kéo dữ liệu...';
       try {
-        const res = await fetch(`https://api.github.com/gists/${gistId}`, {
-          headers: { 'Authorization': `Bearer ${token}` }
+        const data = await gistRequest(`https://api.github.com/gists/${gistId}`, {
+          headers: { 'Authorization': `Bearer ${token}`, 'Accept': 'application/vnd.github+json' }
         });
-        const data = await res.json();
-        const fileContent = data.files['hienhoa-vault.json'].content;
-        const parsed = JSON.parse(fileContent);
-        if (parsed.roadmap) userRoadmap = parsed.roadmap;
-        if (parsed.later) readLaterList = parsed.later;
+        const fileContent = data.files['hienhoa-vault.json']?.content;
+        if (!fileContent) throw new Error('Không tìm thấy file trong Gist');
+        const parsed = safeParse(fileContent, null);
+        if (!parsed) throw new Error('Nội dung JSON hỏng');
+        if (Array.isArray(parsed.roadmap)) userRoadmap = parsed.roadmap;
+        if (Array.isArray(parsed.later)) readLaterList = parsed.later;
         if (parsed.ptit) ptitItems = parsed.ptit;
-        saveRoadmap();
-        saveLater();
-        renderPtitHub();
+        saveRoadmap(); saveLater(); savePtit(); renderPtitHub();
         status.textContent = 'Đã kéo và cập nhật xong!';
-        showToast('Đã nạp dữ liệu từ Gist về máy!');
+        showToast('Đã nạp dữ liệu từ Gist!');
       } catch (err) {
-        status.textContent = 'Lỗi khi kéo dữ liệu!';
+        status.textContent = 'Lỗi: ' + err.message;
       }
-    }
-
-    // 6. DỮ LIỆU PTIT HUB
-    let ptitItems = JSON.parse(localStorage.getItem('hienhoa.ptit')) || {
-      doan: [
-        { title: "Đồ Án: Phân Tích An Toàn Mạng Doanh Nghiệp", desc: "Triển khai xác thực đa lớp, mã hóa AES và tường lửa MikroTik.", url: "https://drive.google.com" },
-        { title: "Báo Cáo Nghiên Cứu Mật Mã Khóa Công Khai RSA", desc: "Ứng dụng chữ ký số và giải thuật trao đổi khóa Diffie-Hellman.", url: "https://drive.google.com" }
-      ],
-      duan: [
-        { title: "Cài Đặt Cấu Trúc Dữ Liệu & Giải Thuật C++", desc: "Mã nguồn cài đặt cây nhị phân, BFS, DFS, UCS, Dijkstra.", url: "https://github.com" },
-        { title: "Tool Tự Động Hóa Quản Lý Mạng Cục Bộ LAN", desc: "Script Python quét cổng mở và kiểm tra thiết bị mạng kết nối.", url: "https://github.com" }
-      ]
     };
 
-    function renderPtitHub() {
-      document.getElementById('ptit-doan-list').innerHTML = ptitItems.doan.map(i => createPtitHTML(i, 'fa-award')).join('');
-      document.getElementById('ptit-duan-list').innerHTML = ptitItems.duan.map(i => createPtitHTML(i, 'fa-code')).join('');
+    /* ============ PTIT HUB ============ */
+    let ptitItems = safeParse(localStorage.getItem('hienhoa.ptit'), null) || {
+      doan: [
+        { id: 1, title: 'Đồ Án: Phân Tích An Toàn Mạng Doanh Nghiệp', desc: 'Triển khai xác thực đa lớp, mã hóa AES và tường lửa MikroTik.', url: 'https://drive.google.com' },
+        { id: 2, title: 'Báo Cáo Nghiên Cứu Mật Mã Khóa Công Khai RSA', desc: 'Ứng dụng chữ ký số và trao đổi khóa Diffie-Hellman.', url: 'https://drive.google.com' }
+      ],
+      duan: [
+        { id: 3, title: 'Cài Đặt Cấu Trúc Dữ Liệu & Giải Thuật C++', desc: 'Cây nhị phân, BFS, DFS, UCS, Dijkstra.', url: 'https://github.com' },
+        { id: 4, title: 'Tool Tự Động Hóa Quản Lý Mạng LAN', desc: 'Script Python quét cổng mở và kiểm tra thiết bị.', url: 'https://github.com' }
+      ]
+    };
+    if (!ptitItems.doan) ptitItems.doan = [];
+    if (!ptitItems.duan) ptitItems.duan = [];
+
+    function savePtit() {
+      try { localStorage.setItem('hienhoa.ptit', JSON.stringify(ptitItems)); } catch {}
     }
 
-    function createPtitHTML(item, icon) {
+    function renderPtitHub() {
+      $('#ptit-doan-list').innerHTML = ptitItems.doan.map(i => createPtitHTML(i, 'fa-award', 'doan')).join('');
+      $('#ptit-duan-list').innerHTML = ptitItems.duan.map(i => createPtitHTML(i, 'fa-code', 'duan')).join('');
+    }
+    function createPtitHTML(item, icon, cat) {
+      const href = safeUrl(item.url);
       return `
         <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-blue-400 transition flex items-center justify-between gap-3">
           <div class="flex items-center gap-3 overflow-hidden">
@@ -957,107 +932,125 @@
               <i class="fa-solid ${icon}"></i>
             </div>
             <div class="truncate">
-              <div class="font-bold text-xs text-slate-800 dark:text-slate-100 truncate">${item.title}</div>
-              <div class="text-[11px] text-slate-400 truncate">${item.desc}</div>
+              <div class="font-bold text-xs text-slate-800 dark:text-slate-100 truncate">${escapeHtml(item.title)}</div>
+              <div class="text-[11px] text-slate-400 truncate">${escapeHtml(item.desc)}</div>
             </div>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
-            <button onclick="copyToClipboard('${item.url}')" title="Sao chép" class="p-1.5 text-slate-400 hover:text-blue-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition text-xs">
+            <button type="button" data-action="copy" data-url="${escapeHtml(item.url)}" title="Sao chép" aria-label="Sao chép liên kết" class="p-1.5 text-slate-400 hover:text-blue-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition text-xs">
               <i class="fa-regular fa-copy"></i>
             </button>
-            <a href="${item.url}" target="_blank" class="px-2.5 py-1 bg-slate-900 dark:bg-blue-600 hover:bg-blue-600 text-white rounded-lg text-xs font-bold transition flex items-center gap-1">
+            <button type="button" data-action="delete" data-cat="${cat}" data-id="${item.id}" title="Xóa" aria-label="Xóa" class="p-1.5 text-slate-400 hover:text-red-500 rounded-lg hover:bg-red-50 dark:hover:bg-red-950/40 transition text-xs">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+            <a href="${href}" target="_blank" rel="noopener" class="px-2.5 py-1 bg-slate-900 dark:bg-blue-600 hover:bg-blue-600 text-white rounded-lg text-xs font-bold transition flex items-center gap-1">
               Mở <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
           </div>
-        </div>
-      `;
+        </div>`;
     }
 
-    function openAddPtitModal() { document.getElementById('modal-ptit').classList.remove('hidden'); }
-    function closeAddPtitModal() { document.getElementById('modal-ptit').classList.add('hidden'); }
-    function handleSavePtitItem(e) {
+    // Event delegation — không inline onclick với dữ liệu người dùng
+    ['ptit-doan-list', 'ptit-duan-list'].forEach(id => {
+      document.getElementById(id).addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-action]');
+        if (!btn) return;
+        const { action, url, cat, id: itemId } = btn.dataset;
+        if (action === 'copy') copyToClipboard(url);
+        if (action === 'delete') {
+          if (!confirm('Xóa tài liệu này?')) return;
+          ptitItems[cat] = ptitItems[cat].filter(x => String(x.id) !== String(itemId));
+          savePtit(); renderPtitHub();
+          showToast('Đã xóa tài liệu.');
+        }
+      });
+    });
+
+    window.openAddPtitModal = () => $('#modal-ptit').classList.remove('hidden');
+    window.closeAddPtitModal = () => $('#modal-ptit').classList.add('hidden');
+    window.handleSavePtitItem = (e) => {
       e.preventDefault();
-      const cat = document.getElementById('modal-ptit-category').value;
-      const title = document.getElementById('modal-ptit-title').value;
-      const desc = document.getElementById('modal-ptit-desc').value;
-      const url = document.getElementById('modal-ptit-url').value;
-
-      ptitItems[cat].unshift({ title, desc, url });
-      localStorage.setItem('hienhoa.ptit', JSON.stringify(ptitItems));
-      renderPtitHub();
+      const cat = $('#modal-ptit-category').value;
+      const title = $('#modal-ptit-title').value.trim();
+      const desc = $('#modal-ptit-desc').value.trim();
+      const url = $('#modal-ptit-url').value.trim();
+      if (!title || !desc || !url) return;
+      ptitItems[cat].unshift({ id: Date.now(), title, desc, url });
+      savePtit(); renderPtitHub();
       closeAddPtitModal();
-      showToast('Đã thêm tài liệu PTIT thành công!');
+      showToast('Đã thêm tài liệu PTIT!');
       e.target.reset();
-    }
+    };
 
-    // 7. BẢN TIN AI LIVE RADAR
+    /* ============ AI NEWS ============ */
     const aiNewsList = [
-      { source: "OpenAI Official", badgeColor: "bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300", title: "Cải tiến mới trên các mô hình lý luận đa bước", snippet: "Tăng cường khả năng suy luận logic, hỗ trợ viết code thông minh và tối ưu tài nguyên API.", url: "https://openai.com/news", time: "Vừa cập nhật" },
-      { source: "MIT Tech Review", badgeColor: "bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300", title: "Tác động của Generative AI trong xử lý dữ liệu lớn", snippet: "Các nhà khoa học đánh giá AI đóng vai trò như thế nào trong phân tích chuỗi cung ứng toàn cầu.", url: "https://www.technologyreview.com", time: "Hôm nay" },
-      { source: "TechCrunch AI", badgeColor: "bg-green-100 dark:bg-green-950 text-green-700 dark:text-green-300", title: "Làn sóng các mô hình ngôn ngữ mã nguồn mở", snippet: "Doanh nghiệp công nghệ đẩy mạnh triển khai mô hình AI cục bộ để bảo vệ an toàn dữ liệu.", url: "https://techcrunch.com/category/artificial-intelligence/", time: "Hôm qua" },
-      { source: "VnExpress Số Hóa", badgeColor: "bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300", title: "Việt Nam đẩy mạnh ứng dụng AI trong trường học", snippet: "Học viện và đại học công nghệ tích hợp trí tuệ nhân tạo vào chương trình kỹ thuật số.", url: "https://vnexpress.net/so-hoa/cong-nghe/ai", time: "2 ngày trước" }
+      { source:'OpenAI Official', badgeColor:'bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300',
+        title:'Cải tiến mới trên các mô hình lý luận đa bước',
+        snippet:'Tăng cường khả năng suy luận logic, hỗ trợ viết code thông minh và tối ưu tài nguyên API.',
+        url:'https://openai.com/news', time:'Curated' },
+      { source:'MIT Tech Review', badgeColor:'bg-red-100 dark:bg-red-950 text-red-700 dark:text-red-300',
+        title:'Tác động của Generative AI trong xử lý dữ liệu lớn',
+        snippet:'Các nhà khoa học đánh giá AI trong phân tích chuỗi cung ứng toàn cầu.',
+        url:'https://www.technologyreview.com', time:'Curated' },
+      { source:'TechCrunch AI', badgeColor:'bg-green-100 dark:bg-green-950 text-green-700 dark:text-green-300',
+        title:'Làn sóng mô hình ngôn ngữ mã nguồn mở',
+        snippet:'Doanh nghiệp đẩy mạnh triển khai mô hình AI cục bộ để bảo vệ dữ liệu.',
+        url:'https://techcrunch.com/category/artificial-intelligence/', time:'Curated' },
+      { source:'VnExpress Số Hóa', badgeColor:'bg-blue-100 dark:bg-blue-950 text-blue-700 dark:text-blue-300',
+        title:'Việt Nam đẩy mạnh ứng dụng AI trong trường học',
+        snippet:'Học viện và đại học công nghệ tích hợp AI vào chương trình kỹ thuật số.',
+        url:'https://vnexpress.net/so-hoa/cong-nghe/ai', time:'Curated' }
     ];
-
     function renderAiNews() {
-      document.getElementById('ai-news-grid').innerHTML = aiNewsList.map(news => `
-        <div class="p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 hover:border-purple-400 hover:shadow-md transition flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between gap-2 mb-2">
-              <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full ${news.badgeColor}">${news.source}</span>
-              <span class="text-[10px] text-slate-400">${news.time}</span>
+      $('#ai-news-grid').innerHTML = aiNewsList.map(n => {
+        const href = safeUrl(n.url);
+        return `
+          <div class="p-4 bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/90 dark:border-slate-800 hover:border-purple-400 hover:shadow-md transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="text-[10px] font-extrabold px-2 py-0.5 rounded-full ${n.badgeColor}">${escapeHtml(n.source)}</span>
+                <span class="text-[10px] text-slate-400">${escapeHtml(n.time)}</span>
+              </div>
+              <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white leading-snug mb-2 line-clamp-2">${escapeHtml(n.title)}</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed mb-4">${escapeHtml(n.snippet)}</p>
             </div>
-            <h4 class="font-bold text-xs sm:text-sm text-slate-900 dark:text-white leading-snug mb-2 hover:text-purple-600 transition line-clamp-2">${news.title}</h4>
-            <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-3 leading-relaxed mb-4">${news.snippet}</p>
-          </div>
-          <a href="${news.url}" target="_blank" class="w-full py-2 bg-slate-50 dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-purple-950/60 text-slate-700 dark:text-slate-200 hover:text-purple-700 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 border border-slate-200/80 dark:border-slate-700">
-            Đọc bài viết <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
-          </a>
-        </div>
-      `).join('');
+            <a href="${href}" target="_blank" rel="noopener" class="w-full py-2 bg-slate-50 dark:bg-slate-800 hover:bg-purple-50 dark:hover:bg-purple-950/60 text-slate-700 dark:text-slate-200 hover:text-purple-700 rounded-xl text-xs font-bold transition flex items-center justify-center gap-1.5 border border-slate-200/80 dark:border-slate-700">
+              Đọc bài viết <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+            </a>
+          </div>`;
+      }).join('');
+      $('#ai-last-updated').textContent = new Date().toLocaleDateString('vi-VN');
     }
-
-    function refreshAiNews() {
-      const icon = document.getElementById('ai-refresh-icon');
+    window.refreshAiNews = () => {
+      const icon = $('#ai-refresh-icon');
       icon.classList.add('fa-spin');
-      setTimeout(() => {
-        icon.classList.remove('fa-spin');
-        renderAiNews();
-        showToast('Đã làm mới dữ liệu Bản tin AI!');
-      }, 600);
-    }
+      setTimeout(() => { icon.classList.remove('fa-spin'); renderAiNews(); showToast('Đã làm mới danh sách!'); }, 500);
+    };
 
-    // 8. TIN HỌC LỚP 4 & LỚP 5
+    /* ============ LỚP 4 & 5 ============ */
     const lop4Links = {
       thuchanh: [
-        { title: "Lập trình Scratch 3.0 Trực tuyến", desc: "Kéo thả khối lệnh làm quen lập trình cho học sinh", url: "https://scratch.mit.edu", icon: "fa-shapes" },
-        { title: "Luyện gõ bàn phím 10 ngón TypingClub", desc: "Thực hành gõ hàng phím cơ sở và phím Shift", url: "https://www.typingclub.com", icon: "fa-keyboard" },
-        { title: "Tải bộ gõ tiếng Việt UniKey", desc: "Phần mềm gõ dấu tiếng Việt kiểu Telex và Vni", url: "https://www.unikey.org", icon: "fa-download" }
+        { title:'Lập trình Scratch 3.0 Trực tuyến', desc:'Kéo thả khối lệnh làm quen lập trình', url:'https://scratch.mit.edu', icon:'fa-shapes' },
+        { title:'Luyện gõ bàn phím 10 ngón TypingClub', desc:'Thực hành gõ hàng phím cơ sở và Shift', url:'https://www.typingclub.com', icon:'fa-keyboard' },
+        { title:'Tải bộ gõ tiếng Việt UniKey', desc:'Phần mềm gõ dấu Telex và VNI', url:'https://www.unikey.org', icon:'fa-download' }
       ],
       tailieu: [
-        { title: "Thư mục bài tập Word & PowerPoint", desc: "Văn bản mẫu gõ thơ, chèn ảnh, hiệu ứng", url: "https://drive.google.com", icon: "fa-file-word" },
-        { title: "Trắc nghiệm An toàn mạng Quizizz", desc: "Bộ câu hỏi ôn tập tương tác an toàn Internet", url: "https://quizizz.com", icon: "fa-circle-question" }
+        { title:'Thư mục bài tập Word & PowerPoint', desc:'Văn bản mẫu gõ thơ, chèn ảnh, hiệu ứng', url:'https://drive.google.com', icon:'fa-file-word' },
+        { title:'Trắc nghiệm An toàn mạng Quizizz', desc:'Bộ câu hỏi ôn tập tương tác an toàn Internet', url:'https://quizizz.com', icon:'fa-circle-question' }
       ]
     };
-
     const lop5Links = {
       tinhoc: [
-        { title: "Phần mềm Scratch 3.0", desc: "Thiết kế game đố vui và hoạt hình", url: "https://scratch.mit.edu", icon: "fa-laptop-code" },
-        { title: "Bảng tính Excel / Google Sheets", desc: "Mẫu bảng tính thống kê và tính toán cơ bản", url: "https://docs.google.com/spreadsheets", icon: "fa-table" }
+        { title:'Phần mềm Scratch 3.0', desc:'Thiết kế game đố vui và hoạt hình', url:'https://scratch.mit.edu', icon:'fa-laptop-code' },
+        { title:'Bảng tính Excel / Google Sheets', desc:'Mẫu bảng tính thống kê và tính toán cơ bản', url:'https://docs.google.com/spreadsheets', icon:'fa-table' }
       ],
       congnghe: [
-        { title: "Video hướng dẫn STEM: Lắp mô hình", desc: "Video từng bước làm mô hình sáng tạo", url: "https://www.youtube.com", icon: "fa-youtube" },
-        { title: "Đề kiểm tra Tin học & Công nghệ 5", desc: "Kho đề ôn tập cuối kỳ lưu trên Drive", url: "https://drive.google.com", icon: "fa-folder-open" }
+        { title:'Video hướng dẫn STEM: Lắp mô hình', desc:'Video từng bước làm mô hình sáng tạo', url:'https://www.youtube.com', icon:'fa-youtube' },
+        { title:'Đề kiểm tra Tin học & Công nghệ 5', desc:'Kho đề ôn tập cuối kỳ trên Drive', url:'https://drive.google.com', icon:'fa-folder-open' }
       ]
     };
-
-    function renderSchools() {
-      document.getElementById('lop4-thuchanh-list').innerHTML = lop4Links.thuchanh.map(createSchoolHTML).join('');
-      document.getElementById('lop4-tailieu-list').innerHTML = lop4Links.tailieu.map(createSchoolHTML).join('');
-      document.getElementById('lop5-tinhoc-list').innerHTML = lop5Links.tinhoc.map(createSchoolHTML).join('');
-      document.getElementById('lop5-congnghe-list').innerHTML = lop5Links.congnghe.map(createSchoolHTML).join('');
-    }
-
     function createSchoolHTML(item) {
+      const href = safeUrl(item.url);
       return `
         <div class="p-3 bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 hover:border-indigo-400 transition flex items-center justify-between gap-3">
           <div class="flex items-center gap-3 overflow-hidden">
@@ -1065,239 +1058,273 @@
               <i class="fa-solid ${item.icon}"></i>
             </div>
             <div class="truncate">
-              <div class="font-bold text-xs text-slate-800 dark:text-slate-100 truncate">${item.title}</div>
-              <div class="text-[11px] text-slate-400 truncate">${item.desc}</div>
+              <div class="font-bold text-xs text-slate-800 dark:text-slate-100 truncate">${escapeHtml(item.title)}</div>
+              <div class="text-[11px] text-slate-400 truncate">${escapeHtml(item.desc)}</div>
             </div>
           </div>
           <div class="flex items-center gap-1.5 shrink-0">
-            <button onclick="copyToClipboard('${item.url}')" title="Sao chép" class="p-1.5 text-slate-400 hover:text-indigo-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition text-xs">
+            <button type="button" data-copy="${escapeHtml(item.url)}" title="Sao chép" aria-label="Sao chép liên kết" class="p-1.5 text-slate-400 hover:text-indigo-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition text-xs">
               <i class="fa-regular fa-copy"></i>
             </button>
-            <a href="${item.url}" target="_blank" class="px-2.5 py-1 bg-slate-900 dark:bg-indigo-600 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold transition flex items-center gap-1">
+            <a href="${href}" target="_blank" rel="noopener" class="px-2.5 py-1 bg-slate-900 dark:bg-indigo-600 hover:bg-indigo-600 text-white rounded-lg text-xs font-bold transition flex items-center gap-1">
               Mở <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
             </a>
           </div>
-        </div>
-      `;
+        </div>`;
     }
-
-    // 9. DỰ ÁN & FILTER
-    const projectsData = [
-      { id: 1, title: "Tổng hợp Thuật toán C++ & Cấu trúc dữ liệu", category: "ptit", subCategory: "Bài tập", desc: "Cài đặt BFS, DFS, UCS, cây nhị phân và quy hoạch động tối ưu.", tags: ["C++", "DSA", "PTIT"] },
-      { id: 2, title: "Đồ Án: Phân tích An Toàn Mạng Doanh Nghiệp", category: "ptit", subCategory: "Đồ Án", desc: "Triển khai xác thực đa lớp, mã hóa AES và cấu hình hạ tầng mạng an toàn.", tags: ["Security", "Network", "PTIT"] },
-      { id: 3, title: "Mô hình Phân loại Hình ảnh với CNN", category: "ai", subCategory: "Deep Learning", desc: "Nhận diện vật thể sử dụng TensorFlow/PyTorch với độ chính xác cao.", tags: ["Python", "Computer Vision", "AI"] },
-      { id: 4, title: "Dashboard Phân tích Doanh thu Doanh nghiệp", category: "data", subCategory: "BI & Analytics", desc: "Trực quan hóa doanh số, tăng trưởng MoM/YoY và hiệu suất bán hàng bằng PowerBI.", tags: ["PowerBI", "SQL", "Data Analyst"] }
-    ];
-
-    function filterCategory(cat) {
-      document.querySelectorAll('.filter-btn').forEach(btn => {
-        if(btn.dataset.filter === cat) {
-          btn.className = 'filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-indigo-600 text-white shadow-sm';
-        } else {
-          btn.className = 'filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700';
-        }
+    function renderSchools() {
+      $('#lop4-thuchanh-list').innerHTML = lop4Links.thuchanh.map(createSchoolHTML).join('');
+      $('#lop4-tailieu-list').innerHTML = lop4Links.tailieu.map(createSchoolHTML).join('');
+      $('#lop5-tinhoc-list').innerHTML = lop5Links.tinhoc.map(createSchoolHTML).join('');
+      $('#lop5-congnghe-list').innerHTML = lop5Links.congnghe.map(createSchoolHTML).join('');
+    }
+    // Event delegation cho nút copy ở các list trường học
+    ['lop4-thuchanh-list','lop4-tailieu-list','lop5-tinhoc-list','lop5-congnghe-list'].forEach(id => {
+      document.getElementById(id).addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-copy]');
+        if (btn) copyToClipboard(btn.dataset.copy);
       });
-
-      const grid = document.getElementById('projects-grid');
-      const filtered = cat === 'all' ? projectsData : projectsData.filter(p => p.category === cat);
-      
-      grid.innerHTML = filtered.map(item => `
-        <div class="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 hover:shadow-lg transition">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300">${item.subCategory}</span>
-            <span class="text-xs text-slate-400 font-semibold uppercase">${item.category}</span>
-          </div>
-          <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2">${item.title}</h3>
-          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">${item.desc}</p>
-          <div class="flex flex-wrap gap-1.5">
-            ${item.tags.map(t => `<span class="text-[10px] px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium">#${t}</span>`).join('')}
-          </div>
-        </div>
-      `).join('');
-    }
-
-    // 10. PANEL CONTROLS
-    function togglePanel(panelName) {
-      const allPanels = ['ptit', 'ai', 'data', 'lop4', 'lop5', 'sync'];
-      allPanels.forEach(p => {
-        const el = document.getElementById(`panel-${p}`);
-        if (p === panelName) {
-          el.classList.remove('hidden');
-          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          el.classList.add('hidden');
-        }
-      });
-    }
-    function closePanel(panelName) {
-      document.getElementById(`panel-${panelName}`).classList.add('hidden');
-    }
-
-    // 11. SEARCH MODAL (Ctrl + K)
-    function openSearchModal() {
-      document.getElementById('search-modal').classList.remove('hidden');
-      document.getElementById('global-search-input').focus();
-    }
-    function closeSearchModal() {
-      document.getElementById('search-modal').classList.add('hidden');
-    }
-    window.addEventListener('keydown', (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-        e.preventDefault();
-        openSearchModal();
-      }
-      if (e.key === 'Escape') closeSearchModal();
     });
 
-    function handleGlobalSearch(keyword) {
-      const box = document.getElementById('search-results-box');
+    /* ============ PROJECTS ============ */
+    const projectsData = [
+      { id:1, title:'Tổng hợp Thuật toán C++ & Cấu trúc dữ liệu', category:'ptit', subCategory:'Bài tập', desc:'Cài đặt BFS, DFS, UCS, cây nhị phân và quy hoạch động tối ưu.', tags:['C++','DSA','PTIT'] },
+      { id:2, title:'Đồ Án: Phân tích An Toàn Mạng Doanh Nghiệp', category:'ptit', subCategory:'Đồ Án', desc:'Triển khai xác thực đa lớp, mã hóa AES và hạ tầng mạng an toàn.', tags:['Security','Network','PTIT'] },
+      { id:3, title:'Mô hình Phân loại Hình ảnh với CNN', category:'ai', subCategory:'Deep Learning', desc:'Nhận diện vật thể sử dụng TensorFlow/PyTorch độ chính xác cao.', tags:['Python','Computer Vision','AI'] },
+      { id:4, title:'Dashboard Phân tích Doanh thu Doanh nghiệp', category:'data', subCategory:'BI & Analytics', desc:'Trực quan hóa doanh số, MoM/YoY và hiệu suất bán hàng bằng PowerBI.', tags:['PowerBI','SQL','Data Analyst'] }
+    ];
+    window.filterCategory = (cat) => {
+      $$('.filter-btn').forEach(btn => {
+        const active = btn.dataset.filter === cat;
+        btn.className = 'filter-btn ' + (active
+          ? 'active px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-indigo-600 text-white shadow-sm'
+          : 'px-3.5 py-1.5 rounded-xl text-xs font-bold transition bg-white dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700');
+      });
+      const filtered = cat === 'all' ? projectsData : projectsData.filter(p => p.category === cat);
+      $('#projects-grid').innerHTML = filtered.map(item => `
+        <div class="glass-card p-6 rounded-2xl border border-slate-200/80 dark:border-slate-800 hover:shadow-lg transition">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-bold uppercase tracking-wider px-2.5 py-1 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-300">${escapeHtml(item.subCategory)}</span>
+            <span class="text-xs text-slate-400 font-semibold uppercase">${escapeHtml(item.category)}</span>
+          </div>
+          <h3 class="font-bold text-base text-slate-900 dark:text-white mb-2">${escapeHtml(item.title)}</h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 leading-relaxed mb-4">${escapeHtml(item.desc)}</p>
+          <div class="flex flex-wrap gap-1.5">
+            ${item.tags.map(t => `<span class="text-[10px] px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-medium">#${escapeHtml(t)}</span>`).join('')}
+          </div>
+        </div>`).join('');
+    };
+
+    /* ============ PANELS + HASH ROUTING ============ */
+    const PANELS = ['ptit', 'ai', 'data', 'lop4', 'lop5', 'sync'];
+    function openPanel(name, { scroll = true } = {}) {
+      if (!PANELS.includes(name)) return;
+      PANELS.forEach(p => {
+        const el = $('#panel-' + p);
+        if (p === name) el.classList.remove('hidden');
+        else el.classList.add('hidden');
+      });
+      if (scroll) setTimeout(() => $('#panel-' + name).scrollIntoView({ behavior: 'smooth', block: 'start' }), 30);
+    }
+    window.togglePanel = (name) => {
+      const el = $('#panel-' + name);
+      if (el.classList.contains('hidden')) {
+        openPanel(name);
+        history.replaceState(null, '', '#panel-' + name);
+      } else {
+        el.classList.add('hidden');
+        history.replaceState(null, '', location.pathname);
+      }
+    };
+    window.closePanel = (name) => {
+      $('#panel-' + name).classList.add('hidden');
+      if (location.hash === '#panel-' + name) history.replaceState(null, '', location.pathname);
+    };
+    // Click shortcut buttons có data-panel
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-panel]');
+      if (!btn) return;
+      e.preventDefault();
+      togglePanel(btn.dataset.panel);
+    });
+    function restoreFromHash() {
+      const m = location.hash.match(/^#panel-(.+)$/);
+      if (m && PANELS.includes(m[1])) openPanel(m[1], { scroll: false });
+    }
+    window.addEventListener('hashchange', restoreFromHash);
+
+    /* ============ SEARCH ============ */
+    window.openSearchModal = () => {
+      $('#search-modal').classList.remove('hidden');
+      $('#global-search-input').focus();
+    };
+    window.closeSearchModal = () => {
+      $('#search-modal').classList.add('hidden');
+      $('#global-search-input').value = '';
+      $('#search-results-box').innerHTML = '<div class="text-center py-6 text-xs text-slate-400">Nhập từ khóa để tra cứu...</div>';
+    };
+    window.addEventListener('keydown', (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault(); openSearchModal();
+      }
+      if (e.key === 'Escape') { closeSearchModal(); }
+    });
+    // Đóng modal khi click nền
+    $('#search-modal').addEventListener('click', (e) => { if (e.target.id === 'search-modal') closeSearchModal(); });
+    $('#modal-ptit').addEventListener('click', (e) => { if (e.target.id === 'modal-ptit') closeAddPtitModal(); });
+
+    const doSearch = debounce((keyword) => {
+      const box = $('#search-results-box');
       const q = keyword.trim().toLowerCase();
       if (!q) {
-        box.innerHTML = `<div class="text-center py-6 text-xs text-slate-400">Nhập từ khóa để tra cứu tức thì toàn bộ kho tài liệu...</div>`;
+        box.innerHTML = '<div class="text-center py-6 text-xs text-slate-400">Nhập từ khóa để tra cứu...</div>';
         return;
       }
-
-      const allItems = [
-        ...projectsData.map(p => ({ title: p.title, desc: p.desc, category: p.category.toUpperCase(), url: '#projects' })),
-        ...lop4Links.thuchanh.map(l => ({ title: l.title, desc: l.desc, category: 'TIN HỌC 4', url: l.url })),
-        ...lop4Links.tailieu.map(l => ({ title: l.title, desc: l.desc, category: 'TIN HỌC 4', url: l.url })),
-        ...lop5Links.tinhoc.map(l => ({ title: l.title, desc: l.desc, category: 'LỚP 5 TIN HỌC', url: l.url })),
-        ...lop5Links.congnghe.map(l => ({ title: l.title, desc: l.desc, category: 'LỚP 5 CÔNG NGHỆ', url: l.url })),
-        ...ptitItems.doan.map(l => ({ title: l.title, desc: l.desc, category: 'PTIT ĐỒ ÁN', url: l.url })),
-        ...ptitItems.duan.map(l => ({ title: l.title, desc: l.desc, category: 'PTIT DỰ ÁN', url: l.url }))
+      const all = [
+        ...projectsData.map(p => ({ title:p.title, desc:p.desc, category:p.category.toUpperCase(), url:'#projects' })),
+        ...lop4Links.thuchanh.map(l => ({ title:l.title, desc:l.desc, category:'TIN HỌC 4', url:l.url })),
+        ...lop4Links.tailieu.map(l => ({ title:l.title, desc:l.desc, category:'TIN HỌC 4', url:l.url })),
+        ...lop5Links.tinhoc.map(l => ({ title:l.title, desc:l.desc, category:'LỚP 5 TIN HỌC', url:l.url })),
+        ...lop5Links.congnghe.map(l => ({ title:l.title, desc:l.desc, category:'LỚP 5 CÔNG NGHỆ', url:l.url })),
+        ...ptitItems.doan.map(l => ({ title:l.title, desc:l.desc, category:'PTIT ĐỒ ÁN', url:l.url })),
+        ...ptitItems.duan.map(l => ({ title:l.title, desc:l.desc, category:'PTIT DỰ ÁN', url:l.url })),
+        ...userRoadmap.map(p => ({ title:p.title, desc:p.deliver, category:'ROADMAP DA', url:'#panel-data' })),
+        ...readLaterList.map(r => ({ title:r.title, desc:r.url, category:'ĐỌC SAU', url:r.url }))
       ];
-
-      const matches = allItems.filter(item => 
-        item.title.toLowerCase().includes(q) || 
-        item.desc.toLowerCase().includes(q) || 
-        item.category.toLowerCase().includes(q)
+      const matches = all.filter(it =>
+        it.title.toLowerCase().includes(q) ||
+        it.desc.toLowerCase().includes(q) ||
+        it.category.toLowerCase().includes(q)
       );
-
-      if (matches.length === 0) {
-        box.innerHTML = `<div class="text-center py-6 text-xs text-slate-400">Không tìm thấy tài liệu phù hợp với "${keyword}".</div>`;
+      if (!matches.length) {
+        box.innerHTML = `<div class="text-center py-6 text-xs text-slate-400">Không tìm thấy kết quả cho "${escapeHtml(keyword)}".</div>`;
         return;
       }
-
-      box.innerHTML = matches.map(item => `
-        <a href="${item.url}" target="_blank" onclick="closeSearchModal()" class="block p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-100 dark:border-slate-800 transition">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-slate-800 dark:text-white">${item.title}</span>
-            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-cyan-300">${item.category}</span>
+      box.innerHTML = matches.slice(0, 30).map(it => `
+        <a href="${safeUrl(it.url)}" ${it.url.startsWith('#') ? 'onclick="closeSearchModal()"' : 'target="_blank" rel="noopener"'} class="block p-3 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 border border-slate-100 dark:border-slate-800 transition">
+          <div class="flex items-center justify-between gap-2">
+            <span class="text-xs font-bold text-slate-800 dark:text-white truncate">${escapeHtml(it.title)}</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-cyan-300 shrink-0">${escapeHtml(it.category)}</span>
           </div>
-          <div class="text-[11px] text-slate-400 truncate mt-0.5">${item.desc}</div>
-        </a>
-      `).join('');
-    }
+          <div class="text-[11px] text-slate-400 truncate mt-0.5">${escapeHtml(it.desc)}</div>
+        </a>`).join('');
+    }, 180);
+    $('#global-search-input').addEventListener('input', (e) => doSearch(e.target.value));
 
-    // 12. TOAST & CLIPBOARD
+    /* ============ TOAST & CLIPBOARD ============ */
+    let toastTimer;
     function showToast(msg) {
-      const toast = document.getElementById('toast');
-      document.getElementById('toast-message').textContent = msg;
+      const toast = $('#toast');
+      $('#toast-message').textContent = msg;
       toast.classList.remove('translate-y-24', 'opacity-0');
-      setTimeout(() => {
-        toast.classList.add('translate-y-24', 'opacity-0');
-      }, 2500);
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('translate-y-24', 'opacity-0'), 2500);
     }
+    window.showToast = showToast;
     function copyToClipboard(text) {
-      navigator.clipboard.writeText(text);
-      showToast('Đã sao chép liên kết vào bộ nhớ tạm!');
-    }
-
-    // 13. INTERACTIVE MAGNETIC PARTICLE NETWORK (KHÔNG CÓ QUẦNG SÁNG NEON VƯỚNG MẮT)
-    function initInteractiveMouseCanvas() {
-      const canvas = document.getElementById('particleCanvas');
-      const ctx = canvas.getContext('2d');
-      let w = canvas.width = window.innerWidth;
-      let h = canvas.height = window.innerHeight;
-
-      const mouse = { x: w / 2, y: h / 2, radius: 150, isHovered: false };
-
-      window.addEventListener('mousemove', (e) => {
-        mouse.x = e.clientX;
-        mouse.y = e.clientY;
-        mouse.isHovered = true;
-      });
-      window.addEventListener('mouseleave', () => { mouse.isHovered = false; });
-
-      const particles = [];
-      const particleCount = Math.min(Math.floor(w / 32), 48);
-
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * w,
-          y: Math.random() * h,
-          vx: (Math.random() - 0.5) * 0.6,
-          vy: (Math.random() - 0.5) * 0.6,
-          radius: Math.random() * 2 + 1
-        });
+      const done = () => showToast('Đã sao chép liên kết!');
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+      } else {
+        fallbackCopy(text, done);
       }
+    }
+    function fallbackCopy(text, cb) {
+      const ta = document.createElement('textarea');
+      ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+      document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); cb(); } catch {}
+      document.body.removeChild(ta);
+    }
+    window.copyToClipboard = copyToClipboard;
+
+    /* ============ PARTICLE NETWORK ============ */
+    function initParticles() {
+      if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const canvas = $('#particleCanvas');
+      const ctx = canvas.getContext('2d');
+      let w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const mouse = { x: -9999, y: -9999, radius: 150, active: false };
+      let running = true;
+
+      function resize() {
+        w = canvas.clientWidth = window.innerWidth;
+        h = canvas.clientHeight = window.innerHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      }
+      resize();
+
+      const count = Math.min(Math.floor(w / 32), window.innerWidth < 640 ? 22 : 48);
+      const particles = Array.from({ length: count }, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.6,
+        vy: (Math.random() - 0.5) * 0.6,
+        r: Math.random() * 2 + 1
+      }));
+
+      window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true; });
+      window.addEventListener('mouseleave', () => { mouse.active = false; });
+      window.addEventListener('resize', resize);
+      document.addEventListener('visibilitychange', () => {
+        running = !document.hidden;
+        if (running) requestAnimationFrame(draw);
+      });
 
       function draw() {
+        if (!running) return;
         ctx.clearRect(0, 0, w, h);
         const isDark = document.documentElement.classList.contains('dark');
-        const particleColor = isDark ? '#38bdf8' : '#6366f1';
-        const lineBaseColor = isDark ? '56, 189, 248' : '99, 102, 241';
+        const pCol = isDark ? '#38bdf8' : '#6366f1';
+        const lineRGB = isDark ? '56,189,248' : '99,102,241';
 
         for (let i = 0; i < particles.length; i++) {
-          let p = particles[i];
-          p.x += p.vx;
-          p.y += p.vy;
-
+          const p = particles[i];
+          p.x += p.vx; p.y += p.vy;
           if (p.x < 0 || p.x > w) p.vx *= -1;
           if (p.y < 0 || p.y > h) p.vy *= -1;
 
-          // Hút từ tính theo chuột
-          if (mouse.isHovered) {
-            const dx = mouse.x - p.x;
-            const dy = mouse.y - p.y;
-            const dist = Math.hypot(dx, dy);
-
-            if (dist < mouse.radius) {
-              const force = (mouse.radius - dist) / mouse.radius;
-              p.x += (dx / dist) * force * 1.5;
-              p.y += (dy / dist) * force * 1.5;
-
+          if (mouse.active) {
+            const dx = mouse.x - p.x, dy = mouse.y - p.y;
+            const d = Math.hypot(dx, dy);
+            if (d < mouse.radius && d > 0.01) {
+              const f = (mouse.radius - d) / mouse.radius;
+              p.x += (dx / d) * f * 1.5;
+              p.y += (dy / d) * f * 1.5;
               ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(mouse.x, mouse.y);
-              ctx.strokeStyle = `rgba(${lineBaseColor}, ${0.3 * (1 - dist / mouse.radius)})`;
-              ctx.lineWidth = 1.1;
-              ctx.stroke();
+              ctx.moveTo(p.x, p.y); ctx.lineTo(mouse.x, mouse.y);
+              ctx.strokeStyle = `rgba(${lineRGB},${0.3 * (1 - d / mouse.radius)})`;
+              ctx.lineWidth = 1.1; ctx.stroke();
             }
           }
 
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
-          ctx.fillStyle = particleColor;
-          ctx.fill();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = pCol; ctx.fill();
 
           for (let j = i + 1; j < particles.length; j++) {
-            let p2 = particles[j];
-            let dist = Math.hypot(p.x - p2.x, p.y - p2.y);
-            if (dist < 120) {
+            const p2 = particles[j];
+            const dx = p.x - p2.x, dy = p.y - p2.y;
+            const d2 = dx * dx + dy * dy;
+            if (d2 < 14400) { // 120^2
+              const d = Math.sqrt(d2);
               ctx.beginPath();
-              ctx.moveTo(p.x, p.y);
-              ctx.lineTo(p2.x, p2.y);
-              ctx.strokeStyle = `rgba(${lineBaseColor}, ${0.14 * (1 - dist / 120)})`;
-              ctx.lineWidth = 0.8;
-              ctx.stroke();
+              ctx.moveTo(p.x, p.y); ctx.lineTo(p2.x, p2.y);
+              ctx.strokeStyle = `rgba(${lineRGB},${0.14 * (1 - d / 120)})`;
+              ctx.lineWidth = 0.8; ctx.stroke();
             }
           }
         }
         requestAnimationFrame(draw);
       }
       draw();
-
-      window.addEventListener('resize', () => {
-        w = canvas.width = window.innerWidth;
-        h = canvas.height = window.innerHeight;
-      });
     }
 
-    // KHỞI CHẠY
+    /* ============ BOOT ============ */
     window.addEventListener('DOMContentLoaded', () => {
-      initTheme();
-      initInteractiveMouseCanvas();
+      syncThemeIcon();
+      initParticles();
       typeLoop();
       updateRoadmapUI();
       renderLater();
@@ -1305,7 +1332,9 @@
       renderAiNews();
       renderSchools();
       filterCategory('all');
+      restoreFromHash();
     });
+  })();
   </script>
 </body>
 </html>
