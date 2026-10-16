@@ -1584,35 +1584,35 @@
   })();
   </script>
   <!-- Khung chứa robot cố định ở góc dưới bên phải -->
+<!-- Khung chứa robot nhúng từ trang worker -->
 <div id="robot-widget">
-  <img src="https://robot-heads.fayaz.workers.dev/?shape=circle" alt="Robot Head" />
+  <iframe src="https://robot-heads.fayaz.workers.dev/?shape=circle&color=2a50c0" frameborder="0"></iframe>
 </div>
 
 <style>
-  /* Cấu hình vị trí và kiểu dáng cho widget robot */
   #robot-widget {
     position: fixed;
-    bottom: 20px;       /* Cách mép dưới 20px */
-    right: 20px;        /* Cách mép phải 20px */
-    z-index: 9999;      /* Đảm bảo robot luôn nổi lên trên cùng các thành phần khác */
-    width: 90px;
-    height: 90px;
+    bottom: 25px;
+    right: 25px;
+    z-index: 9999;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Tạo hiệu ứng đổ bóng */
-    transition: transform 0.3s ease;            /* Hiệu ứng mượt khi rê chuột */
-    cursor: pointer;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    background: transparent;
+    transition: transform 0.3s ease;
   }
 
-  #robot-widget img {
+  #robot-widget iframe {
     width: 100%;
     height: 100%;
-    border-radius: 50%;
-    display: block;
+    border: none;
+    pointer-events: none; /* Tránh cản trở cuộn trang */
   }
 
-  /* Hiệu ứng phóng to nhẹ khi rê chuột vào */
   #robot-widget:hover {
-    transform: scale(1.15) rotate(5deg);
+    transform: scale(1.15);
   }
 </style>
 </body>
