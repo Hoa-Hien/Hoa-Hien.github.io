@@ -1584,36 +1584,53 @@
   })();
   </script>
   <!-- Khung chứa robot cố định ở góc dưới bên phải -->
-<!-- Khung chứa robot nhúng từ trang worker -->
+<!-- Widget Robot ở góc màn hình -->
 <div id="robot-widget">
-  <iframe src="https://robot-heads.fayaz.workers.dev/?shape=circle&color=2a50c0" frameborder="0"></iframe>
+  <svg viewBox="0 0 100 100" width="100%" height="100%">
+    <!-- Nền tròn màu xanh #2a50c0 -->
+    <circle cx="50" cy="50" r="48" fill="#2a50c0" />
+    
+    <!-- Đầu Robot -->
+    <rect x="25" y="30" width="50" height="40" rx="8" fill="#ffffff" />
+    
+    <!-- Tai Robot -->
+    <rect x="18" y="42" width="7" height="16" rx="3" fill="#e2e8f0" />
+    <rect x="75" y="42" width="7" height="16" rx="3" fill="#e2e8f0" />
+    
+    <!-- Mắt Robot (Trạng thái đang nói/chớp mắt) -->
+    <circle cx="40" cy="48" r="5" fill="#2a50c0" />
+    <circle cx="60" cy="48" r="5" fill="#2a50c0" />
+    <circle cx="42" cy="46" r="1.5" fill="#ffffff" />
+    <circle cx="62" cy="46" r="1.5" fill="#ffffff" />
+    
+    <!-- Miệng Robot (Speaking/Đang nói) -->
+    <rect x="40" y="58" width="20" height="4" rx="2" fill="#2a50c0" />
+    
+    <!-- Ăng-ten trên đầu -->
+    <rect x="48" y="18" width="4" height="12" fill="#e2e8f0" />
+    <circle cx="50" cy="16" r="4" fill="#ff4757" />
+  </svg>
 </div>
 
 <style>
+  /* Định vị cố định ở góc dưới bên phải */
   #robot-widget {
     position: fixed;
     bottom: 25px;
     right: 25px;
     z-index: 9999;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-    background: transparent;
+    width: 80px;
+    height: 80px;
+    filter: drop-shadow(0px 4px 10px rgba(0, 0, 0, 0.3));
     transition: transform 0.3s ease;
+    cursor: pointer;
   }
 
-  #robot-widget iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
-    pointer-events: none; /* Tránh cản trở cuộn trang */
-  }
-
+  /* Hiệu ứng xoay nhẹ khi rê chuột vào */
   #robot-widget:hover {
-    transform: scale(1.15);
+    transform: scale(1.15) rotate(10deg);
   }
 </style>
+
 </body>
 </html>
